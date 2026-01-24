@@ -79,9 +79,9 @@ export const PRODUCTS = [
       origin: 'Aquaculture India'
     },
     transformation: [
-        { label: 'Harvest', duration: 1, image: 'https://images.unsplash.com/photo-1678809549303-346765276337?q=80&w=400&auto=format&fit=crop' },
-        { label: 'Peeling', duration: 1, image: 'https://images.unsplash.com/photo-1615141982880-131f4794101f?q=80&w=400&auto=format&fit=crop' },
-        { label: 'Final IQF', duration: 2, image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=400&auto=format&fit=crop' }
+      { label: 'Harvest', duration: 1, image: 'https://images.unsplash.com/photo-1678809549303-346765276337?q=80&w=400&auto=format&fit=crop' },
+      { label: 'Peeling', duration: 1, image: 'https://images.unsplash.com/photo-1615141982880-131f4794101f?q=80&w=400&auto=format&fit=crop' },
+      { label: 'Final IQF', duration: 2, image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=400&auto=format&fit=crop' }
     ]
   },
   {

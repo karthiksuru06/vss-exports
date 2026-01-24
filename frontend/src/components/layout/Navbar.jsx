@@ -5,6 +5,7 @@ import { Menu, X, Anchor, Globe } from 'lucide-react';
 import { useResponsive } from '../../hooks/useResponsive';
 import { useTranslation } from '../../hooks/useTranslation';
 import { NAV_ITEMS } from '../../utils/constants';
+import logo from '../../assets/images/logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,8 +40,8 @@ const Navbar = () => {
       document.body.style.height = 'auto';
     }
     return () => {
-        document.body.style.overflow = 'unset';
-        document.body.style.height = 'auto';
+      document.body.style.overflow = 'unset';
+      document.body.style.height = 'auto';
     };
   }, [isOpen]);
 
@@ -59,8 +60,8 @@ const Navbar = () => {
   const navClasses = isOpen
     ? `bg-transparent border-transparent ${scrolled ? 'py-2' : 'py-6'}` // Keep padding consistent to avoid jump, but remove bg
     : (useDarkNav
-        ? 'bg-midnight-800/95 backdrop-blur-xl border-white/10 py-2 shadow-2xl'
-        : 'bg-transparent border-transparent py-6');
+      ? 'bg-midnight-800/95 backdrop-blur-xl border-white/10 py-2 shadow-2xl'
+      : 'bg-transparent border-transparent py-6');
 
   return (
     <nav
@@ -70,32 +71,32 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16 w-full">
           {/* Logo */}
           <div className="pointer-events-auto relative z-50">
-              <NavLink
-                to="/"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center space-x-3 group w-auto shrink-0 relative"
-              >
-                <div className="relative">
-                    <div className="absolute inset-0 bg-gold-500 blur-lg opacity-20 group-hover:opacity-40 transition-opacity rounded-full"></div>
-                    <Anchor className="relative h-10 w-10 text-gold-500 transition-transform duration-500 group-hover:rotate-12" />
-                </div>
-                <div className="flex flex-col">
-                    <span className="text-2xl font-serif font-bold tracking-tight text-white leading-none">
-                    Mahadev<span className="text-gold-500">Marine</span>
-                    </span>
-                    <span className="text-[10px] tracking-[0.3em] uppercase text-ocean-300 font-medium opacity-80 mt-1">
-                        Exports
-                    </span>
-                </div>
-              </NavLink>
+            <NavLink
+              to="/"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center space-x-3 group w-auto shrink-0 relative"
+            >
+              <div className="relative">
+                <img src={logo} alt="Mahadev Marine" className="relative h-14 w-auto object-contain transition-transform duration-500 group-hover:rotate-12 drop-shadow-md" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-2xl font-serif font-bold tracking-tight text-white leading-none">
+                  Mahadev<span className="text-gold-500">Marine</span>
+                </span>
+                <span className="text-[10px] tracking-[0.3em] uppercase text-ocean-300 font-medium opacity-80 mt-1">
+                  Exports
+                </span>
+              </div>
+            </NavLink>
           </div>
+
 
           {/* Desktop Menu - Shows only on Large screens (>= 1024px) */}
           {isDesktop && (
             <div className="hidden lg:flex items-center space-x-12 pointer-events-auto">
               <div className="flex space-x-8">
                 {NAV_ITEMS.map((item) => (
-                    <NavLink
+                  <NavLink
                     key={item.path}
                     to={item.path}
                     className={({ isActive }) => `
@@ -103,53 +104,53 @@ const Navbar = () => {
                         ${isActive ? 'text-gold-400' : 'text-white/80 hover:text-white'}
                         group
                     `}
-                    >
+                  >
                     {t(item.label)}
                     <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-gold-500 transition-all duration-300 group-hover:w-full opacity-80"></span>
-                    </NavLink>
+                  </NavLink>
                 ))}
               </div>
 
               {/* Language Switcher */}
               <div className="relative">
                 <button
-                    onClick={() => setLangMenuOpen(!langMenuOpen)}
-                    className="flex items-center space-x-2 text-white/80 hover:text-white transition-colors bg-white/5 px-3 py-2 rounded-full border border-white/10 hover:border-white/30"
+                  onClick={() => setLangMenuOpen(!langMenuOpen)}
+                  className="flex items-center space-x-2 text-white/80 hover:text-white transition-colors bg-white/5 px-3 py-2 rounded-full border border-white/10 hover:border-white/30"
                 >
-                    <Globe size={16} />
-                    <span className="text-sm font-medium uppercase">{lang}</span>
+                  <Globe size={16} />
+                  <span className="text-sm font-medium uppercase">{lang}</span>
                 </button>
                 <AnimatePresence>
-                    {langMenuOpen && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 10 }}
-                            className="absolute top-full right-0 mt-2 w-40 bg-midnight-900 border border-white/10 rounded-xl overflow-hidden shadow-xl"
+                  {langMenuOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute top-full right-0 mt-2 w-40 bg-midnight-900 border border-white/10 rounded-xl overflow-hidden shadow-xl"
+                    >
+                      {languages.map((l) => (
+                        <button
+                          key={l.code}
+                          onClick={() => { setLang(l.code); setLangMenuOpen(false); }}
+                          className="w-full text-left px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white flex items-center justify-between transition-colors"
                         >
-                            {languages.map((l) => (
-                                <button
-                                    key={l.code}
-                                    onClick={() => { setLang(l.code); setLangMenuOpen(false); }}
-                                    className="w-full text-left px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white flex items-center justify-between transition-colors"
-                                >
-                                    <span>{l.label}</span>
-                                    <span>{l.flag}</span>
-                                </button>
-                            ))}
-                        </motion.div>
-                    )}
+                          <span>{l.label}</span>
+                          <span>{l.flag}</span>
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
                 </AnimatePresence>
               </div>
 
               <NavLink to="/contact">
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="bg-gold-600 hover:bg-gold-500 text-midnight-900 px-6 py-2.5 rounded-sm font-bold text-sm uppercase tracking-wider shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all cursor-pointer"
-                  >
-                    {t('cta.enquire')}
-                  </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-gold-600 hover:bg-gold-500 text-midnight-900 px-6 py-2.5 rounded-sm font-bold text-sm uppercase tracking-wider shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all cursor-pointer"
+                >
+                  {t('cta.enquire')}
+                </motion.div>
               </NavLink>
             </div>
           )}
@@ -157,13 +158,13 @@ const Navbar = () => {
           {/* Mobile/Tablet Hamburger - Shows on screens < 1024px */}
           {!isDesktop && (
             <div className="pointer-events-auto relative z-50">
-                <button
-                  onClick={() => setIsOpen(!isOpen)}
-                  className="p-2 text-white focus:outline-none transition-colors hover:text-gold-500"
-                  aria-label="Toggle Menu"
-                >
-                  {isOpen ? <X size={32} /> : <Menu size={32} />}
-                </button>
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="p-2 text-white focus:outline-none transition-colors hover:text-gold-500"
+                aria-label="Toggle Menu"
+              >
+                {isOpen ? <X size={32} /> : <Menu size={32} />}
+              </button>
             </div>
           )}
         </div>
@@ -179,7 +180,7 @@ const Navbar = () => {
             transition={{ type: "spring", damping: 25, stiffness: 100 }}
             className="fixed inset-0 bg-midnight-900 z-40 flex flex-col items-center justify-center overflow-hidden pointer-events-auto h-[100dvh]"
           >
-             <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 pointer-events-none"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 pointer-events-none"></div>
 
             <div className="flex flex-col space-y-8 text-center relative z-50 w-full px-8">
               {NAV_ITEMS.map((item, idx) => (
@@ -206,15 +207,15 @@ const Navbar = () => {
                 transition={{ delay: 0.5 }}
                 className="flex gap-6 mt-8 justify-center"
               >
-                  {languages.map((l) => (
-                      <button
-                        key={l.code}
-                        onClick={() => setLang(l.code)}
-                        className={`text-3xl ${lang === l.code ? 'grayscale-0 scale-125' : 'grayscale opacity-50'} transition-all hover:scale-110 hover:opacity-100`}
-                      >
-                          {l.flag}
-                      </button>
-                  ))}
+                {languages.map((l) => (
+                  <button
+                    key={l.code}
+                    onClick={() => setLang(l.code)}
+                    className={`text-3xl ${lang === l.code ? 'grayscale-0 scale-125' : 'grayscale opacity-50'} transition-all hover:scale-110 hover:opacity-100`}
+                  >
+                    {l.flag}
+                  </button>
+                ))}
               </motion.div>
             </div>
           </motion.div>
