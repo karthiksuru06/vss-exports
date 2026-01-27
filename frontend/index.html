@@ -24,6 +24,11 @@
                 900: '#0c4a6e', // Classic deep blue
                 950: '#082f49', // Darkest blue
               },
+              abyss: {
+                800: '#0a1628',
+                900: '#060d17', // Deep ocean abyss
+                950: '#030810', // Darkest abyss
+              },
               midnight: {
                 800: '#0a2540', // Primary Brand Dark
                 900: '#051b30',
@@ -93,8 +98,31 @@
         -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.05);
       }
+      .glass-underwater {
+        background: rgba(6, 13, 23, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(45, 212, 191, 0.1);
+      }
+      .glass-surface {
+        background: rgba(12, 74, 110, 0.4);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(45, 212, 191, 0.2);
+      }
       .text-shadow-sm {
         text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      }
+      /* 3D Transform utilities for Arc Explorer */
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+      .preserve-3d {
+        transform-style: preserve-3d;
+      }
+      .backface-hidden {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
       }
     </style>
   <script type="importmap">
@@ -114,7 +142,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/public/index.css">
+<link rel="stylesheet" href="/index.css">
 </head>
   <body>
     <div id="root"></div>

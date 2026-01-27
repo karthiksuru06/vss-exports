@@ -1,3 +1,7 @@
+// Import local videos for products
+import shrimpVideo1 from '../assets/images/WhatsApp Video 2026-01-27 at 7.09.57 PM.mp4';
+import shrimpVideo2 from '../assets/images/WhatsApp Video 2026-01-27 at 7.09.57 PM (1).mp4';
+
 export const NAV_ITEMS = [
   { label: 'nav.home', path: '/' },
   { label: 'nav.products', path: '/products' },
@@ -48,6 +52,8 @@ export const PRODUCTS = [
     scientificName: 'Penaeus monodon',
     description: 'The monarch of prawns. Distinctive stripes, firm texture, and sweet flavor. Processed in our state-of-the-art Veraval facility.',
     image: 'https://images.unsplash.com/photo-1626804475297-411dbe631267?q=80&w=800&auto=format&fit=crop',
+    // Local product video
+    video: shrimpVideo1,
     category: 'Shrimp',
     division: 'shrimp',
     processingType: ['Head-On', 'Head-Less', 'Peeled'],
@@ -69,6 +75,8 @@ export const PRODUCTS = [
     scientificName: 'Litopenaeus vannamei',
     description: 'Sustainably farmed white leg shrimp. Versatile, consistent size, and mild flavor perfect for global cuisines.',
     image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800&auto=format&fit=crop',
+    // Local product video
+    video: shrimpVideo2,
     category: 'Shrimp',
     division: 'shrimp',
     processingType: ['PD', 'PDTO', 'HMSO'],
@@ -90,6 +98,8 @@ export const PRODUCTS = [
     scientificName: 'Pampus argenteus',
     description: 'A premium table fish highly sought after in Asian markets. Delicate white meat with minimal bones.',
     image: 'https://images.unsplash.com/photo-1534942205242-a42d3c2a117b?q=80&w=800&auto=format&fit=crop',
+    // Video URL - ocean/fish theme
+    video: 'https://cdn.pixabay.com/video/2016/09/05/4964-182620860_large.mp4',
     category: 'Fish',
     division: 'seafood',
     processingType: ['Whole Round', 'Gutted'],
@@ -105,6 +115,8 @@ export const PRODUCTS = [
     scientificName: 'Industrial Grade',
     description: 'High-quality chitin derived from shrimp shells. Used in agriculture, textiles, and water treatment.',
     image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=800&auto=format&fit=crop',
+    // No video for bio-products - will fall back to image
+    video: null,
     category: 'Bio-Products',
     division: 'bio',
     processingType: ['Flakes', 'Powder'],
