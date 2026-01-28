@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import HeroParallax from '../components/home/HeroParallax';
 import DivisionShowcase from '../components/home/DivisionShowcase';
-import StatsCounter from '../components/home/StatsCounter';
 import GlobalTransportMap from '../components/home/GlobalTransportMap';
 import CertificationsTicker from '../components/shared/CertificationsTicker';
 import { ShieldCheck, Truck, Globe, Clock, MessageSquare } from 'lucide-react';
@@ -85,8 +84,6 @@ const Home = () => {
             </section>
 
             <GlobalTransportMap />
-
-            <StatsCounter />
 
             {/* Sticky Quick Enquiry Bubble */}
             <motion.div
