@@ -10,11 +10,34 @@
 
 import React, { useMemo } from 'react';
 import { motion, useTransform, AnimatePresence } from 'framer-motion';
-import { Ruler, Package, MapPin, ShoppingCart, FileText } from 'lucide-react';
+import { Ruler, Package, MapPin, ShoppingCart, FileText, Settings, Award } from 'lucide-react';
 import useArcRotation from '../../hooks/useArcRotation';
 
 const DEG_TO_RAD = Math.PI / 180;
-const mod = (n, m) => ((n % m) + m) % m;
+
+/**
+ * Get localized product info with fallback to English
+ */
+const getLocalizedInfo = (product, lang = 'en') => {
+  if (product?.info?.[lang]) {
+    return product.info[lang];
+  }
+  // Fallback to English
+  if (product?.info?.en) {
+    return product.info.en;
+  }
+  // Ultimate fallback - use direct properties
+  return {
+    name: product?.name || '',
+    category: product?.category || '',
+    description: product?.description || '',
+    sizes: product?.specs?.sizes?.[0] || '',
+    origin: product?.specs?.origin || '',
+    processing: product?.processingType?.join(', ') || '',
+    packaging: product?.specs?.packing?.join(', ') || '',
+    certification: product?.specs?.certifications?.join(', ') || ''
+  };
+};
 
 function ProductArcWheel({
   products,
@@ -28,6 +51,7 @@ function ProductArcWheel({
   innerRadius = 240,
   itemSize = 80,
   theme = 'deep-ocean',
+  currentLanguage = 'en', // New prop for i18n support
 }) {
   const isLight = theme === 'surface-light';
   const productCount = products.length;
@@ -149,10 +173,11 @@ function ProductArcWheel({
             itemSize={itemSize}
             onProductClick={onProductClick}
             onSnapToIndex={snapToIndex}
+            currentLanguage={currentLanguage}
           />
         ))}
 
-        {/* INFO INSIDE THE CIRCLE - No separate container */}
+        {/* INFO INSIDE THE CIRCLE - i18n aware */}
         <div
           className="absolute pointer-events-none"
           style={{
@@ -164,105 +189,165 @@ function ProductArcWheel({
           }}
         >
           <AnimatePresence mode="wait">
-            {focusedProduct && (
-              <motion.div
-                key={focusedProduct.id}
-                className="text-center pointer-events-auto"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
-              >
-                {/* Category */}
-                <span
-                  className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full mb-2"
-                  style={{
-                    background: 'rgba(212, 175, 55, 0.2)',
-                    color: '#d4af37',
-                    border: '1px solid rgba(212, 175, 55, 0.4)',
-                  }}
+            {focusedProduct && (() => {
+              const info = getLocalizedInfo(focusedProduct, currentLanguage);
+              return (
+                <motion.div
+                  key={`${focusedProduct.id}-${currentLanguage}`}
+                  className="text-center pointer-events-auto"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.4 }}
                 >
-                  {focusedProduct.category}
-                </span>
+                  {/* Category */}
+                  <span
+                    className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full mb-2"
+                    style={{
+                      background: 'rgba(212, 175, 55, 0.2)',
+                      color: '#d4af37',
+                      border: '1px solid rgba(212, 175, 55, 0.4)',
+                    }}
+                  >
+                    {info.category}
+                  </span>
 
-                {/* Name */}
-                <h2
-                  className="font-serif text-xl font-bold mb-0.5"
-                  style={{ color: isLight ? '#0a2540' : '#ffffff' }}
-                >
-                  {focusedProduct.name}
-                </h2>
+                  {/* Name */}
+                  <h2
+                    className="font-serif text-xl font-bold mb-0.5"
+                    style={{ color: isLight ? '#0a2540' : '#ffffff' }}
+                  >
+                    {info.name}
+                  </h2>
 
-                {/* Scientific name */}
-                <p
-                  className="text-xs italic mb-3"
-                  style={{ color: isLight ? '#64748b' : '#94a3b8' }}
-                >
-                  {focusedProduct.scientificName}
-                </p>
+                  {/* Scientific name (always in Latin) */}
+                  <p
+                    className="text-xs italic mb-2"
+                    style={{ color: isLight ? '#64748b' : '#94a3b8' }}
+                  >
+                    {focusedProduct.scientificName}
+                  </p>
 
-                {/* Specs */}
-                <div className="flex flex-wrap justify-center gap-1.5 mb-3">
-                  {focusedProduct.specs?.sizes && (
-                    <div
-                      className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs"
-                      style={{
-                        background: 'rgba(212, 175, 55, 0.1)',
-                        border: '1px solid rgba(212, 175, 55, 0.2)',
-                        color: isLight ? '#0f172a' : '#f1f5f9',
-                      }}
+                  {/* Description */}
+                  {info.description && (
+                    <p
+                      className="text-xs mb-2 line-clamp-2"
+                      style={{ color: isLight ? '#475569' : '#cbd5e1' }}
                     >
-                      <Ruler className="w-3 h-3" style={{ color: '#d4af37' }} />
-                      {focusedProduct.specs.sizes[0]}
+                      {info.description}
+                    </p>
+                  )}
+
+                  {/* Specs - Row 1: Sizes & Origin */}
+                  <div className="flex flex-wrap justify-center gap-1.5 mb-1.5">
+                    {info.sizes && (
+                      <div
+                        className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs"
+                        style={{
+                          background: 'rgba(212, 175, 55, 0.1)',
+                          border: '1px solid rgba(212, 175, 55, 0.2)',
+                          color: isLight ? '#0f172a' : '#f1f5f9',
+                        }}
+                      >
+                        <Ruler className="w-3 h-3" style={{ color: '#d4af37' }} />
+                        {info.sizes}
+                      </div>
+                    )}
+                    {info.origin && (
+                      <div
+                        className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs"
+                        style={{
+                          background: 'rgba(212, 175, 55, 0.1)',
+                          border: '1px solid rgba(212, 175, 55, 0.2)',
+                          color: isLight ? '#0f172a' : '#f1f5f9',
+                        }}
+                      >
+                        <MapPin className="w-3 h-3" style={{ color: '#d4af37' }} />
+                        {info.origin}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Specs - Row 2: Processing & Packaging */}
+                  <div className="flex flex-wrap justify-center gap-1.5 mb-1.5">
+                    {info.processing && (
+                      <div
+                        className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs"
+                        style={{
+                          background: 'rgba(59, 130, 246, 0.1)',
+                          border: '1px solid rgba(59, 130, 246, 0.2)',
+                          color: isLight ? '#0f172a' : '#f1f5f9',
+                        }}
+                      >
+                        <Settings className="w-3 h-3" style={{ color: '#3b82f6' }} />
+                        {info.processing}
+                      </div>
+                    )}
+                    {info.packaging && (
+                      <div
+                        className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs"
+                        style={{
+                          background: 'rgba(34, 197, 94, 0.1)',
+                          border: '1px solid rgba(34, 197, 94, 0.2)',
+                          color: isLight ? '#0f172a' : '#f1f5f9',
+                        }}
+                      >
+                        <Package className="w-3 h-3" style={{ color: '#22c55e' }} />
+                        {info.packaging}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Specs - Row 3: Certification */}
+                  {info.certification && (
+                    <div className="flex justify-center mb-3">
+                      <div
+                        className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs"
+                        style={{
+                          background: 'rgba(168, 85, 247, 0.1)',
+                          border: '1px solid rgba(168, 85, 247, 0.2)',
+                          color: isLight ? '#0f172a' : '#f1f5f9',
+                        }}
+                      >
+                        <Award className="w-3 h-3" style={{ color: '#a855f7' }} />
+                        {info.certification}
+                      </div>
                     </div>
                   )}
-                  {focusedProduct.specs?.origin && (
-                    <div
-                      className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs"
-                      style={{
-                        background: 'rgba(212, 175, 55, 0.1)',
-                        border: '1px solid rgba(212, 175, 55, 0.2)',
-                        color: isLight ? '#0f172a' : '#f1f5f9',
-                      }}
-                    >
-                      <MapPin className="w-3 h-3" style={{ color: '#d4af37' }} />
-                      {focusedProduct.specs.origin}
-                    </div>
-                  )}
-                </div>
 
-                {/* CTA */}
-                <div className="flex justify-center gap-2">
-                  <motion.button
-                    onClick={() => onOrderClick?.(focusedProduct)}
-                    className="py-1.5 px-3 rounded-full text-xs font-semibold flex items-center gap-1"
-                    style={{
-                      background: 'linear-gradient(135deg, #d4af37, #b8962e)',
-                      color: '#0a2540',
-                    }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <ShoppingCart className="w-3 h-3" />
-                    Order
-                  </motion.button>
-                  <motion.button
-                    onClick={() => onQuoteClick?.(focusedProduct)}
-                    className="py-1.5 px-3 rounded-full text-xs font-semibold flex items-center gap-1"
-                    style={{
-                      background: 'rgba(255, 255, 255, 0.1)',
-                      color: isLight ? '#0369a1' : '#f1f5f9',
-                      border: '1px solid rgba(255, 255, 255, 0.2)',
-                    }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <FileText className="w-3 h-3" />
-                    Quote
-                  </motion.button>
-                </div>
-              </motion.div>
-            )}
+                  {/* CTA */}
+                  <div className="flex justify-center gap-2">
+                    <motion.button
+                      onClick={() => onOrderClick?.(focusedProduct)}
+                      className="py-1.5 px-3 rounded-full text-xs font-semibold flex items-center gap-1"
+                      style={{
+                        background: 'linear-gradient(135deg, #d4af37, #b8962e)',
+                        color: '#0a2540',
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <ShoppingCart className="w-3 h-3" />
+                      {currentLanguage === 'hi' ? 'ऑर्डर' : currentLanguage === 'zh' ? '订购' : currentLanguage === 'ja' ? '注文' : 'Order'}
+                    </motion.button>
+                    <motion.button
+                      onClick={() => onQuoteClick?.(focusedProduct)}
+                      className="py-1.5 px-3 rounded-full text-xs font-semibold flex items-center gap-1"
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.1)',
+                        color: isLight ? '#0369a1' : '#f1f5f9',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <FileText className="w-3 h-3" />
+                      {currentLanguage === 'hi' ? 'कोटेशन' : currentLanguage === 'zh' ? '报价' : currentLanguage === 'ja' ? '見積り' : 'Quote'}
+                    </motion.button>
+                  </div>
+                </motion.div>
+              );
+            })()}
           </AnimatePresence>
         </div>
       </div>
@@ -297,6 +382,7 @@ function ProductOnArc({
   itemSize,
   onProductClick,
   onSnapToIndex,
+  currentLanguage = 'en',
 }) {
   const position = useTransform(rotation, (rot) => getPosition(index, rot));
 
@@ -376,7 +462,7 @@ function ProductOnArc({
         />
       </div>
 
-      {/* Name label */}
+      {/* Name label - using localized name */}
       {isFocused && (
         <motion.div
           className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap"
@@ -392,7 +478,7 @@ function ProductOnArc({
               border: '1px solid rgba(212, 175, 55, 0.3)',
             }}
           >
-            {product.name}
+            {getLocalizedInfo(product, currentLanguage).name}
           </span>
         </motion.div>
       )}

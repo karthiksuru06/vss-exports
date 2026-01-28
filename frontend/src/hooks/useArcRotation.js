@@ -31,8 +31,8 @@ export function useArcRotation({ productCount, isLocked, onFocusChange }) {
   const isAnimatingRef = useRef(false);
   const scrollAccumulatorRef = useRef(0);
 
-  // Angle between each product
-  const anglePerProduct = productCount > 1 ? 180 / (productCount - 1) : 0;
+  // Angle between each product - increased spacing (220 instead of 180)
+  const anglePerProduct = productCount > 0 ? 220 / productCount : 0;
 
   /**
    * Get rotation angle to center a specific index

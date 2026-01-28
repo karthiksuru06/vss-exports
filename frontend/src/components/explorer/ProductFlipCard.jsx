@@ -246,7 +246,7 @@ function ProductFlipCard({ product, isVisible, onClose }) {
                           <div>
                             <span className="text-xs text-ocean-400 uppercase tracking-wide">Glaze</span>
                             <p className="text-sm text-white mt-0.5">
-                              {product.specs.glaze.join(' | ')}
+                              {Array.isArray(product.specs.glaze) ? product.specs.glaze.join(' | ') : product.specs.glaze}
                             </p>
                           </div>
                         </div>
@@ -281,6 +281,56 @@ function ProductFlipCard({ product, isVisible, onClose }) {
                               </span>
                             ))}
                           </div>
+                        </div>
+                      )}
+
+                      {/* Certifications */}
+                      {product.specs?.certifications && product.specs.certifications.length > 0 && (
+                        <div className="pt-2">
+                          <span className="text-xs text-ocean-400 uppercase tracking-wide block mb-2">
+                            Certifications
+                          </span>
+                          <div className="flex flex-wrap gap-2">
+                            {product.specs.certifications.map((cert) => (
+                              <span
+                                key={cert}
+                                className="px-2 py-1 text-xs rounded bg-green-500/10 text-green-400 border border-green-500/20"
+                              >
+                                {cert}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Highlights */}
+                      {product.highlights && product.highlights.length > 0 && (
+                        <div className="pt-2">
+                          <span className="text-xs text-ocean-400 uppercase tracking-wide block mb-2">
+                            Highlights
+                          </span>
+                          <div className="flex flex-wrap gap-2">
+                            {product.highlights.map((highlight) => (
+                              <span
+                                key={highlight}
+                                className="px-2 py-1 text-xs rounded bg-gold-600/10 text-gold-400 border border-gold-600/20"
+                              >
+                                {highlight}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Best For */}
+                      {product.bestFor && product.bestFor.length > 0 && (
+                        <div className="pt-2">
+                          <span className="text-xs text-ocean-400 uppercase tracking-wide block mb-2">
+                            Best For
+                          </span>
+                          <p className="text-sm text-white mt-0.5">
+                            {product.bestFor.join(' • ')}
+                          </p>
                         </div>
                       )}
                     </div>
