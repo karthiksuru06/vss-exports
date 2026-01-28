@@ -396,6 +396,16 @@ function ProductOnArc({
   const isFocused = focusedIndex === index;
   const size = isFocused ? itemSize * 1.25 : itemSize * 0.8;
 
+  /**
+   * Handle pointer down - stop propagation to prevent parent drag capture
+   */
+  const handlePointerDown = (e) => {
+    e.stopPropagation();
+  };
+
+  /**
+   * Handle click - rotate wheel to this product or open flip card
+   */
   const handleClick = (e) => {
     e.stopPropagation();
     if (isFocused) {
@@ -422,6 +432,7 @@ function ProductOnArc({
         marginTop: -size / 2,
         cursor: 'pointer',
       }}
+      onPointerDown={handlePointerDown}
       onClick={handleClick}
       whileHover={{ scale: isFocused ? 1.08 : 1.05 }}
     >
