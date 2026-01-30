@@ -4,6 +4,7 @@ import HeroParallax from '../components/home/HeroParallax';
 import DivisionShowcase from '../components/home/DivisionShowcase';
 import GlobalTransportMap from '../components/home/GlobalTransportMap';
 import CertificationsTicker from '../components/shared/CertificationsTicker';
+import NewsletterTrap from '../components/shared/NewsletterTrap';
 import { ShieldCheck, Truck, Globe, Clock, MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -84,6 +85,9 @@ const Home = () => {
             </section>
 
             <GlobalTransportMap />
+
+            {/* Lead Capture Section */}
+            <NewsletterTrap />
 
             {/* Sticky Quick Enquiry Bubble */}
             <motion.div

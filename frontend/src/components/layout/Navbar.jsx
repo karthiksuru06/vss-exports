@@ -13,7 +13,7 @@ const Navbar = () => {
   const [langMenuOpen, setLangMenuOpen] = useState(false);
 
   const { isDesktop } = useResponsive();
-  const { t, lang, setLang } = useTranslation();
+  const { t, lang, setLang, languages } = useTranslation();
   const location = useLocation();
 
   // Determine if we are on the home page
@@ -45,12 +45,6 @@ const Navbar = () => {
     };
   }, [isOpen]);
 
-  const languages = [
-    { code: 'en', label: 'English', flag: '🇬🇧' },
-    { code: 'hi', label: 'हिंदी', flag: '🇮🇳' },
-    { code: 'zh', label: '中文', flag: '🇨🇳' },
-    { code: 'ja', label: '日本語', flag: '🇯🇵' },
-  ];
 
   // Logic for navbar appearance:
   // If menu is open, keep background transparent so it blends with the full-screen overlay.
@@ -134,7 +128,7 @@ const Navbar = () => {
                           onClick={() => { setLang(l.code); setLangMenuOpen(false); }}
                           className="w-full text-left px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white flex items-center justify-between transition-colors"
                         >
-                          <span>{l.label}</span>
+                          <span>{l.name}</span>
                           <span>{l.flag}</span>
                         </button>
                       ))}

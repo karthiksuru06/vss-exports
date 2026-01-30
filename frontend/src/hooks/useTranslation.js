@@ -504,6 +504,58 @@ const DICTIONARY = {
     'common.contactUs': 'お問い合わせ',
     'common.readMore': '続きを読む',
     'common.close': '閉じる',
+  },
+
+  ru: {
+    // Navigation
+    'nav.home': 'Главная',
+    'nav.products': 'Продукция',
+    'nav.contact': 'Контакты',
+
+    // Hero Section
+    'hero.title': 'Глубина до назначения',
+    'hero.subtitle': 'Мировое превосходство в экспорте морепродуктов премиум-класса',
+
+    // CTAs
+    'cta.enquire': 'Запросить цену',
+    'cta.explore': 'Исследовать отделы',
+    'cta.viewProducts': 'Посмотреть продукцию',
+    'cta.orderNow': 'Заказать сейчас',
+    'cta.requestSpec': 'Запросить спецификацию',
+
+    // Products (Simplified for brevity, can be expanded)
+    'category.all': 'Все продукты',
+    'category.seaCaught': 'Дикая креветка',
+    'category.aquaculture': 'Аквакультура',
+    'category.rawPeeled': 'Очищенные сырые',
+
+    'common.contactUs': 'Связаться с нами',
+  },
+
+  fr: {
+    // Navigation
+    'nav.home': 'Accueil',
+    'nav.products': 'Produits',
+    'nav.contact': 'Contact',
+
+    // Hero Section
+    'hero.title': 'De la Profondeur à la Destination',
+    'hero.subtitle': 'Excellence mondiale dans l\'exportation de fruits de mer haut de gamme',
+
+    // CTAs
+    'cta.enquire': 'Demander un devis',
+    'cta.explore': 'Explorer les divisions',
+    'cta.viewProducts': 'Voir les produits',
+    'cta.orderNow': 'Commander maintenant',
+    'cta.requestSpec': 'Fiche technique',
+
+    // Products
+    'category.all': 'Tous les produits',
+    'category.seaCaught': 'Crevettes sauvages',
+    'category.aquaculture': 'Aquaculture',
+    'category.rawPeeled': 'Crues décortiquées',
+
+    'common.contactUs': 'Contactez-nous',
   }
 };
 
@@ -513,7 +565,7 @@ export const TranslationProvider = ({ children }) => {
   const [lang, setLang] = useState('en');
 
   const t = (key) => {
-    return DICTIONARY[lang][key] || DICTIONARY['en'][key] || key;
+    return DICTIONARY[lang]?.[key] || DICTIONARY['en'][key] || key;
   };
 
   // Get all available languages
@@ -521,7 +573,9 @@ export const TranslationProvider = ({ children }) => {
     { code: 'en', name: 'English', flag: '🇬🇧' },
     { code: 'hi', name: 'हिंदी', flag: '🇮🇳' },
     { code: 'zh', name: '中文', flag: '🇨🇳' },
-    { code: 'ja', name: '日本語', flag: '🇯🇵' }
+    { code: 'ja', name: '日本語', flag: '🇯🇵' },
+    { code: 'ru', name: 'Русский', flag: '🇷🇺' },
+    { code: 'fr', name: 'Français', flag: '🇫🇷' }
   ];
 
   return React.createElement(
