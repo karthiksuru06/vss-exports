@@ -2,10 +2,10 @@
  * ProductVideoPanel - ZONE 3: Video Display Monitor
  *
  * Features:
- * - Larger rectangular monitor display
+ * - DESKTOP: Large monitor with bezel styling
+ * - MOBILE: Compact fullwidth video display
  * - Automatic video switch when focused product changes
  * - Smooth crossfade transitions between products
- * - Premium monitor bezel styling
  */
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -16,7 +16,8 @@ function ProductVideoPanel({
   activeProduct,
   focusedProduct,
   isActive,
-  theme = 'deep-ocean'
+  theme = 'deep-ocean',
+  isMobile = false
 }) {
   const [currentMedia, setCurrentMedia] = useState(null);
   const [previousMedia, setPreviousMedia] = useState(null);
@@ -70,6 +71,175 @@ function ProductVideoPanel({
     if (videoRef.current) videoRef.current.muted = !isMuted;
   };
 
+  // Mobile compact layout
+  if (isMobile) {
+    return (
+      <div
+        className="relative w-full h-full"
+        style={{
+          background: isLight
+            ? 'linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%)'
+            : 'linear-gradient(135deg, #051b30 0%, #020617 100%)',
+        }}
+      >
+        {/* Full-width video container */}
+        <div className="absolute inset-2 rounded-xl overflow-hidden"
+          style={{
+            background: '#000',
+            boxShadow: isLight
+              ? '0 8px 32px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+              : '0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+          }}
+        >
+          {/* Previous media - fading out */}
+          <AnimatePresence>
+            {previousMedia && (
+              <motion.div
+                key={`prev-${previousMedia.id}`}
+                className="absolute inset-0"
+                initial={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+              >
+                {previousMedia.video ? (
+                  <video
+                    src={previousMedia.video}
+                    className="w-full h-full object-cover"
+                    muted
+                    loop
+                    playsInline
+                  />
+                ) : (
+                  <img
+                    src={previousMedia.image}
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Current media - fading in */}
+          <AnimatePresence mode="wait">
+            {currentMedia && (
+              <motion.div
+                key={`current-${currentMedia.id}`}
+                className="absolute inset-0"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+              >
+                {currentMedia.video ? (
+                  <video
+                    ref={videoRef}
+                    src={currentMedia.video}
+                    className="w-full h-full object-cover"
+                    muted={isMuted}
+                    loop
+                    playsInline
+                    autoPlay
+                    onLoadedData={handleVideoLoad}
+                  />
+                ) : (
+                  <img
+                    src={currentMedia.image}
+                    alt={currentMedia.name}
+                    className="w-full h-full object-cover"
+                    onLoad={handleImageLoad}
+                  />
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Gradient overlay */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.6) 100%)',
+            }}
+          />
+
+          {/* Loading indicator */}
+          <AnimatePresence>
+            {isLoading && (
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center bg-black/30"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <div className="w-8 h-8 rounded-full border-2 border-gold-500 border-t-transparent animate-spin" />
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Idle state */}
+          {!displayProduct && (
+            <motion.div
+              className="absolute inset-0 flex items-center justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              <div className="text-center">
+                <Monitor className="w-10 h-10 mx-auto mb-2 text-ocean-700" />
+                <p className="text-ocean-500 font-serif text-sm">Product Preview</p>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Video controls - bottom right */}
+          {currentMedia?.video && (
+            <motion.button
+              onClick={toggleMute}
+              className="absolute bottom-3 right-3 p-2 rounded-lg bg-black/50 hover:bg-black/70 transition-colors backdrop-blur-sm"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              {isMuted ? (
+                <VolumeX className="w-4 h-4 text-white" />
+              ) : (
+                <Volume2 className="w-4 h-4 text-white" />
+              )}
+            </motion.button>
+          )}
+
+          {/* Product info overlay - bottom left */}
+          {displayProduct && !isActive && (
+            <motion.div
+              className="absolute bottom-3 left-3 right-12"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              key={displayProduct.id}
+            >
+              <p className="text-xs text-ocean-400 uppercase tracking-wider">
+                {displayProduct.category}
+              </p>
+              <h3 className="text-white font-serif text-base truncate">
+                {displayProduct.name}
+              </h3>
+            </motion.div>
+          )}
+
+          {/* Status indicator */}
+          <div className="absolute top-3 right-3 flex items-center gap-2">
+            <div
+              className="w-2 h-2 rounded-full"
+              style={{
+                background: displayProduct ? '#22c55e' : '#64748b',
+                boxShadow: displayProduct ? '0 0 8px rgba(34, 197, 94, 0.6)' : 'none',
+              }}
+            />
+            {displayProduct && <Wifi className="w-3 h-3 text-ocean-500" />}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Desktop layout - with monitor bezel
   return (
     <div
       className="relative w-full h-full flex items-center justify-center p-6"

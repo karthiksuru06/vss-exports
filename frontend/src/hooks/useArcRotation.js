@@ -2,8 +2,8 @@
  * useArcRotation - SCROLL-based rotation (NOT spin)
  *
  * BEHAVIOR:
- * - Scroll DOWN = move to NEXT product
- * - Scroll UP = move to PREVIOUS product
+ * - DESKTOP: Scroll DOWN = NEXT, Scroll UP = PREVIOUS (vertical)
+ * - MOBILE: Swipe LEFT = NEXT, Swipe RIGHT = PREVIOUS (horizontal)
  * - Click product = snap directly to it
  * - NO momentum, NO spinning, NO velocity
  * - Direct 1:1 scroll control
@@ -12,18 +12,14 @@
 import { useRef, useCallback, useEffect } from 'react';
 import { useMotionValue, animate } from 'framer-motion';
 
-// Scroll threshold to trigger next/prev
+// Scroll/swipe threshold to trigger next/prev
 const SCROLL_THRESHOLD = 50;
+const SWIPE_THRESHOLD = 40;
 
 /**
- * Positive modulo for array indexing
+ * useArcRotation Hook - Scroll/Swipe-based navigation
  */
-const mod = (n, m) => ((n % m) + m) % m;
-
-/**
- * useArcRotation Hook - Scroll-based navigation
- */
-export function useArcRotation({ productCount, isLocked, onFocusChange }) {
+export function useArcRotation({ productCount, isLocked, onFocusChange, isMobile = false }) {
   const rotation = useMotionValue(0);
 
   // Track current focused index
@@ -36,10 +32,16 @@ export function useArcRotation({ productCount, isLocked, onFocusChange }) {
 
   /**
    * Get rotation angle to center a specific index
+   * For mobile, the focus point is at bottom (90° from starting position)
    */
   const getRotationForIndex = useCallback((index) => {
+    if (isMobile) {
+      // Mobile: start from 180°, focus at 270° (bottom)
+      return 90 - index * anglePerProduct;
+    }
+    // Desktop: start from -90°, focus at 0° (right)
     return 90 - index * anglePerProduct;
-  }, [anglePerProduct]);
+  }, [anglePerProduct, isMobile]);
 
   /**
    * Animate to a specific product index
@@ -60,8 +62,8 @@ export function useArcRotation({ productCount, isLocked, onFocusChange }) {
     } else {
       animate(rotation, targetRotation, {
         type: 'spring',
-        stiffness: 200,
-        damping: 25,
+        stiffness: isMobile ? 250 : 200,
+        damping: isMobile ? 28 : 25,
         mass: 0.8,
         onComplete: () => {
           isAnimatingRef.current = false;
@@ -69,7 +71,7 @@ export function useArcRotation({ productCount, isLocked, onFocusChange }) {
         }
       });
     }
-  }, [productCount, rotation, getRotationForIndex, onFocusChange]);
+  }, [productCount, rotation, getRotationForIndex, onFocusChange, isMobile]);
 
   /**
    * Go to next product
@@ -94,7 +96,7 @@ export function useArcRotation({ productCount, isLocked, onFocusChange }) {
   }, [goToIndex]);
 
   /**
-   * Mouse wheel handler - SCROLL mechanism
+   * Mouse wheel handler - SCROLL mechanism (desktop only)
    * Scroll DOWN = next, Scroll UP = previous
    */
   const handleWheel = useCallback((e) => {
@@ -115,32 +117,49 @@ export function useArcRotation({ productCount, isLocked, onFocusChange }) {
   }, [isLocked, goToNext, goToPrev]);
 
   /**
-   * Pointer handlers - for drag scrolling
+   * Pointer handlers - for drag/swipe
+   * Desktop: Vertical drag (up/down)
+   * Mobile: Horizontal swipe (left/right)
    */
   const isDraggingRef = useRef(false);
-  const dragStartYRef = useRef(0);
+  const dragStartRef = useRef({ x: 0, y: 0 });
 
   const handlePointerDown = useCallback((e) => {
     if (isLocked) return;
     isDraggingRef.current = true;
-    dragStartYRef.current = e.clientY;
+    dragStartRef.current = { x: e.clientX, y: e.clientY };
     e.currentTarget.setPointerCapture(e.pointerId);
   }, [isLocked]);
 
   const handlePointerMove = useCallback((e) => {
     if (!isDraggingRef.current || isLocked || isAnimatingRef.current) return;
 
-    const deltaY = e.clientY - dragStartYRef.current;
+    if (isMobile) {
+      // Mobile: Horizontal swipe
+      const deltaX = e.clientX - dragStartRef.current.x;
 
-    // Drag down = next, drag up = previous
-    if (deltaY > 60) {
-      dragStartYRef.current = e.clientY;
-      goToNext();
-    } else if (deltaY < -60) {
-      dragStartYRef.current = e.clientY;
-      goToPrev();
+      // Swipe left = next, swipe right = previous
+      if (deltaX < -SWIPE_THRESHOLD) {
+        dragStartRef.current = { x: e.clientX, y: e.clientY };
+        goToNext();
+      } else if (deltaX > SWIPE_THRESHOLD) {
+        dragStartRef.current = { x: e.clientX, y: e.clientY };
+        goToPrev();
+      }
+    } else {
+      // Desktop: Vertical drag
+      const deltaY = e.clientY - dragStartRef.current.y;
+
+      // Drag down = next, drag up = previous
+      if (deltaY > 60) {
+        dragStartRef.current = { x: e.clientX, y: e.clientY };
+        goToNext();
+      } else if (deltaY < -60) {
+        dragStartRef.current = { x: e.clientX, y: e.clientY };
+        goToPrev();
+      }
     }
-  }, [isLocked, goToNext, goToPrev]);
+  }, [isLocked, isMobile, goToNext, goToPrev]);
 
   const handlePointerUp = useCallback((e) => {
     isDraggingRef.current = false;
@@ -148,6 +167,50 @@ export function useArcRotation({ productCount, isLocked, onFocusChange }) {
       e.currentTarget.releasePointerCapture(e.pointerId);
     }
   }, []);
+
+  /**
+   * Touch handlers for better mobile swipe support
+   */
+  const touchStartRef = useRef({ x: 0, y: 0 });
+
+  const handleTouchStart = useCallback((e) => {
+    if (isLocked) return;
+    const touch = e.touches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+  }, [isLocked]);
+
+  const handleTouchMove = useCallback((e) => {
+    if (isLocked || isAnimatingRef.current) return;
+
+    const touch = e.touches[0];
+    const deltaX = touch.clientX - touchStartRef.current.x;
+    const deltaY = touch.clientY - touchStartRef.current.y;
+
+    // Prevent page scroll when swiping horizontally on mobile
+    if (isMobile && Math.abs(deltaX) > Math.abs(deltaY)) {
+      e.preventDefault();
+    }
+
+    if (isMobile) {
+      // Mobile: Horizontal swipe
+      if (deltaX < -SWIPE_THRESHOLD) {
+        touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+        goToNext();
+      } else if (deltaX > SWIPE_THRESHOLD) {
+        touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+        goToPrev();
+      }
+    } else {
+      // Desktop touch: Vertical
+      if (deltaY > 60) {
+        touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+        goToNext();
+      } else if (deltaY < -60) {
+        touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+        goToPrev();
+      }
+    }
+  }, [isLocked, isMobile, goToNext, goToPrev]);
 
   /**
    * Snap to specific index (for clicking on products)
@@ -178,6 +241,8 @@ export function useArcRotation({ productCount, isLocked, onFocusChange }) {
       onPointerMove: handlePointerMove,
       onPointerUp: handlePointerUp,
       onPointerLeave: handlePointerUp,
+      onTouchStart: handleTouchStart,
+      onTouchMove: handleTouchMove,
     },
     snapToIndex,
     anglePerProduct,
