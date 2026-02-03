@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Phone, Mail, Send, Anchor, Fish, FlaskConical, CheckCircle } from 'lucide-react';
+import { useTranslation } from '../hooks/useTranslation';
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('shrimp');
   const [submitted, setSubmitted] = useState(false);
 
@@ -13,9 +15,9 @@ const Contact = () => {
   };
 
   const tabs = [
-    { id: 'shrimp', label: 'Shrimp Division', icon: Anchor },
-    { id: 'seafood', label: 'Seafood Division', icon: Fish },
-    { id: 'bio', label: 'Bio-Products', icon: FlaskConical },
+    { id: 'shrimp', label: t('contact.shrimpDivision'), icon: Anchor },
+    { id: 'seafood', label: t('contact.seafoodDivision'), icon: Fish },
+    { id: 'bio', label: t('contact.bioProducts'), icon: FlaskConical },
   ];
 
   return (
@@ -28,10 +30,10 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl md:text-6xl font-serif font-bold text-midnight-900 mb-6"
           >
-            Start Your <span className="text-gold-600">Shipment</span>
+            {t('contact.title')} <span className="text-gold-600">{t('contact.shipment')}</span>
           </motion.h1>
           <p className="text-gray-500 text-lg">
-            Direct access to our export managers. Responses guaranteed within 24 hours.
+            {t('contact.description')}
           </p>
         </div>
 
@@ -42,7 +44,7 @@ const Contact = () => {
              <div className="bg-midnight-900 text-white p-10 rounded-2xl relative overflow-hidden">
                  <div className="absolute top-0 right-0 p-32 bg-gold-500 rounded-full blur-[100px] opacity-20 -mr-20 -mt-20"></div>
 
-                 <h3 className="text-2xl font-serif font-bold mb-8">Global Headquarters</h3>
+                 <h3 className="text-2xl font-serif font-bold mb-8">{t('contact.globalHQ')}</h3>
 
                  <div className="space-y-8 relative z-10">
                     <div className="flex gap-4">
@@ -50,10 +52,10 @@ const Contact = () => {
                             <MapPin className="text-gold-500" />
                         </div>
                         <div>
-                            <p className="font-bold text-lg">Veraval Facility</p>
+                            <p className="font-bold text-lg">{t('contact.veravalFacility')}</p>
                             <p className="text-white/60 leading-relaxed">
-                                GIDC Estate, Harbour Road<br/>
-                                Gujarat, India 362265
+                                {t('contact.facilityAddress')}<br/>
+                                {t('contact.facilityCity')}
                             </p>
                         </div>
                     </div>
@@ -63,7 +65,7 @@ const Contact = () => {
                             <Phone className="text-gold-500" />
                         </div>
                         <div>
-                            <p className="font-bold text-lg">24/7 Export Desk</p>
+                            <p className="font-bold text-lg">{t('contact.exportDesk')}</p>
                             <p className="text-white/60 font-mono">+91 98765 43210</p>
                         </div>
                     </div>
@@ -73,7 +75,7 @@ const Contact = () => {
                             <Mail className="text-gold-500" />
                         </div>
                         <div>
-                            <p className="font-bold text-lg">Email</p>
+                            <p className="font-bold text-lg">{t('contact.email')}</p>
                             <p className="text-white/60">export@mahadevmarine.com</p>
                         </div>
                     </div>
@@ -130,22 +132,22 @@ const Contact = () => {
                             >
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold uppercase tracking-wider text-gray-500">Full Name</label>
+                                        <label className="text-xs font-bold uppercase tracking-wider text-gray-500">{t('contact.form.fullName')}</label>
                                         <input required type="text" className="w-full border-b-2 border-gray-200 py-3 focus:border-gold-500 outline-none transition-colors bg-transparent placeholder-gray-300" placeholder="John Doe" />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold uppercase tracking-wider text-gray-500">Company</label>
+                                        <label className="text-xs font-bold uppercase tracking-wider text-gray-500">{t('contact.form.company')}</label>
                                         <input required type="text" className="w-full border-b-2 border-gray-200 py-3 focus:border-gold-500 outline-none transition-colors bg-transparent placeholder-gray-300" placeholder="Ocean Foods Ltd." />
                                     </div>
                                 </div>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold uppercase tracking-wider text-gray-500">Work Email</label>
+                                        <label className="text-xs font-bold uppercase tracking-wider text-gray-500">{t('contact.form.workEmail')}</label>
                                         <input required type="email" className="w-full border-b-2 border-gray-200 py-3 focus:border-gold-500 outline-none transition-colors bg-transparent placeholder-gray-300" placeholder="john@company.com" />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold uppercase tracking-wider text-gray-500">Destination Port</label>
+                                        <label className="text-xs font-bold uppercase tracking-wider text-gray-500">{t('contact.form.destinationPort')}</label>
                                         <input required type="text" className="w-full border-b-2 border-gray-200 py-3 focus:border-gold-500 outline-none transition-colors bg-transparent placeholder-gray-300" placeholder="New York, USA" />
                                     </div>
                                 </div>
@@ -154,14 +156,14 @@ const Contact = () => {
                                 {activeTab === 'shrimp' && (
                                     <div className="p-6 bg-slate-50 rounded-xl grid grid-cols-2 md:grid-cols-4 gap-6">
                                         <div className="space-y-2">
-                                            <label className="text-xs font-bold uppercase tracking-wider text-gray-500">Product</label>
+                                            <label className="text-xs font-bold uppercase tracking-wider text-gray-500">{t('contact.form.product')}</label>
                                             <select className="w-full bg-white border border-gray-200 rounded-md py-2 px-3 text-sm">
                                                 <option>Vannamei</option>
                                                 <option>Black Tiger</option>
                                             </select>
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-xs font-bold uppercase tracking-wider text-gray-500">Size</label>
+                                            <label className="text-xs font-bold uppercase tracking-wider text-gray-500">{t('contact.form.size')}</label>
                                             <select className="w-full bg-white border border-gray-200 rounded-md py-2 px-3 text-sm">
                                                 <option>16/20</option>
                                                 <option>21/25</option>
@@ -169,14 +171,14 @@ const Contact = () => {
                                             </select>
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-xs font-bold uppercase tracking-wider text-gray-500">Type</label>
+                                            <label className="text-xs font-bold uppercase tracking-wider text-gray-500">{t('contact.form.type')}</label>
                                             <select className="w-full bg-white border border-gray-200 rounded-md py-2 px-3 text-sm">
                                                 <option>IQF</option>
                                                 <option>Block</option>
                                             </select>
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-xs font-bold uppercase tracking-wider text-gray-500">Glaze %</label>
+                                            <label className="text-xs font-bold uppercase tracking-wider text-gray-500">{t('contact.form.glaze')}</label>
                                             <input type="number" className="w-full bg-white border border-gray-200 rounded-md py-2 px-3 text-sm" placeholder="20" />
                                         </div>
                                     </div>
@@ -186,19 +188,19 @@ const Contact = () => {
                                     <div className="p-6 bg-slate-50 rounded-xl">
                                         <div className="flex items-center gap-4">
                                             <input type="checkbox" id="sample" className="w-5 h-5 text-gold-600 rounded focus:ring-gold-500" />
-                                            <label htmlFor="sample" className="font-medium text-gray-700">Request 100g Lab Sample</label>
+                                            <label htmlFor="sample" className="font-medium text-gray-700">{t('contact.form.labSample')}</label>
                                         </div>
                                     </div>
                                 )}
 
                                 <div className="space-y-2">
-                                    <label className="text-xs font-bold uppercase tracking-wider text-gray-500">Additional Requirements</label>
-                                    <textarea rows={4} className="w-full border-b-2 border-gray-200 py-3 focus:border-gold-500 outline-none transition-colors bg-transparent resize-none placeholder-gray-300" placeholder="Specific packaging, documents required..."></textarea>
+                                    <label className="text-xs font-bold uppercase tracking-wider text-gray-500">{t('contact.form.requirements')}</label>
+                                    <textarea rows={4} className="w-full border-b-2 border-gray-200 py-3 focus:border-gold-500 outline-none transition-colors bg-transparent resize-none placeholder-gray-300" placeholder={t('contact.form.requirementsPlaceholder')}></textarea>
                                 </div>
 
                                 <div className="flex justify-end pt-4">
                                     <button className="bg-midnight-900 text-white px-10 py-4 font-bold uppercase tracking-widest hover:bg-midnight-800 transition-all flex items-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                                        Submit Request <Send size={18} />
+                                        {t('contact.form.submit')} <Send size={18} />
                                     </button>
                                 </div>
                             </motion.form>
@@ -211,15 +213,15 @@ const Contact = () => {
                                 <div className="w-24 h-24 rounded-full bg-green-100 flex items-center justify-center text-green-600 mb-8">
                                     <CheckCircle size={48} />
                                 </div>
-                                <h3 className="text-3xl font-serif font-bold text-midnight-900 mb-4">Request Received</h3>
+                                <h3 className="text-3xl font-serif font-bold text-midnight-900 mb-4">{t('contact.success.title')}</h3>
                                 <p className="text-gray-500 max-w-md">
-                                    Thank you. Our {activeTab} division manager will review your specs and send a proforma invoice within 24 hours.
+                                    {t('contact.success.message')}
                                 </p>
                                 <button
                                     onClick={() => setSubmitted(false)}
                                     className="mt-8 text-gold-600 font-bold uppercase tracking-wider text-sm hover:underline"
                                 >
-                                    Send Another Request
+                                    {t('contact.success.sendAnother')}
                                 </button>
                             </motion.div>
                         )}

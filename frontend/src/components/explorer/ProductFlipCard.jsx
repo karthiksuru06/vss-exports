@@ -55,10 +55,31 @@ const containerVariants = {
  * @param {Object} props.product - Product data
  * @param {boolean} props.isVisible - Whether card is visible
  * @param {Function} props.onClose - Close handler
+ * @param {string} props.currentLanguage - Current language code
+ * @param {Function} props.t - Translation function
  */
-function ProductFlipCard({ product, isVisible, onClose }) {
+function ProductFlipCard({ product, isVisible, onClose, currentLanguage = 'en', t }) {
   // Track whether card is flipped (showing back)
   const [isFlipped, setIsFlipped] = useState(false);
+
+  /**
+   * Get localized product info with fallback to English
+   */
+  const getLocalizedInfo = (prod, lang = 'en') => {
+    if (prod?.info?.[lang]) {
+      return prod.info[lang];
+    }
+    if (prod?.info?.en) {
+      return prod.info.en;
+    }
+    return {
+      name: prod?.name || '',
+      category: prod?.category || '',
+      description: prod?.description || '',
+    };
+  };
+
+  const localizedInfo = product ? getLocalizedInfo(product, currentLanguage) : null;
 
   // Auto-flip after card appears
   useEffect(() => {
@@ -147,7 +168,7 @@ function ProductFlipCard({ product, isVisible, onClose }) {
                   {/* Front Content */}
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <h3 className="font-serif text-2xl text-white mb-1">
-                      {product.name}
+                      {localizedInfo?.name || product.name}
                     </h3>
                     <p className="text-sm text-ocean-300 italic">
                       {product.scientificName}
@@ -156,7 +177,7 @@ function ProductFlipCard({ product, isVisible, onClose }) {
 
                   {/* Flip hint */}
                   <div className="absolute top-4 right-4 text-xs text-ocean-400">
-                    Click to flip
+                    {t ? t('common.readMore') : 'Click to flip'}
                   </div>
                 </div>
               </div>
@@ -186,7 +207,7 @@ function ProductFlipCard({ product, isVisible, onClose }) {
                     <div className="flex items-center gap-3 mb-3">
                       {/* Category badge */}
                       <span className="px-3 py-1 text-xs font-medium rounded-full bg-gold-600/20 text-gold-500 border border-gold-600/30">
-                        {product.category}
+                        {localizedInfo?.category || product.category}
                       </span>
                       {/* Division badge */}
                       <span className="px-3 py-1 text-xs font-medium rounded-full bg-ocean-600/20 text-ocean-400 border border-ocean-600/30">
@@ -195,7 +216,7 @@ function ProductFlipCard({ product, isVisible, onClose }) {
                     </div>
 
                     <h3 className="font-serif text-2xl text-white">
-                      {product.name}
+                      {localizedInfo?.name || product.name}
                     </h3>
                     <p className="text-sm text-ocean-300 italic mt-1">
                       {product.scientificName}
@@ -205,9 +226,9 @@ function ProductFlipCard({ product, isVisible, onClose }) {
                   {/* Specs Content */}
                   <div className="p-6 space-y-4 overflow-auto" style={{ maxHeight: 280 }}>
                     {/* Description */}
-                    {product.description && (
+                    {(localizedInfo?.description || product.description) && (
                       <p className="text-sm text-ocean-200 leading-relaxed">
-                        {product.description}
+                        {localizedInfo?.description || product.description}
                       </p>
                     )}
 
@@ -218,7 +239,7 @@ function ProductFlipCard({ product, isVisible, onClose }) {
                         <div className="flex items-start gap-3">
                           <Ruler className="w-4 h-4 text-gold-500 mt-0.5 flex-shrink-0" />
                           <div>
-                            <span className="text-xs text-ocean-400 uppercase tracking-wide">Sizes</span>
+                            <span className="text-xs text-ocean-400 uppercase tracking-wide">{t ? t('specs.sizes') : 'Sizes'}</span>
                             <p className="text-sm text-white mt-0.5">
                               {product.specs.sizes.join(' | ')}
                             </p>
@@ -231,7 +252,7 @@ function ProductFlipCard({ product, isVisible, onClose }) {
                         <div className="flex items-start gap-3">
                           <Package className="w-4 h-4 text-gold-500 mt-0.5 flex-shrink-0" />
                           <div>
-                            <span className="text-xs text-ocean-400 uppercase tracking-wide">Packing</span>
+                            <span className="text-xs text-ocean-400 uppercase tracking-wide">{t ? t('specs.packing') : 'Packing'}</span>
                             <p className="text-sm text-white mt-0.5">
                               {product.specs.packing.join(' | ')}
                             </p>
@@ -244,7 +265,7 @@ function ProductFlipCard({ product, isVisible, onClose }) {
                         <div className="flex items-start gap-3">
                           <ThermometerSnowflake className="w-4 h-4 text-gold-500 mt-0.5 flex-shrink-0" />
                           <div>
-                            <span className="text-xs text-ocean-400 uppercase tracking-wide">Glaze</span>
+                            <span className="text-xs text-ocean-400 uppercase tracking-wide">{t ? t('specs.glaze') : 'Glaze'}</span>
                             <p className="text-sm text-white mt-0.5">
                               {Array.isArray(product.specs.glaze) ? product.specs.glaze.join(' | ') : product.specs.glaze}
                             </p>
@@ -257,7 +278,7 @@ function ProductFlipCard({ product, isVisible, onClose }) {
                         <div className="flex items-start gap-3">
                           <MapPin className="w-4 h-4 text-gold-500 mt-0.5 flex-shrink-0" />
                           <div>
-                            <span className="text-xs text-ocean-400 uppercase tracking-wide">Origin</span>
+                            <span className="text-xs text-ocean-400 uppercase tracking-wide">{t ? t('specs.origin') : 'Origin'}</span>
                             <p className="text-sm text-white mt-0.5">
                               {product.specs.origin}
                             </p>
@@ -269,7 +290,7 @@ function ProductFlipCard({ product, isVisible, onClose }) {
                       {product.processingType && product.processingType.length > 0 && (
                         <div className="pt-2">
                           <span className="text-xs text-ocean-400 uppercase tracking-wide block mb-2">
-                            Processing Options
+                            {t ? t('specs.processing') : 'Processing Options'}
                           </span>
                           <div className="flex flex-wrap gap-2">
                             {product.processingType.map((type) => (
@@ -288,7 +309,7 @@ function ProductFlipCard({ product, isVisible, onClose }) {
                       {product.specs?.certifications && product.specs.certifications.length > 0 && (
                         <div className="pt-2">
                           <span className="text-xs text-ocean-400 uppercase tracking-wide block mb-2">
-                            Certifications
+                            {t ? t('specs.certifications') : 'Certifications'}
                           </span>
                           <div className="flex flex-wrap gap-2">
                             {product.specs.certifications.map((cert) => (

@@ -1,19 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Ship, Plane, MapPin, Globe } from 'lucide-react';
+import { useTranslation } from '../../hooks/useTranslation';
 
 // Key export destinations with coordinates (simplified for SVG viewBox)
 const DESTINATIONS = [
-  { id: 'usa', name: 'United States', x: 180, y: 180, transport: 'sea' },
-  { id: 'eu', name: 'Europe', x: 480, y: 150, transport: 'both' },
-  { id: 'japan', name: 'Japan', x: 820, y: 170, transport: 'air' },
-  { id: 'china', name: 'China', x: 750, y: 200, transport: 'sea' },
-  { id: 'uae', name: 'UAE', x: 580, y: 240, transport: 'both' },
-  { id: 'aus', name: 'Australia', x: 820, y: 380, transport: 'sea' },
+  { id: 'usa', nameKey: 'map.dest.usa', x: 180, y: 180, transport: 'sea' },
+  { id: 'eu', nameKey: 'map.dest.europe', x: 480, y: 150, transport: 'both' },
+  { id: 'japan', nameKey: 'map.dest.japan', x: 820, y: 170, transport: 'air' },
+  { id: 'china', nameKey: 'map.dest.china', x: 750, y: 200, transport: 'sea' },
+  { id: 'uae', nameKey: 'map.dest.uae', x: 580, y: 240, transport: 'both' },
+  { id: 'aus', nameKey: 'map.dest.australia', x: 820, y: 380, transport: 'sea' },
 ];
 
 // Origin point (India - Gujarat)
-const ORIGIN = { x: 620, y: 250, name: 'Veraval, India' };
+const ORIGIN = { x: 620, y: 250, nameKey: 'map.origin' };
 
 // Generate curved path between two points
 const generateCurvedPath = (start, end) => {
@@ -70,7 +71,7 @@ const ShippingRoute = ({ destination, index, isActive }) => {
   );
 };
 
-const DestinationMarker = ({ destination, isActive, onClick }) => {
+const DestinationMarker = ({ destination, isActive, onClick, t }) => {
   const Icon = destination.transport === 'air' ? Plane : Ship;
 
   return (
@@ -128,13 +129,14 @@ const DestinationMarker = ({ destination, isActive, onClick }) => {
           isActive ? 'text-white' : 'text-white/50'
         }`}
       >
-        {destination.name}
+        {t(destination.nameKey)}
       </text>
     </motion.g>
   );
 };
 
 const GlobalTransportMap = () => {
+  const { t } = useTranslation();
   const [activeDestination, setActiveDestination] = useState(null);
   const [autoRotate, setAutoRotate] = useState(true);
   const sectionRef = useRef(null);
@@ -181,13 +183,13 @@ const GlobalTransportMap = () => {
         >
           <p className="text-teal-400/60 text-xs tracking-[0.3em] uppercase mb-4 flex items-center justify-center gap-2">
             <Globe size={14} />
-            Global Reach
+            {t('map.badge')}
           </p>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">
-            From Ocean to <span className="text-teal-400 italic">World</span>
+            {t('map.title')} <span className="text-teal-400 italic">{t('map.titleHighlight')}</span>
           </h2>
           <p className="text-ocean-100/60 max-w-xl mx-auto">
-            Delivering premium seafood across 50+ countries via optimized sea and air freight routes.
+            {t('map.description')}
           </p>
         </motion.div>
 
@@ -312,7 +314,7 @@ const GlobalTransportMap = () => {
                 textAnchor="middle"
                 className="text-xs font-bold fill-current text-teal-400"
               >
-                {ORIGIN.name}
+                {t(ORIGIN.nameKey)}
               </text>
             </g>
 
@@ -323,6 +325,7 @@ const GlobalTransportMap = () => {
                 destination={dest}
                 isActive={activeDestination === dest.id}
                 onClick={() => handleDestinationClick(dest.id)}
+                t={t}
               />
             ))}
           </svg>
@@ -348,14 +351,10 @@ const GlobalTransportMap = () => {
                   ) : (
                     <Ship size={20} className="text-teal-400" />
                   )}
-                  <span className="text-white font-medium">{activeData.name}</span>
+                  <span className="text-white font-medium">{t(activeData.nameKey)}</span>
                 </div>
                 <p className="text-ocean-200/60 text-sm">
-                  {activeData.transport === 'air'
-                    ? 'Primary air freight route for fresh/sashimi grade products'
-                    : activeData.transport === 'both'
-                    ? 'Dual transport: refrigerated containers & air cargo'
-                    : 'Refrigerated container shipping via major sea routes'}
+                  {t(`map.transport.${activeData.transport}`)}
                 </p>
               </motion.div>
             )}
@@ -366,11 +365,11 @@ const GlobalTransportMap = () => {
             <div className="space-y-2 text-xs">
               <div className="flex items-center gap-2 text-ocean-200/60">
                 <Ship size={14} className="text-teal-400" />
-                <span>Sea Freight</span>
+                <span>{t('map.legend.sea')}</span>
               </div>
               <div className="flex items-center gap-2 text-ocean-200/60">
                 <Plane size={14} className="text-ocean-300" />
-                <span>Air Cargo</span>
+                <span>{t('map.legend.air')}</span>
               </div>
             </div>
           </div>
@@ -379,13 +378,13 @@ const GlobalTransportMap = () => {
         {/* Stats row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
           {[
-            { label: 'Countries', value: '50+' },
-            { label: 'Shipping Routes', value: '12' },
-            { label: 'Transit Time', value: '3-15 days' },
-            { label: 'Cold Chain', value: '100%' },
+            { labelKey: 'map.stats.countries', value: '50+' },
+            { labelKey: 'map.stats.routes', value: '12' },
+            { labelKey: 'map.stats.transit', value: '3-15 days' },
+            { labelKey: 'map.stats.coldChain', value: '100%' },
           ].map((stat, i) => (
             <motion.div
-              key={stat.label}
+              key={stat.labelKey}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.5 + i * 0.1 }}
@@ -395,7 +394,7 @@ const GlobalTransportMap = () => {
                 {stat.value}
               </div>
               <div className="text-xs text-ocean-200/60 uppercase tracking-wider">
-                {stat.label}
+                {t(stat.labelKey)}
               </div>
             </motion.div>
           ))}

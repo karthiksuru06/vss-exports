@@ -8,27 +8,49 @@ import facilityVideo2 from '../assets/images/WhatsApp Video 2026-01-28 at 10.04.
 import facilityVideo3 from '../assets/images/WhatsApp Video 2026-01-28 at 10.04.06 AM.mp4';
 import facilityVideo4 from '../assets/images/WhatsApp Video 2026-01-28 at 10.04.06 AM (1).mp4';
 
-// Import product images (WhatsApp images from assets folder)
-// These will be dynamically assigned to products
-import productImg1 from '../assets/WhatsApp Image 2026-01-28 at 10.09.59 AM.jpeg';
-import productImg2 from '../assets/WhatsApp Image 2026-01-28 at 10.09.59 AM (1).jpeg';
-import productImg3 from '../assets/WhatsApp Image 2026-01-28 at 10.10.00 AM.jpeg';
-import productImg4 from '../assets/WhatsApp Image 2026-01-28 at 10.10.00 AM (1).jpeg';
-import productImg5 from '../assets/WhatsApp Image 2026-01-28 at 10.10.00 AM (2).jpeg';
-import productImg6 from '../assets/WhatsApp Image 2026-01-28 at 10.10.00 AM (3).jpeg';
-import productImg7 from '../assets/WhatsApp Image 2026-01-28 at 10.10.00 AM (4).jpeg';
-import productImg8 from '../assets/WhatsApp Image 2026-01-28 at 10.10.00 AM (5).jpeg';
-import productImg9 from '../assets/WhatsApp Image 2026-01-28 at 10.10.00 AM (6).jpeg';
-import productImg10 from '../assets/WhatsApp Image 2026-01-28 at 10.10.00 AM (7).jpeg';
-import productImg11 from '../assets/WhatsApp Image 2026-01-28 at 10.10.00 AM (8).jpeg';
-import productImg12 from '../assets/WhatsApp Image 2026-01-28 at 10.10.01 AM.jpeg';
-import productImg13 from '../assets/WhatsApp Image 2026-01-28 at 10.10.01 AM (1).jpeg';
-import productImg14 from '../assets/WhatsApp Image 2026-01-28 at 10.10.01 AM (2).jpeg';
-import productImg15 from '../assets/WhatsApp Image 2026-01-28 at 10.10.01 AM (3).jpeg';
-import productImg16 from '../assets/WhatsApp Image 2026-01-28 at 10.10.02 AM.jpeg';
-import productImg17 from '../assets/WhatsApp Image 2026-01-28 at 10.10.02 AM (1).jpeg';
-import productImg18 from '../assets/WhatsApp Image 2026-01-28 at 10.10.04 AM.jpeg';
-import productImg19 from '../assets/WhatsApp Image 2026-01-28 at 10.10.04 AM (1).jpeg';
+// ============================================================================
+// NEW PRODUCT IMAGES - Professional Mahadev Seafood Images
+// Located in: dist/assets/mahadev_seafood_images/
+// ============================================================================
+const IMG_BASE = '/assets/mahadev_seafood_images/';
+
+// Raw Shrimp Varieties
+const imgBlackTiger = `${IMG_BASE}01_Black_Tiger_Shrimp_Raw_Whole_Head-On.jpg`;
+const imgVannamei = `${IMG_BASE}02_Vannamei_White_Shrimp_Raw_Whole.jpg`;
+const imgSeaTiger = `${IMG_BASE}03_Sea_Tiger_Shrimp_Raw_Whole_Giant.jpg`;
+const imgPinkBrown = `${IMG_BASE}04_Pink_Brown_Shrimp_Raw_Whole.jpg`;
+
+// Raw Peeled Products
+const imgPDTO = `${IMG_BASE}05_PDTO_Peeled_Deveined_Tail_On_Raw.jpg`;
+const imgPD = `${IMG_BASE}06_PD_Peeled_Deveined_Tail_Off_Raw.jpg`;
+const imgPVPDTO = `${IMG_BASE}07_PVPDTO_Pulled_Vein_Tail_On_Raw.jpg`;
+const imgPUD = `${IMG_BASE}08_PUD_Peeled_Undeveined_Raw.jpg`;
+const imgHLRaw = `${IMG_BASE}09_Headless_Shell-On_HL_Raw.jpg`;
+const imgHLEasyPeel = `${IMG_BASE}10_HL_Easy-Peel_Raw.jpg`;
+
+// Cooked Products
+const imgCookedHeadOn = `${IMG_BASE}11_Cooked_Head-On_Shrimp.jpg`;
+const imgCookedHL = `${IMG_BASE}12_Cooked_Headless_Shell-On_Shrimp.jpg`;
+const imgCookedHLEasyPeel = `${IMG_BASE}13_Cooked_HL_Easy-Peel_Shrimp.jpg`;
+const imgCookedPDTO = `${IMG_BASE}14_Cooked_PDTO.jpg`;
+const imgCookedPD = `${IMG_BASE}15_Cooked_PD.jpg`;
+
+// Value-Added Products
+const imgButterfly = `${IMG_BASE}16_Butterfly_Shrimp_Raw.jpg`;
+const imgNobashi = `${IMG_BASE}17_Nobashi_Shrimp_Raw_Sushi_Grade.jpg`;
+const imgBreaded = `${IMG_BASE}18_Breaded_Shrimp.jpg`;
+const imgSkewers = `${IMG_BASE}19_Shrimp_Skewers.jpg`;
+const imgIQF = `${IMG_BASE}20_IQF_Shrimp.jpg`;
+const imgFrozenBlock = `${IMG_BASE}21_Frozen_Shrimp_Block.jpg`;
+
+// Fresh Seafood
+const imgLiveShrimp = `${IMG_BASE}22_Live_Fresh_Shrimp_Air_Cargo.jpg`;
+const imgFreshFish = `${IMG_BASE}23_Fresh_Fish.jpg`;
+const imgFreshLobster = `${IMG_BASE}24_Fresh_Lobster.jpg`;
+const imgFreshCrab = `${IMG_BASE}25_Fresh_Crab.jpg`;
+const imgFreshSquid = `${IMG_BASE}26_Fresh_Squid.jpg`;
+const imgFreshOctopus = `${IMG_BASE}27_Fresh_Octopus.jpg`;
+const imgOystersClams = `${IMG_BASE}28_Fresh_Oysters_Clams.jpg`;
 
 // Placeholder image for products without specific images
 const PLACEHOLDER_IMAGE = 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?q=80&w=800&auto=format&fit=crop';
@@ -136,10 +158,11 @@ export const PRODUCTS = [
     scientificName: 'Penaeus semisulcatus',
     description: 'Premium naturally-sourced shrimp with superior taste and texture. Large, meaty, distinctive flavor profile perfect for high-end culinary applications.',
     descriptionKey: 'product.seaTiger.desc',
-    image: productImg1,
+    image: imgSeaTiger,
     video: shrimpVideo1,
     category: 'Sea-Caught Shrimp',
     categoryKey: 'category.seaCaught',
+    filterCategory: 'shrimp',
     division: 'raw-shrimp',
     processingType: ['Head-On', 'Head-Less', 'Whole Round'],
     specs: {
@@ -192,6 +215,26 @@ export const PRODUCTS = [
         processing: '有頭、無頭、丸ごと',
         packaging: '2kgブロック, 1kg IQF, 10kgバルク',
         certification: 'HACCP, BRC, BAP'
+      },
+      ru: {
+        name: 'Морской тигровый креветок',
+        category: 'Дикие креветки',
+        description: 'Премиальные дикие креветки с превосходным вкусом и текстурой',
+        sizes: 'U/5 до 16/20',
+        origin: 'Индийский океан (дикий улов)',
+        processing: 'С головой, без головы, целые',
+        packaging: '2кг блок, 1кг IQF, 10кг оптом',
+        certification: 'HACCP, BRC, BAP'
+      },
+      fr: {
+        name: 'Crevette Tigre de Mer',
+        category: 'Crevettes Sauvages',
+        description: 'Crevettes sauvages premium avec un goût et une texture supérieurs',
+        sizes: 'U/5 à 16/20',
+        origin: 'Océan Indien (Pêche Sauvage)',
+        processing: 'Avec tête, Sans tête, Entières',
+        packaging: '2kg bloc, 1kg IQF, 10kg en vrac',
+        certification: 'HACCP, BRC, BAP'
       }
     }
   },
@@ -202,10 +245,11 @@ export const PRODUCTS = [
     scientificName: 'Penaeus indicus',
     description: 'Mild, sweet, versatile shrimp perfect for any cuisine. Clean taste profile that adapts well to various cooking methods and seasonings.',
     descriptionKey: 'product.whiteShrimp.desc',
-    image: productImg2,
+    image: imgVannamei,
     video: shrimpVideo2,
     category: 'Sea-Caught Shrimp',
     categoryKey: 'category.seaCaught',
+    filterCategory: 'shrimp',
     division: 'raw-shrimp',
     processingType: ['Head-On', 'Head-Less', 'Peeled'],
     specs: {
@@ -257,6 +301,26 @@ export const PRODUCTS = [
         processing: '有頭、無頭、むきエビ',
         packaging: '2kgブロック, 1kg IQF',
         certification: 'HACCP, BRC, BAP'
+      },
+      ru: {
+        name: 'Белая креветка',
+        category: 'Дикие креветки',
+        description: 'Нежная, сладкая, универсальная креветка для любой кухни',
+        sizes: '16/20 до 41/50',
+        origin: 'Индийский океан (дикий улов)',
+        processing: 'С головой, без головы, очищенные',
+        packaging: '2кг блок, 1кг IQF',
+        certification: 'HACCP, BRC, BAP'
+      },
+      fr: {
+        name: 'Crevette Blanche',
+        category: 'Crevettes Sauvages',
+        description: 'Crevettes douces et polyvalentes parfaites pour toute cuisine',
+        sizes: '16/20 à 41/50',
+        origin: 'Océan Indien (Pêche Sauvage)',
+        processing: 'Avec tête, Sans tête, Décortiquées',
+        packaging: '2kg bloc, 1kg IQF',
+        certification: 'HACCP, BRC, BAP'
       }
     }
   },
@@ -267,10 +331,11 @@ export const PRODUCTS = [
     scientificName: 'Metapenaeus monoceros',
     description: 'Tender, delicate shrimp perfect for fine dining. Subtle flavor profile with excellent texture, highly prized in gourmet preparations.',
     descriptionKey: 'product.pinkBrown.desc',
-    image: productImg3,
+    image: imgPinkBrown,
     video: facilityVideo1,
     category: 'Sea-Caught Shrimp',
     categoryKey: 'category.seaCaught',
+    filterCategory: 'shrimp',
     division: 'raw-shrimp',
     processingType: ['Head-On', 'Head-Less'],
     specs: {
@@ -322,6 +387,26 @@ export const PRODUCTS = [
         processing: '有頭、無頭',
         packaging: '2kgブロック, 1kg IQF',
         certification: 'HACCP, BRC'
+      },
+      ru: {
+        name: 'Розово-коричневая креветка',
+        category: 'Дикие креветки',
+        description: 'Нежная, деликатная креветка для высокой кухни',
+        sizes: '31/40 до 61/70',
+        origin: 'Индийский океан (дикий улов)',
+        processing: 'С головой, без головы',
+        packaging: '2кг блок, 1кг IQF',
+        certification: 'HACCP, BRC'
+      },
+      fr: {
+        name: 'Crevette Rose-Brune',
+        category: 'Crevettes Sauvages',
+        description: 'Crevettes tendres et délicates parfaites pour la haute cuisine',
+        sizes: '31/40 à 61/70',
+        origin: 'Océan Indien (Pêche Sauvage)',
+        processing: 'Avec tête, Sans tête',
+        packaging: '2kg bloc, 1kg IQF',
+        certification: 'HACCP, BRC'
       }
     }
   },
@@ -336,10 +421,11 @@ export const PRODUCTS = [
     scientificName: 'Litopenaeus vannamei',
     description: 'Most popular global variety with consistent size and quality. Sustainably farm-raised with strict quality controls. Versatile and mild flavor perfect for global cuisines.',
     descriptionKey: 'product.vannamei.desc',
-    image: productImg4,
+    image: imgVannamei,
     video: processingVideo,
     category: 'Aquaculture Shrimp',
     categoryKey: 'category.aquaculture',
+    filterCategory: 'shrimp',
     division: 'raw-shrimp',
     processingType: ['Head-On', 'Head-Less', 'PD', 'PDTO', 'HMSO'],
     specs: {
@@ -391,6 +477,26 @@ export const PRODUCTS = [
         processing: '有頭、無頭、PD、PDTO',
         packaging: '1.8kg/2kgブロック, 1kg IQF',
         certification: 'HACCP, BRC, BAP, ASC'
+      },
+      ru: {
+        name: 'Креветка Ваннамей',
+        category: 'Аквакультурные креветки',
+        description: 'Самый популярный мировой сорт со стабильным качеством',
+        sizes: '16/20 до 61/70',
+        origin: 'Аквакультура Индии',
+        processing: 'С головой, без головы, PD, PDTO',
+        packaging: '1.8кг/2кг блок, 1кг IQF',
+        certification: 'HACCP, BRC, BAP, ASC'
+      },
+      fr: {
+        name: 'Crevette Vannamei',
+        category: 'Crevettes d\'Aquaculture',
+        description: 'Variété mondiale la plus populaire avec qualité constante',
+        sizes: '16/20 à 61/70',
+        origin: 'Aquaculture Inde',
+        processing: 'Avec tête, Sans tête, PD, PDTO',
+        packaging: '1.8kg/2kg bloc, 1kg IQF',
+        certification: 'HACCP, BRC, BAP, ASC'
       }
     }
   },
@@ -401,10 +507,11 @@ export const PRODUCTS = [
     scientificName: 'Penaeus monodon',
     description: 'The monarch of prawns. Large size with distinctive stripes, firm texture, and sweet flavor. Premium market value with excellent presentation.',
     descriptionKey: 'product.blackTiger.desc',
-    image: productImg5,
+    image: imgBlackTiger,
     video: shrimpVideo1,
     category: 'Aquaculture Shrimp',
     categoryKey: 'category.aquaculture',
+    filterCategory: 'shrimp',
     division: 'raw-shrimp',
     processingType: ['Head-On', 'Head-Less', 'Peeled', 'PDTO'],
     specs: {
@@ -456,6 +563,26 @@ export const PRODUCTS = [
         processing: '有頭、無頭、むきエビ、PDTO',
         packaging: '2kgブロック, 1kg IQF',
         certification: 'HACCP, BRC, BAP'
+      },
+      ru: {
+        name: 'Черная тигровая креветка',
+        category: 'Аквакультурные креветки',
+        description: 'Король креветок с характерными полосами',
+        sizes: 'U/5 до 21/25',
+        origin: 'Аквакультура Индии',
+        processing: 'С головой, без головы, очищенные, PDTO',
+        packaging: '2кг блок, 1кг IQF',
+        certification: 'HACCP, BRC, BAP'
+      },
+      fr: {
+        name: 'Crevette Tigre Noir',
+        category: 'Crevettes d\'Aquaculture',
+        description: 'Le roi des crevettes avec des rayures distinctives',
+        sizes: 'U/5 à 21/25',
+        origin: 'Aquaculture Inde',
+        processing: 'Avec tête, Sans tête, Décortiquées, PDTO',
+        packaging: '2kg bloc, 1kg IQF',
+        certification: 'HACCP, BRC, BAP'
       }
     }
   },
@@ -470,10 +597,11 @@ export const PRODUCTS = [
     scientificName: 'Premium Processed',
     description: 'Premium choice for chefs & caterers. Shell & vein completely removed with tail intact for elegant presentation. Translucent pink-white color indicates premium quality.',
     descriptionKey: 'product.pdto.desc',
-    image: productImg6,
+    image: imgPDTO,
     video: packingVideo,
     category: 'Raw Peeled',
     categoryKey: 'category.rawPeeled',
+    filterCategory: 'shrimp',
     division: 'raw-peeled',
     processingType: ['IQF', 'Block Frozen'],
     specs: {
@@ -525,6 +653,26 @@ export const PRODUCTS = [
         processing: 'IQF、ブロック冷凍',
         packaging: '1kg IQF, 2kgブロック',
         certification: 'HACCP, BRC, BAP'
+      },
+      ru: {
+        name: 'PDTO (Очищенные без кишки с хвостом)',
+        category: 'Сырые очищенные',
+        description: 'Премиальный выбор для шеф-поваров с хвостом',
+        sizes: '16/20 до 41/50',
+        origin: 'Индия',
+        processing: 'IQF, блочная заморозка',
+        packaging: '1кг IQF, 2кг блок',
+        certification: 'HACCP, BRC, BAP'
+      },
+      fr: {
+        name: 'PDTO (Décortiquées Déveinées Queue)',
+        category: 'Crues Décortiquées',
+        description: 'Choix premium pour les chefs avec queue intacte',
+        sizes: '16/20 à 41/50',
+        origin: 'Inde',
+        processing: 'IQF, Bloc Congelé',
+        packaging: '1kg IQF, 2kg Bloc',
+        certification: 'HACCP, BRC, BAP'
       }
     }
   },
@@ -535,10 +683,11 @@ export const PRODUCTS = [
     scientificName: 'Premium Processed',
     description: 'Practical choice for bulk cooking & food service. Completely peeled & deveined with tail removed. Perfect uniformity for industrial cooking with maximum meat yield.',
     descriptionKey: 'product.pd.desc',
-    image: productImg7,
+    image: imgPD,
     video: facilityVideo2,
     category: 'Raw Peeled',
     categoryKey: 'category.rawPeeled',
+    filterCategory: 'shrimp',
     division: 'raw-peeled',
     processingType: ['IQF', 'Block Frozen'],
     specs: {
@@ -590,6 +739,26 @@ export const PRODUCTS = [
         processing: 'IQF、ブロック冷凍',
         packaging: '1kg IQF, 2kgブロック, バルク',
         certification: 'HACCP, BRC, BAP'
+      },
+      ru: {
+        name: 'PD (Очищенные без кишки)',
+        category: 'Сырые очищенные',
+        description: 'Практичный выбор для массового приготовления, максимальный выход',
+        sizes: '21/25 до 61/70',
+        origin: 'Индия',
+        processing: 'IQF, блочная заморозка',
+        packaging: '1кг IQF, 2кг блок, оптом',
+        certification: 'HACCP, BRC, BAP'
+      },
+      fr: {
+        name: 'PD (Décortiquées Déveinées)',
+        category: 'Crues Décortiquées',
+        description: 'Choix pratique pour la cuisson en volume, rendement maximum',
+        sizes: '21/25 à 61/70',
+        origin: 'Inde',
+        processing: 'IQF, Bloc Congelé',
+        packaging: '1kg IQF, 2kg Bloc, Vrac',
+        certification: 'HACCP, BRC, BAP'
       }
     }
   },
@@ -600,10 +769,11 @@ export const PRODUCTS = [
     scientificName: 'Premium Processed',
     description: 'Traditional presentation with modern convenience. Shell removed with vein pulled out cleanly, tail retained for visual appeal and easier preparation.',
     descriptionKey: 'product.pvpdto.desc',
-    image: productImg8,
+    image: imgPVPDTO,
     video: facilityVideo3,
     category: 'Raw Peeled',
     categoryKey: 'category.rawPeeled',
+    filterCategory: 'shrimp',
     division: 'raw-peeled',
     processingType: ['IQF', 'Block Frozen'],
     specs: {
@@ -655,6 +825,26 @@ export const PRODUCTS = [
         processing: 'IQF、ブロック冷凍',
         packaging: '1kg IQF, 2kgブロック',
         certification: 'HACCP, BRC, BAP'
+      },
+      ru: {
+        name: 'PVPDTO (С вытянутой кишкой и хвостом)',
+        category: 'Сырые очищенные',
+        description: 'Традиционный стиль с удобной очисткой',
+        sizes: '16/20 до 31/40',
+        origin: 'Индия',
+        processing: 'IQF, блочная заморозка',
+        packaging: '1кг IQF, 2кг блок',
+        certification: 'HACCP, BRC, BAP'
+      },
+      fr: {
+        name: 'PVPDTO (Veine Tirée Queue)',
+        category: 'Crues Décortiquées',
+        description: 'Style traditionnel avec décorticage facile',
+        sizes: '16/20 à 31/40',
+        origin: 'Inde',
+        processing: 'IQF, Bloc Congelé',
+        packaging: '1kg IQF, 2kg Bloc',
+        certification: 'HACCP, BRC, BAP'
       }
     }
   },
@@ -665,10 +855,11 @@ export const PRODUCTS = [
     scientificName: 'Premium Processed',
     description: 'For specialty cuisines & premium markets. Shell completely removed with vein intact, preferred in many Asian dishes for authentic flavor profile.',
     descriptionKey: 'product.pud.desc',
-    image: productImg9,
+    image: imgPUD,
     video: facilityVideo4,
     category: 'Raw Peeled',
     categoryKey: 'category.rawPeeled',
+    filterCategory: 'shrimp',
     division: 'raw-peeled',
     processingType: ['Tail-On', 'Tail-Off', 'IQF', 'Block'],
     specs: {
@@ -720,6 +911,26 @@ export const PRODUCTS = [
         processing: '尾付き、尾なし、IQF、ブロック',
         packaging: '1kg IQF, 2kgブロック',
         certification: 'HACCP, BRC'
+      },
+      ru: {
+        name: 'PUD (Очищенные с кишкой)',
+        category: 'Сырые очищенные',
+        description: 'Аутентичный вкус для азиатской кухни',
+        sizes: '26/30 до 51/60',
+        origin: 'Индия',
+        processing: 'С хвостом, без хвоста, IQF, блок',
+        packaging: '1кг IQF, 2кг блок',
+        certification: 'HACCP, BRC'
+      },
+      fr: {
+        name: 'PUD (Décortiquées Non Déveinées)',
+        category: 'Crues Décortiquées',
+        description: 'Saveur authentique pour la cuisine asiatique',
+        sizes: '26/30 à 51/60',
+        origin: 'Inde',
+        processing: 'Avec queue, Sans queue, IQF, Bloc',
+        packaging: '1kg IQF, 2kg Bloc',
+        certification: 'HACCP, BRC'
       }
     }
   },
@@ -730,10 +941,11 @@ export const PRODUCTS = [
     scientificName: 'Premium Processed',
     description: 'Traditional raw format, perfect for restaurants. Head completely removed with shell intact for optimal flavor during cooking. Extended shelf life in frozen state.',
     descriptionKey: 'product.hlRaw.desc',
-    image: productImg10,
+    image: imgHLRaw,
     video: shrimpVideo2,
     category: 'Raw Peeled',
     categoryKey: 'category.rawPeeled',
+    filterCategory: 'shrimp',
     division: 'raw-peeled',
     processingType: ['Block Frozen', 'IQF'],
     specs: {
@@ -785,6 +997,26 @@ export const PRODUCTS = [
         processing: 'ブロック冷凍、IQF',
         packaging: '2kgブロック, 10kgバルク, IQF',
         certification: 'HACCP, BRC, BAP'
+      },
+      ru: {
+        name: 'HL (Без головы в панцире)',
+        category: 'Сырые очищенные',
+        description: 'Традиционный формат с вкусом панциря',
+        sizes: '13/15 до 41/50',
+        origin: 'Индия',
+        processing: 'Блочная заморозка, IQF',
+        packaging: '2кг блок, 10кг оптом, IQF',
+        certification: 'HACCP, BRC, BAP'
+      },
+      fr: {
+        name: 'HL (Étêtées Non Décortiquées)',
+        category: 'Crues Décortiquées',
+        description: 'Format traditionnel avec saveur de carapace',
+        sizes: '13/15 à 41/50',
+        origin: 'Inde',
+        processing: 'Bloc Congelé, IQF',
+        packaging: '2kg Bloc, 10kg Vrac, IQF',
+        certification: 'HACCP, BRC, BAP'
       }
     }
   },
@@ -795,10 +1027,11 @@ export const PRODUCTS = [
     scientificName: 'Premium Processed',
     description: 'Consumer-friendly peeling innovation. Pre-scored shell for easy removal after cooking while retaining shell flavor benefits. Perfect for home cooking and casual dining.',
     descriptionKey: 'product.hlEasyPeelRaw.desc',
-    image: productImg11,
+    image: imgHLEasyPeel,
     video: processingVideo,
     category: 'Raw Peeled',
     categoryKey: 'category.rawPeeled',
+    filterCategory: 'shrimp',
     division: 'raw-peeled',
     processingType: ['IQF', 'Block Frozen'],
     specs: {
@@ -850,6 +1083,26 @@ export const PRODUCTS = [
         processing: 'IQF、ブロック冷凍',
         packaging: '1kg IQF, 2kgブロック',
         certification: 'HACCP, BRC, BAP'
+      },
+      ru: {
+        name: 'HL Easy-Peel (Легкая очистка)',
+        category: 'Сырые очищенные',
+        description: 'Удобные для потребителя с надрезанным панцирем',
+        sizes: '16/20 до 31/40',
+        origin: 'Индия',
+        processing: 'IQF, блочная заморозка',
+        packaging: '1кг IQF, 2кг блок',
+        certification: 'HACCP, BRC, BAP'
+      },
+      fr: {
+        name: 'HL Easy-Peel (Facile à Peler)',
+        category: 'Crues Décortiquées',
+        description: 'Pratique pour le consommateur avec carapace pré-incisée',
+        sizes: '16/20 à 31/40',
+        origin: 'Inde',
+        processing: 'IQF, Bloc Congelé',
+        packaging: '1kg IQF, 2kg Bloc',
+        certification: 'HACCP, BRC, BAP'
       }
     }
   },
@@ -864,10 +1117,11 @@ export const PRODUCTS = [
     scientificName: 'Fully Cooked',
     description: 'Traditional presentation with superior flavor retention. Fully cooked and flash-frozen, ready for immediate use. Perfect for fine dining and impressive presentations.',
     descriptionKey: 'product.cookedHeadOn.desc',
-    image: productImg12,
+    image: imgCookedHeadOn,
     video: packingVideo,
     category: 'Cooked Shrimp',
     categoryKey: 'category.cooked',
+    filterCategory: 'shrimp',
     division: 'cooked',
     processingType: ['IQF', 'Block Frozen'],
     specs: {
@@ -921,6 +1175,26 @@ export const PRODUCTS = [
         processing: '完全調理済み、IQF、ブロック冷凍',
         packaging: '1kg IQF, 2kgブロック',
         certification: 'HACCP, BRC, BAP'
+      },
+      ru: {
+        name: 'Вареные креветки с головой',
+        category: 'Вареные креветки',
+        description: 'Готовые к употреблению с превосходным сохранением вкуса',
+        sizes: '8/12 до 21/25',
+        origin: 'Индия',
+        processing: 'Полностью приготовленные, IQF, блочная заморозка',
+        packaging: '1кг IQF, 2кг блок',
+        certification: 'HACCP, BRC, BAP'
+      },
+      fr: {
+        name: 'Crevettes Cuites Avec Tête',
+        category: 'Crevettes Cuites',
+        description: 'Prêtes à manger avec conservation supérieure de la saveur',
+        sizes: '8/12 à 21/25',
+        origin: 'Inde',
+        processing: 'Entièrement cuites, IQF, Bloc Congelé',
+        packaging: '1kg IQF, 2kg Bloc',
+        certification: 'HACCP, BRC, BAP'
       }
     }
   },
@@ -931,10 +1205,11 @@ export const PRODUCTS = [
     scientificName: 'Fully Cooked',
     description: 'Professional kitchen standard, ready for immediate use. Reduced waste with maximum meat yield. Heat & serve in 2-3 minutes.',
     descriptionKey: 'product.cookedHL.desc',
-    image: productImg13,
+    image: imgCookedHL,
     video: facilityVideo1,
     category: 'Cooked Shrimp',
     categoryKey: 'category.cooked',
+    filterCategory: 'shrimp',
     division: 'cooked',
     processingType: ['IQF', 'Block Frozen'],
     specs: {
@@ -988,6 +1263,26 @@ export const PRODUCTS = [
         processing: '完全調理済み、IQF、ブロック冷凍',
         packaging: '1kg IQF, 2kgブロック',
         certification: 'HACCP, BRC, BAP'
+      },
+      ru: {
+        name: 'Вареные креветки без головы (HL)',
+        category: 'Вареные креветки',
+        description: 'Профессиональный уровень, разогреть и подать за 2-3 мин',
+        sizes: '16/20 до 41/50',
+        origin: 'Индия',
+        processing: 'Полностью приготовленные, IQF, блочная заморозка',
+        packaging: '1кг IQF, 2кг блок',
+        certification: 'HACCP, BRC, BAP'
+      },
+      fr: {
+        name: 'Crevettes Cuites Étêtées (HL)',
+        category: 'Crevettes Cuites',
+        description: 'Qualité professionnelle, chauffer et servir en 2-3 min',
+        sizes: '16/20 à 41/50',
+        origin: 'Inde',
+        processing: 'Entièrement cuites, IQF, Bloc Congelé',
+        packaging: '1kg IQF, 2kg Bloc',
+        certification: 'HACCP, BRC, BAP'
       }
     }
   },
@@ -998,10 +1293,11 @@ export const PRODUCTS = [
     scientificName: 'Fully Cooked',
     description: 'Pre-scored for convenient shell removal after cooking. Cook, peel, eat in under 5 minutes. Perfect for family meals and casual dining.',
     descriptionKey: 'product.cookedHLEasyPeel.desc',
-    image: productImg14,
+    image: imgCookedHLEasyPeel,
     video: facilityVideo2,
     category: 'Cooked Shrimp',
     categoryKey: 'category.cooked',
+    filterCategory: 'shrimp',
     division: 'cooked',
     processingType: ['IQF'],
     specs: {
@@ -1055,6 +1351,26 @@ export const PRODUCTS = [
         processing: '完全調理済み、IQF',
         packaging: '1kg IQF, 500gリテール',
         certification: 'HACCP, BRC, BAP'
+      },
+      ru: {
+        name: 'Вареные HL Easy-Peel (Легкая очистка)',
+        category: 'Вареные креветки',
+        description: 'Надрезанный панцирь, готовы менее чем за 5 минут',
+        sizes: '21/25 до 31/40',
+        origin: 'Индия',
+        processing: 'Полностью приготовленные, IQF',
+        packaging: '1кг IQF, 500г розница',
+        certification: 'HACCP, BRC, BAP'
+      },
+      fr: {
+        name: 'Crevettes Cuites HL Easy-Peel',
+        category: 'Crevettes Cuites',
+        description: 'Carapace pré-incisée, prêtes en moins de 5 minutes',
+        sizes: '21/25 à 31/40',
+        origin: 'Inde',
+        processing: 'Entièrement cuites, IQF',
+        packaging: '1kg IQF, 500g Détail',
+        certification: 'HACCP, BRC, BAP'
       }
     }
   },
@@ -1065,10 +1381,11 @@ export const PRODUCTS = [
     scientificName: 'Fully Cooked',
     description: 'Fully prepared with elegant presentation and zero prep time. Completely ready to serve cold or warm. Perfect for appetizers, cocktails, and elegant dishes.',
     descriptionKey: 'product.cookedPDTO.desc',
-    image: productImg15,
+    image: imgCookedPDTO,
     video: facilityVideo3,
     category: 'Cooked Shrimp',
     categoryKey: 'category.cooked',
+    filterCategory: 'shrimp',
     division: 'cooked',
     processingType: ['IQF'],
     specs: {
@@ -1122,6 +1439,26 @@ export const PRODUCTS = [
         processing: '完全調理済み、IQF',
         packaging: '1kg IQF, 500gリテール',
         certification: 'HACCP, BRC, BAP'
+      },
+      ru: {
+        name: 'Вареные PDTO',
+        category: 'Вареные креветки',
+        description: 'Без подготовки, элегантная подача',
+        sizes: '16/20 до 31/40',
+        origin: 'Индия',
+        processing: 'Полностью приготовленные, IQF',
+        packaging: '1кг IQF, 500г розница',
+        certification: 'HACCP, BRC, BAP'
+      },
+      fr: {
+        name: 'Crevettes Cuites PDTO',
+        category: 'Crevettes Cuites',
+        description: 'Aucune préparation, présentation élégante',
+        sizes: '16/20 à 31/40',
+        origin: 'Inde',
+        processing: 'Entièrement cuites, IQF',
+        packaging: '1kg IQF, 500g Détail',
+        certification: 'HACCP, BRC, BAP'
       }
     }
   },
@@ -1132,10 +1469,11 @@ export const PRODUCTS = [
     scientificName: 'Fully Cooked',
     description: 'Fully processed shrimp perfect for soups, salads, and mixed dishes. Heat through or serve cold with 18 months frozen shelf life.',
     descriptionKey: 'product.cookedPD.desc',
-    image: productImg16,
+    image: imgCookedPD,
     video: facilityVideo4,
     category: 'Cooked Shrimp',
     categoryKey: 'category.cooked',
+    filterCategory: 'shrimp',
     division: 'cooked',
     processingType: ['IQF', 'Block'],
     specs: {
@@ -1189,6 +1527,26 @@ export const PRODUCTS = [
         processing: '完全調理済み、IQF、ブロック',
         packaging: '1kg IQF, 2kgブロック',
         certification: 'HACCP, BRC, BAP'
+      },
+      ru: {
+        name: 'Вареные PD',
+        category: 'Вареные креветки',
+        description: 'Полностью обработанные, подавать горячими или холодными',
+        sizes: '26/30 до 51/60',
+        origin: 'Индия',
+        processing: 'Полностью приготовленные, IQF, блок',
+        packaging: '1кг IQF, 2кг блок',
+        certification: 'HACCP, BRC, BAP'
+      },
+      fr: {
+        name: 'Crevettes Cuites PD',
+        category: 'Crevettes Cuites',
+        description: 'Entièrement transformées, servir chaud ou froid',
+        sizes: '26/30 à 51/60',
+        origin: 'Inde',
+        processing: 'Entièrement cuites, IQF, Bloc',
+        packaging: '1kg IQF, 2kg Bloc',
+        certification: 'HACCP, BRC, BAP'
       }
     }
   },
@@ -1203,10 +1561,11 @@ export const PRODUCTS = [
     scientificName: 'Premium Cut',
     description: 'Elegant split presentation for premium restaurant offerings. Shrimp split lengthwise to create stunning butterfly/fan appearance. 20-30% premium markup value.',
     descriptionKey: 'product.butterfly.desc',
-    image: productImg17,
+    image: imgButterfly,
     video: packingVideo,
     category: 'Value-Added',
     categoryKey: 'category.valueAdded',
+    filterCategory: 'shrimp',
     division: 'value-added',
     processingType: ['Raw', 'Cooked', 'IQF'],
     specs: {
@@ -1259,6 +1618,26 @@ export const PRODUCTS = [
         processing: '生、調理済み、IQF',
         packaging: '1kg IQF, 500gリテール',
         certification: 'HACCP, BRC, BAP'
+      },
+      ru: {
+        name: 'Креветки Баттерфляй',
+        category: 'Продукты с добавленной стоимостью',
+        description: 'Элегантный разрез для потрясающей подачи',
+        sizes: '8/12 до 16/20',
+        origin: 'Индия',
+        processing: 'Сырые, вареные, IQF',
+        packaging: '1кг IQF, 500г розница',
+        certification: 'HACCP, BRC, BAP'
+      },
+      fr: {
+        name: 'Crevettes Papillon',
+        category: 'Produits à Valeur Ajoutée',
+        description: 'Coupe élégante pour une présentation exceptionnelle',
+        sizes: '8/12 à 16/20',
+        origin: 'Inde',
+        processing: 'Crues, Cuites, IQF',
+        packaging: '1kg IQF, 500g Détail',
+        certification: 'HACCP, BRC, BAP'
       }
     }
   },
@@ -1269,10 +1648,11 @@ export const PRODUCTS = [
     scientificName: 'Sushi-Grade',
     description: 'Japanese presentation with natural curve preserved. Premium sushi/sashimi grade with pristine appearance. Specially processed for authentic presentation in high-end sushi restaurants.',
     descriptionKey: 'product.nobashi.desc',
-    image: productImg18,
+    image: imgNobashi,
     video: processingVideo,
     category: 'Value-Added',
     categoryKey: 'category.valueAdded',
+    filterCategory: 'shrimp',
     division: 'value-added',
     processingType: ['Raw', 'Stretched', 'IQF'],
     specs: {
@@ -1325,6 +1705,26 @@ export const PRODUCTS = [
         processing: '生、ストレッチ、IQF',
         packaging: '30尾/トレイ, 20尾/トレイ',
         certification: 'HACCP, BRC, 寿司グレード'
+      },
+      ru: {
+        name: 'Креветки Нобаши',
+        category: 'Продукты с добавленной стоимостью',
+        description: 'Суши-класс с сохраненным естественным изгибом',
+        sizes: '3L, 2L, L, M',
+        origin: 'Индия',
+        processing: 'Сырые, растянутые, IQF',
+        packaging: '30шт/лоток, 20шт/лоток',
+        certification: 'HACCP, BRC, Суши-класс'
+      },
+      fr: {
+        name: 'Crevettes Nobashi',
+        category: 'Produits à Valeur Ajoutée',
+        description: 'Qualité sushi avec courbe naturelle préservée',
+        sizes: '3L, 2L, L, M',
+        origin: 'Inde',
+        processing: 'Crues, Étirées, IQF',
+        packaging: '30pcs/plateau, 20pcs/plateau',
+        certification: 'HACCP, BRC, Qualité Sushi'
       }
     }
   },
@@ -1335,10 +1735,11 @@ export const PRODUCTS = [
     scientificName: 'Ready-to-Fry',
     description: 'Golden, crispy coating with restaurant-quality finish. Ready to deep fry (2-3 min) or air-fry until golden. Consistent quality with minimal prep and high profit margin.',
     descriptionKey: 'product.breaded.desc',
-    image: productImg19,
+    image: imgBreaded,
     video: facilityVideo1,
     category: 'Value-Added',
     categoryKey: 'category.valueAdded',
+    filterCategory: 'shrimp',
     division: 'value-added',
     processingType: ['Pre-Cooked', 'Raw Breaded'],
     specs: {
@@ -1392,6 +1793,26 @@ export const PRODUCTS = [
         processing: '調理済み、生パン粉付き',
         packaging: '1kgボックス, 500gリテール, 2kgフードサービス',
         certification: 'HACCP, BRC, BAP'
+      },
+      ru: {
+        name: 'Креветки в панировке',
+        category: 'Продукты с добавленной стоимостью',
+        description: 'Золотистая хрустящая корочка, готовы к жарке',
+        sizes: '16/20 до 26/30',
+        origin: 'Индия',
+        processing: 'Предварительно приготовленные, сырые в панировке',
+        packaging: '1кг коробка, 500г розница, 2кг общепит',
+        certification: 'HACCP, BRC, BAP'
+      },
+      fr: {
+        name: 'Crevettes Panées',
+        category: 'Produits à Valeur Ajoutée',
+        description: 'Enrobage doré croustillant, prêtes à frire',
+        sizes: '16/20 à 26/30',
+        origin: 'Inde',
+        processing: 'Pré-cuites, Crues panées',
+        packaging: '1kg Boîte, 500g Détail, 2kg Restauration',
+        certification: 'HACCP, BRC, BAP'
       }
     }
   },
@@ -1402,10 +1823,11 @@ export const PRODUCTS = [
     scientificName: 'Value-Added',
     description: 'Pre-cooked, ready-to-grill value-added product. Convenient skewer format for easy grilling and serving. Perfect for BBQ and outdoor events.',
     descriptionKey: 'product.shrimpSkewers.desc',
-    image: productImg1,
+    image: imgSkewers,
     video: packingVideo,
     category: 'Value-Added',
     categoryKey: 'category.valueAdded',
+    filterCategory: 'shrimp',
     division: 'value-added',
     processingType: ['Pre-Cooked', 'Skewered'],
     specs: {
@@ -1457,6 +1879,26 @@ export const PRODUCTS = [
         processing: '調理済み、串刺し',
         packaging: '6本または12本/パック',
         certification: 'HACCP, BRC'
+      },
+      ru: {
+        name: 'Шашлыки из креветок',
+        category: 'Продукты с добавленной стоимостью',
+        description: 'Готовые к грилю, удобный формат',
+        sizes: '21/25 до 26/30',
+        origin: 'Индия',
+        processing: 'Предварительно приготовленные, на шпажках',
+        packaging: '6 или 12 шпажек/упаковка',
+        certification: 'HACCP, BRC'
+      },
+      fr: {
+        name: 'Brochettes de Crevettes',
+        category: 'Produits à Valeur Ajoutée',
+        description: 'Prêtes à griller, format pratique',
+        sizes: '21/25 à 26/30',
+        origin: 'Inde',
+        processing: 'Pré-cuites, Sur brochettes',
+        packaging: '6 ou 12 brochettes/paquet',
+        certification: 'HACCP, BRC'
       }
     }
   },
@@ -1467,10 +1909,11 @@ export const PRODUCTS = [
     scientificName: 'Marinated',
     description: 'Marinated varieties including Cajun, Garlic, and Asian-style seasonings. Ready to cook with bold flavors already infused.',
     descriptionKey: 'product.spicedShrimp.desc',
-    image: productImg2,
+    image: imgIQF,
     video: facilityVideo2,
     category: 'Value-Added',
     categoryKey: 'category.valueAdded',
+    filterCategory: 'shrimp',
     division: 'value-added',
     processingType: ['Cajun', 'Garlic Butter', 'Asian-Style', 'Custom'],
     specs: {
@@ -1522,6 +1965,26 @@ export const PRODUCTS = [
         processing: 'ケイジャン、ガーリックバター、アジアンスタイル',
         packaging: '500gリテール, 1kgフードサービス',
         certification: 'HACCP, BRC'
+      },
+      ru: {
+        name: 'Пряные креветки',
+        category: 'Продукты с добавленной стоимостью',
+        description: 'Маринованные с ярким вкусом, готовы к приготовлению',
+        sizes: '21/25 до 31/40',
+        origin: 'Индия',
+        processing: 'Кейджун, чесночное масло, азиатский стиль',
+        packaging: '500г розница, 1кг общепит',
+        certification: 'HACCP, BRC'
+      },
+      fr: {
+        name: 'Crevettes Épicées',
+        category: 'Produits à Valeur Ajoutée',
+        description: 'Marinées avec des saveurs prononcées, prêtes à cuire',
+        sizes: '21/25 à 31/40',
+        origin: 'Inde',
+        processing: 'Cajun, Beurre ail, Style asiatique',
+        packaging: '500g Détail, 1kg Restauration',
+        certification: 'HACCP, BRC'
       }
     }
   },
@@ -1536,10 +1999,11 @@ export const PRODUCTS = [
     scientificName: 'Fresh Live',
     description: 'Premium live shrimp available on special request. Delivered via specialized air cargo with temperature-controlled packaging within 48-72 hours globally.',
     descriptionKey: 'product.liveShrimp.desc',
-    image: productImg3,
+    image: imgLiveShrimp,
     video: shrimpVideo1,
     category: 'Fresh Seafood',
     categoryKey: 'category.fresh',
+    filterCategory: 'shrimp',
     division: 'fresh-seafood',
     processingType: ['Live', 'Temperature Controlled'],
     specs: {
@@ -1592,6 +2056,26 @@ export const PRODUCTS = [
         processing: '活、温度管理',
         packaging: '保温容器、ドライアイス',
         certification: 'HACCP, 活輸出認証'
+      },
+      ru: {
+        name: 'Живые креветки',
+        category: 'Свежие морепродукты',
+        description: 'Премиальная живая доставка, 48-72 часа по всему миру',
+        sizes: 'Различные',
+        origin: 'Индия',
+        processing: 'Живые, температурный контроль',
+        packaging: 'Изолированные контейнеры, сухой лед',
+        certification: 'HACCP, сертификат на экспорт живых'
+      },
+      fr: {
+        name: 'Crevettes Vivantes',
+        category: 'Fruits de Mer Frais',
+        description: 'Livraison vivante premium, 48-72 heures dans le monde',
+        sizes: 'Divers',
+        origin: 'Inde',
+        processing: 'Vivantes, Température contrôlée',
+        packaging: 'Conteneurs isolés, Glace carbonique',
+        certification: 'HACCP, Certifié Export Vivant'
       }
     }
   },
@@ -1602,10 +2086,11 @@ export const PRODUCTS = [
     scientificName: 'Various Species',
     description: 'Fresh fish varieties as requested, processed within 4 hours of harvest. Delivered via air cargo with specialized insulated containers and dry ice.',
     descriptionKey: 'product.freshFish.desc',
-    image: 'https://images.unsplash.com/photo-1534942205242-a42d3c2a117b?q=80&w=800&auto=format&fit=crop',
+    image: imgFreshFish,
     video: 'https://cdn.pixabay.com/video/2016/09/05/4964-182620860_large.mp4',
     category: 'Fresh Seafood',
     categoryKey: 'category.fresh',
+    filterCategory: 'fish',
     division: 'fresh-seafood',
     processingType: ['Whole', 'Gutted', 'Filleted'],
     specs: {
@@ -1658,6 +2143,26 @@ export const PRODUCTS = [
         processing: '丸ごと、内臓除去、フィレ',
         packaging: '保温容器、ドライアイス',
         certification: 'HACCP, 航空貨物対応'
+      },
+      ru: {
+        name: 'Свежая рыба',
+        category: 'Свежие морепродукты',
+        description: 'Обработка в течение 4 часов, доставка авиагрузом',
+        sizes: 'По запросу',
+        origin: 'Индия',
+        processing: 'Целая, потрошеная, филе',
+        packaging: 'Изолированные контейнеры, сухой лед',
+        certification: 'HACCP, готовы к авиаперевозке'
+      },
+      fr: {
+        name: 'Poisson Frais',
+        category: 'Fruits de Mer Frais',
+        description: 'Transformé en 4 heures, livraison par fret aérien',
+        sizes: 'Sur demande',
+        origin: 'Inde',
+        processing: 'Entier, Éviscéré, Filet',
+        packaging: 'Conteneurs isolés, Glace carbonique',
+        certification: 'HACCP, Prêt pour fret aérien'
       }
     }
   },
@@ -1668,10 +2173,11 @@ export const PRODUCTS = [
     scientificName: 'Premium Shellfish',
     description: 'Premium lobster and crab varieties available fresh via air cargo. Quality guaranteed with complete traceability from harvest to delivery.',
     descriptionKey: 'product.lobsterCrab.desc',
-    image: 'https://images.unsplash.com/photo-1559737558-2f5a35f4523b?q=80&w=800&auto=format&fit=crop',
+    image: imgFreshLobster,
     video: facilityVideo3,
     category: 'Fresh Seafood',
     categoryKey: 'category.fresh',
+    filterCategory: 'shellfish',
     division: 'fresh-seafood',
     processingType: ['Live', 'Cooked', 'Frozen'],
     specs: {
@@ -1723,6 +2229,26 @@ export const PRODUCTS = [
         processing: '活、調理済み、冷凍',
         packaging: '専用コンテナ',
         certification: 'HACCP, 輸出認証'
+      },
+      ru: {
+        name: 'Лобстер и Краб',
+        category: 'Свежие морепродукты',
+        description: 'Премиальные ракообразные авиадоставкой',
+        sizes: 'Различные категории',
+        origin: 'Индия',
+        processing: 'Живые, вареные, замороженные',
+        packaging: 'Специализированные контейнеры',
+        certification: 'HACCP, сертификат на экспорт'
+      },
+      fr: {
+        name: 'Homard et Crabe',
+        category: 'Fruits de Mer Frais',
+        description: 'Crustacés premium par fret aérien',
+        sizes: 'Diverses catégories',
+        origin: 'Inde',
+        processing: 'Vivants, Cuits, Congelés',
+        packaging: 'Conteneurs spécialisés',
+        certification: 'HACCP, Certifié Export'
       }
     }
   },
@@ -1733,10 +2259,11 @@ export const PRODUCTS = [
     scientificName: 'Bivalve Mollusks',
     description: 'Fresh oysters and clams sourced from premium waters. Delivered with temperature control for optimal freshness and food safety.',
     descriptionKey: 'product.oystersClams.desc',
-    image: 'https://images.unsplash.com/photo-1606850780554-b55ea4dd0b70?q=80&w=800&auto=format&fit=crop',
+    image: imgOystersClams,
     video: facilityVideo4,
     category: 'Fresh Seafood',
     categoryKey: 'category.fresh',
+    filterCategory: 'shellfish',
     division: 'fresh-seafood',
     processingType: ['Live', 'Shucked', 'Half-Shell'],
     specs: {
@@ -1788,6 +2315,26 @@ export const PRODUCTS = [
         processing: '活、むき身、ハーフシェル',
         packaging: 'メッシュバッグ、トレイ',
         certification: 'HACCP, 貝類認証'
+      },
+      ru: {
+        name: 'Устрицы и Моллюски',
+        category: 'Свежие морепродукты',
+        description: 'Премиальные двустворчатые, температурный контроль',
+        sizes: 'Различные категории',
+        origin: 'Индия',
+        processing: 'Живые, очищенные, полураковина',
+        packaging: 'Сетчатые мешки, лотки',
+        certification: 'HACCP, сертификат на моллюсков'
+      },
+      fr: {
+        name: 'Huîtres et Palourdes',
+        category: 'Fruits de Mer Frais',
+        description: 'Bivalves premium, température contrôlée',
+        sizes: 'Diverses catégories',
+        origin: 'Inde',
+        processing: 'Vivantes, Écaillées, Demi-coquille',
+        packaging: 'Sacs en filet, Plateaux',
+        certification: 'HACCP, Certifié Coquillages'
       }
     }
   },
@@ -1798,10 +2345,11 @@ export const PRODUCTS = [
     scientificName: 'Cephalopods',
     description: 'Fresh squid and octopus varieties for Mediterranean and Asian cuisines. Available whole, cleaned, or portioned as per buyer specifications.',
     descriptionKey: 'product.squidOctopus.desc',
-    image: 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?q=80&w=800&auto=format&fit=crop',
+    image: imgFreshSquid,
     video: packingVideo,
     category: 'Fresh Seafood',
     categoryKey: 'category.fresh',
+    filterCategory: 'squid',
     division: 'fresh-seafood',
     processingType: ['Whole', 'Cleaned', 'Tubes & Tentacles', 'Rings'],
     specs: {
@@ -1853,6 +2401,26 @@ export const PRODUCTS = [
         processing: '丸ごと、洗浄済み、胴と足、リング',
         packaging: 'IQF、ブロック、生',
         certification: 'HACCP, 輸出認証'
+      },
+      ru: {
+        name: 'Кальмар и Осьминог',
+        category: 'Свежие морепродукты',
+        description: 'Различные нарезки для средиземноморской и азиатской кухни',
+        sizes: 'Различные',
+        origin: 'Индия',
+        processing: 'Целые, очищенные, тубусы и щупальца, кольца',
+        packaging: 'IQF, блок, свежие',
+        certification: 'HACCP, сертификат на экспорт'
+      },
+      fr: {
+        name: 'Calamars et Poulpes',
+        category: 'Fruits de Mer Frais',
+        description: 'Multiples découpes pour cuisine méditerranéenne et asiatique',
+        sizes: 'Divers',
+        origin: 'Inde',
+        processing: 'Entiers, Nettoyés, Tubes et Tentacules, Anneaux',
+        packaging: 'IQF, Bloc, Frais',
+        certification: 'HACCP, Certifié Export'
       }
     }
   },
@@ -1867,10 +2435,11 @@ export const PRODUCTS = [
     scientificName: 'Pampus argenteus',
     description: 'A premium table fish highly sought after in Asian markets. Delicate white meat with minimal bones, perfect for steaming and pan-frying.',
     descriptionKey: 'product.silverPomfret.desc',
-    image: 'https://images.unsplash.com/photo-1534942205242-a42d3c2a117b?q=80&w=800&auto=format&fit=crop',
+    image: imgFreshFish,
     video: 'https://cdn.pixabay.com/video/2016/09/05/4964-182620860_large.mp4',
     category: 'Fish',
     categoryKey: 'category.fish',
+    filterCategory: 'fish',
     division: 'fresh-seafood',
     processingType: ['Whole Round', 'Gutted', 'IWP'],
     specs: {
@@ -1921,6 +2490,26 @@ export const PRODUCTS = [
         processing: '丸ごと、内臓除去、IWP',
         packaging: '10kgバルク, IWP',
         certification: 'HACCP, BRC'
+      },
+      ru: {
+        name: 'Серебристый помфрет',
+        category: 'Рыба',
+        description: 'Премиальная столовая рыба, нежное белое мясо',
+        sizes: '300/400 до 600+',
+        origin: 'Индийский океан (дикий улов)',
+        processing: 'Целая, потрошеная, IWP',
+        packaging: '10кг оптом, IWP',
+        certification: 'HACCP, BRC'
+      },
+      fr: {
+        name: 'Pomfret Argenté',
+        category: 'Poisson',
+        description: 'Poisson de table premium, chair blanche délicate',
+        sizes: '300/400 à 600+',
+        origin: 'Océan Indien (Pêche Sauvage)',
+        processing: 'Entier, Éviscéré, IWP',
+        packaging: '10kg Vrac, IWP',
+        certification: 'HACCP, BRC'
       }
     }
   },
@@ -1939,6 +2528,7 @@ export const PRODUCTS = [
     video: null,
     category: 'Bio-Products',
     categoryKey: 'category.bio',
+    filterCategory: 'other',
     division: 'bio',
     processingType: ['Flakes', 'Powder'],
     specs: {
@@ -1989,6 +2579,26 @@ export const PRODUCTS = [
         processing: 'フレーク、パウダー',
         packaging: '25kg HDPEバッグ',
         certification: '産業用グレード'
+      },
+      ru: {
+        name: 'Хитиновые хлопья',
+        category: 'Биопродукты',
+        description: 'Промышленный хитин из панцирей креветок',
+        sizes: 'Меш 80, Меш 100',
+        origin: 'Побочный продукт переработки',
+        processing: 'Хлопья, порошок',
+        packaging: '25кг мешок HDPE',
+        certification: 'Промышленный класс'
+      },
+      fr: {
+        name: 'Flocons de Chitine',
+        category: 'Bio-Produits',
+        description: 'Chitine industrielle à partir de carapaces de crevettes',
+        sizes: 'Mesh 80, Mesh 100',
+        origin: 'Sous-produit de transformation',
+        processing: 'Flocons, Poudre',
+        packaging: '25kg Sac HDPE',
+        certification: 'Qualité Industrielle'
       }
     }
   },
@@ -2003,6 +2613,7 @@ export const PRODUCTS = [
     video: null,
     category: 'Bio-Products',
     categoryKey: 'category.bio',
+    filterCategory: 'other',
     division: 'bio',
     processingType: ['Powder', 'Solution'],
     specs: {
@@ -2054,6 +2665,26 @@ export const PRODUCTS = [
         processing: 'パウダー、溶液',
         packaging: '1kg, 5kg, 25kg',
         certification: '医薬品グレード, 食品グレード'
+      },
+      ru: {
+        name: 'Хитозан',
+        category: 'Биопродукты',
+        description: 'Фармацевтический класс, высокая чистота',
+        sizes: 'Различные молекулярные веса',
+        origin: 'Получен из хитина',
+        processing: 'Порошок, раствор',
+        packaging: '1кг, 5кг, 25кг',
+        certification: 'Фарма класс, пищевой класс'
+      },
+      fr: {
+        name: 'Chitosane',
+        category: 'Bio-Produits',
+        description: 'Qualité pharmaceutique, haute pureté',
+        sizes: 'Divers poids moléculaires',
+        origin: 'Dérivé de la chitine',
+        processing: 'Poudre, Solution',
+        packaging: '1kg, 5kg, 25kg',
+        certification: 'Qualité Pharma, Qualité Alimentaire'
       }
     }
   }
@@ -2070,6 +2701,16 @@ export const PRODUCT_CATEGORIES = [
   { id: 'fresh', label: 'Fresh Seafood', labelKey: 'category.fresh' },
   { id: 'fish', label: 'Fish', labelKey: 'category.fish' },
   { id: 'bio', label: 'Bio-Products', labelKey: 'category.bio' }
+];
+
+// Filter categories for quick product filtering (Shrimp, Fish, Squid, etc.)
+export const FILTER_CATEGORIES = [
+  { id: 'all', label: 'All', labelKey: 'filter.all', icon: 'Grid3X3' },
+  { id: 'shrimp', label: 'Shrimp', labelKey: 'filter.shrimp', icon: 'Fish' },
+  { id: 'fish', label: 'Fish', labelKey: 'filter.fish', icon: 'Fish' },
+  { id: 'squid', label: 'Squid & Octopus', labelKey: 'filter.squid', icon: 'CircleDot' },
+  { id: 'shellfish', label: 'Shellfish', labelKey: 'filter.shellfish', icon: 'Shell' },
+  { id: 'other', label: 'Other', labelKey: 'filter.other', icon: 'Package' }
 ];
 
 // Company certifications

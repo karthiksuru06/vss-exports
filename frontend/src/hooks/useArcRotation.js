@@ -32,11 +32,13 @@ export function useArcRotation({ productCount, isLocked, onFocusChange, isMobile
 
   /**
    * Get rotation angle to center a specific index
-   * For mobile, the focus point is at bottom (90° from starting position)
+   * MOBILE: Products start at 0°, focus at 90° (top of upward arc)
+   * DESKTOP: Products start at -90°, focus at 0° (right side)
    */
   const getRotationForIndex = useCallback((index) => {
     if (isMobile) {
-      // Mobile: start from 180°, focus at 270° (bottom)
+      // Mobile: start from 0°, focus at 90° (top)
+      // To bring index to 90°: rotation = 90 - (startAngle + index * anglePerProduct)
       return 90 - index * anglePerProduct;
     }
     // Desktop: start from -90°, focus at 0° (right)

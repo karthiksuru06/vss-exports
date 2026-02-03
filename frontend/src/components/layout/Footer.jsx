@@ -1,12 +1,15 @@
 import React from 'react';
 import { Anchor, Mail, Phone, MapPin, Facebook, Linkedin, Instagram, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from '../../hooks/useTranslation';
 import logo from '../../assets/images/logo.png';
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
-    alert("Thank you for subscribing to our newsletter!");
+    alert(t('footer.thankYou'));
   };
 
   return (
@@ -19,12 +22,12 @@ const Footer = () => {
           <div className="space-y-8">
             <Link to="/" className="inline-flex flex-col group w-fit">
               <div className="flex items-center gap-3 mb-2">
-                <img src={logo} alt="Mahadev Marine" className="h-14 w-auto object-contain" />
-                <span className="text-3xl font-serif font-bold">Mahadev<span className="text-gold-500">Marine</span></span>
+                <img src={logo} alt={`${t('brand.mahadev')} ${t('brand.marine')}`} className="h-14 w-auto object-contain" />
+                <span className="text-3xl font-serif font-bold">{t('brand.mahadev')}<span className="text-gold-500">{t('brand.marine')}</span></span>
               </div>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed max-w-xs">
-              Premium seafood sourcing from the Indian Ocean. We connect artisanal fishing integrity with industrial-scale global logistics.
+              {t('brand.description')}
             </p>
             <div className="flex space-x-4">
               {[
@@ -46,13 +49,18 @@ const Footer = () => {
 
           {/* Links */}
           <div>
-            <h4 className="text-gold-500 font-bold uppercase tracking-widest text-sm mb-8">Divisions</h4>
+            <h4 className="text-gold-500 font-bold uppercase tracking-widest text-sm mb-8">{t('footer.divisions')}</h4>
             <ul className="space-y-4">
-              {['Shrimp Division', 'Seafood Exports', 'Bio-Products', 'Logistics'].map((link) => (
-                <li key={link}>
+              {[
+                { key: 'footer.shrimpDivision' },
+                { key: 'footer.seafoodExports' },
+                { key: 'footer.bioProducts' },
+                { key: 'footer.logistics' }
+              ].map((item) => (
+                <li key={item.key}>
                   <Link to="/products" className="text-white/70 hover:text-white transition-colors text-sm flex items-center group w-fit">
                     <span className="w-1.5 h-1.5 bg-gold-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                    {link}
+                    {t(item.key)}
                   </Link>
                 </li>
               ))}
@@ -61,11 +69,11 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="text-gold-500 font-bold uppercase tracking-widest text-sm mb-8">Headquarters</h4>
+            <h4 className="text-gold-500 font-bold uppercase tracking-widest text-sm mb-8">{t('footer.headquarters')}</h4>
             <ul className="space-y-6">
               <li className="flex items-start gap-4">
                 <MapPin className="h-5 w-5 text-gold-500 shrink-0 mt-1" />
-                <span className="text-white/70 text-sm leading-relaxed">123 Harbour Road, GIDC Estate<br />Veraval, Gujarat - 362265</span>
+                <span className="text-white/70 text-sm leading-relaxed">{t('footer.address')}<br />{t('footer.city')}</span>
               </li>
               <li className="flex items-center gap-4">
                 <Phone className="h-5 w-5 text-gold-500 shrink-0" />
@@ -80,14 +88,14 @@ const Footer = () => {
 
           {/* Newsletter */}
           <div>
-            <h4 className="text-gold-500 font-bold uppercase tracking-widest text-sm mb-8">Market Insights</h4>
-            <p className="text-white/60 text-sm mb-6">Receive weekly pricing updates for Black Tiger & Vannamei.</p>
+            <h4 className="text-gold-500 font-bold uppercase tracking-widest text-sm mb-8">{t('footer.marketInsights')}</h4>
+            <p className="text-white/60 text-sm mb-6">{t('footer.newsletter')}</p>
             <form onSubmit={handleNewsletterSubmit} className="flex border-b border-white/20 pb-2 focus-within:border-gold-500 transition-colors">
-              <label htmlFor="newsletter-email" className="sr-only">Email address</label>
+              <label htmlFor="newsletter-email" className="sr-only">{t('footer.emailPlaceholder')}</label>
               <input
                 id="newsletter-email"
                 type="email"
-                placeholder="Email address"
+                placeholder={t('footer.emailPlaceholder')}
                 required
                 className="bg-transparent text-white w-full focus:outline-none placeholder-white/30 text-sm"
               />
@@ -100,10 +108,10 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-white/30 uppercase tracking-widest gap-4">
-          <p>© {new Date().getFullYear()} Mahadev Marine Exports.</p>
+          <p>© {new Date().getFullYear()} {t('footer.copyright')}</p>
           <div className="flex gap-8">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Trade</a>
+            <a href="#" className="hover:text-white transition-colors">{t('footer.privacyPolicy')}</a>
+            <a href="#" className="hover:text-white transition-colors">{t('footer.termsOfTrade')}</a>
           </div>
         </div>
       </div>

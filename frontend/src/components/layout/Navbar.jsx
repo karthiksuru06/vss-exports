@@ -71,14 +71,28 @@ const Navbar = () => {
               className="flex items-center space-x-3 group w-auto shrink-0 relative"
             >
               <div className="relative">
-                <img src={logo} alt="Mahadev Marine" className="relative h-14 w-auto object-contain transition-transform duration-500 group-hover:rotate-12 drop-shadow-md" />
+                <img 
+                  src={logo} 
+                  alt="Mahadev Marine" 
+                  className="relative h-14 w-auto object-contain drop-shadow-md"
+                  style={{
+                    animation: 'logoSpin 2s ease-in-out infinite',
+                  }}
+                />
+                <style>{`
+                  @keyframes logoSpin {
+                    0% { transform: rotate(0deg); }
+                    50% { transform: rotate(360deg); }
+                    100% { transform: rotate(360deg); }
+                  }
+                `}</style>
               </div>
               <div className="flex flex-col">
                 <span className="text-2xl font-serif font-bold tracking-tight text-white leading-none">
-                  Mahadev<span className="text-gold-500">Marine</span>
+                  {t('brand.mahadev')}<span className="text-gold-500">{t('brand.marine')}</span>
                 </span>
                 <span className="text-[10px] tracking-[0.3em] uppercase text-ocean-300 font-medium opacity-80 mt-1">
-                  Exports
+                  {t('brand.exports')}
                 </span>
               </div>
             </NavLink>

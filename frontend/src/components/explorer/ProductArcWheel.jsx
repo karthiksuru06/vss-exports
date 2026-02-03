@@ -3,7 +3,7 @@
  *
  * LAYOUT:
  * - DESKTOP: Arc positioned LEFT, products on right semicircle, info inside arc
- * - MOBILE: Arc positioned TOP, products on bottom semicircle, no info (uses overlay)
+ * - MOBILE: Arc positioned at BOTTOM, products curve UPWARD from bottom edge
  */
 
 import React, { useMemo } from 'react';
@@ -20,11 +20,9 @@ const getLocalizedInfo = (product, lang = 'en') => {
   if (product?.info?.[lang]) {
     return product.info[lang];
   }
-  // Fallback to English
   if (product?.info?.en) {
     return product.info.en;
   }
-  // Ultimate fallback - use direct properties
   return {
     name: product?.name || '',
     category: product?.category || '',
@@ -60,7 +58,7 @@ function ProductArcWheel({
     productCount,
     isLocked,
     onFocusChange,
-    isMobile, // Pass mobile flag for horizontal swipe
+    isMobile,
   });
 
   const focusedProduct = focusedIndex !== null && focusedIndex < productCount
@@ -69,12 +67,15 @@ function ProductArcWheel({
 
   /**
    * Calculate product position on arc
-   * DESKTOP: Products on right semicircle (0° to 180°, center at 90° / -90° from top)
-   * MOBILE: Products on bottom semicircle (180° to 360°, center at 270° / 90° from top)
+   * DESKTOP: Products on right semicircle (focus at 0° = right side)
+   * MOBILE: Products on TOP semicircle curving upward (focus at 90° = top)
    */
   const getProductPosition = (index, rot) => {
-    // Base angle - for mobile, start from bottom (180°), for desktop from right (-90°)
-    const startAngle = isMobile ? 180 : -90;
+    // MOBILE: Start from 0° (right), products spread across top semicircle
+    // Focus position at 90° (top of circle)
+    // DESKTOP: Start from -90° (top), products on right semicircle
+    // Focus position at 0° (right side)
+    const startAngle = isMobile ? 0 : -90;
     const baseAngle = startAngle + index * anglePerProduct;
     const currentAngle = baseAngle + rot;
 
@@ -84,36 +85,39 @@ function ProductArcWheel({
 
     const angleRad = currentAngle * DEG_TO_RAD;
     const x = trackRadius * Math.cos(angleRad);
-    const y = -trackRadius * Math.sin(angleRad);
+    const y = -trackRadius * Math.sin(angleRad); // Negative because screen Y is inverted
 
-    // For mobile, focus position is at bottom (270° = 90° from horizontal)
-    // For desktop, focus position is at right (0° = -90° from vertical)
-    const distanceFromCenter = isMobile
-      ? Math.abs((normalizedAngle + 90) % 180 - 90) // Distance from bottom center
-      : Math.abs(normalizedAngle);
+    // Distance from focus position
+    // MOBILE: focus at 90° (top)
+    // DESKTOP: focus at 0° (right)
+    const focusAngle = isMobile ? 90 : 0;
+    let distanceFromCenter = Math.abs(normalizedAngle - focusAngle);
+    if (distanceFromCenter > 180) distanceFromCenter = 360 - distanceFromCenter;
 
     const isFocused = distanceFromCenter < (anglePerProduct / 2 + 5);
-    const opacity = Math.max(0.35, 1 - (distanceFromCenter / 100) * 0.65);
-    const scale = Math.max(0.65, 1 - (distanceFromCenter / 100) * 0.35);
+    const opacity = Math.max(0.3, 1 - (distanceFromCenter / 100) * 0.7);
+    const scale = Math.max(0.6, 1 - (distanceFromCenter / 100) * 0.4);
     const zIndex = Math.round(100 - distanceFromCenter);
 
-    // Visibility: show products within arc range
+    // Visibility: show products within the visible arc range
     const visible = isMobile
-      ? (normalizedAngle >= -15 && normalizedAngle <= 195) // Bottom semicircle
+      ? (normalizedAngle >= -15 && normalizedAngle <= 195) // Top semicircle (0° to 180°)
       : distanceFromCenter <= 105; // Right semicircle
 
     return { x, y, opacity, scale, zIndex, isFocused, visible, normalizedAngle };
   };
 
   const arcGuides = useMemo(() => [
-    { radius: outerRadius, opacity: 0.35, width: isMobile ? 2 : 2.5 },
-    { radius: innerRadius, opacity: 0.3, width: isMobile ? 2 : 2.5 },
-    { radius: trackRadius, opacity: 0.1, width: 1, dashed: true },
+    { radius: outerRadius, opacity: 0.3, width: isMobile ? 1.5 : 2.5 },
+    { radius: innerRadius, opacity: 0.25, width: isMobile ? 1.5 : 2.5 },
+    { radius: trackRadius, opacity: 0.08, width: 1, dashed: true },
   ], [outerRadius, innerRadius, trackRadius, isMobile]);
 
   // Clip path for showing correct semicircle
+  // MOBILE: Top half (products curve upward from bottom)
+  // DESKTOP: Right half
   const arcClipPath = isMobile
-    ? 'polygon(0% 50%, 100% 50%, 100% 100%, 0% 100%)' // Bottom half
+    ? 'polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%)' // Top half
     : 'polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)'; // Right half
 
   return (
@@ -126,11 +130,21 @@ function ProductArcWheel({
       <div
         className="absolute"
         style={isMobile
-          ? { left: '50%', top: '15%' } // Mobile: centered horizontally, near top
-          : { left: '38%', top: '50%' } // Desktop: left side, centered vertically
+          ? {
+              // MOBILE: Arc center at bottom of container
+              // Products will curve UPWARD from this point
+              left: '50%',
+              bottom: '-10px',
+              transform: 'translateX(-50%)'
+            }
+          : {
+              // DESKTOP: Arc center on left side, vertically centered
+              left: '38%',
+              top: '50%'
+            }
         }
       >
-        {/* Arc Guides */}
+        {/* Arc Guides - Circular rings */}
         {arcGuides.map((guide, i) => (
           <div
             key={i}
@@ -147,7 +161,7 @@ function ProductArcWheel({
           />
         ))}
 
-        {/* Track fill */}
+        {/* Track fill - subtle gradient */}
         <div
           className="absolute pointer-events-none"
           style={{
@@ -158,32 +172,32 @@ function ProductArcWheel({
             borderRadius: '50%',
             background: `radial-gradient(circle,
               transparent ${(innerRadius / outerRadius) * 100 - 1}%,
-              rgba(212, 175, 55, 0.03) ${(innerRadius / outerRadius) * 100}%,
-              rgba(212, 175, 55, 0.05) ${(trackRadius / outerRadius) * 100}%,
-              rgba(212, 175, 55, 0.03) 100%
+              rgba(212, 175, 55, 0.02) ${(innerRadius / outerRadius) * 100}%,
+              rgba(212, 175, 55, 0.04) ${(trackRadius / outerRadius) * 100}%,
+              rgba(212, 175, 55, 0.02) 100%
             )`,
             clipPath: arcClipPath,
           }}
         />
 
-        {/* Center focus indicator */}
+        {/* Focus indicator */}
         <div
           className="absolute pointer-events-none"
           style={isMobile
             ? {
-                // Mobile: indicator at bottom of arc
+                // MOBILE: Indicator at TOP of arc (focus position)
                 left: '50%',
-                top: trackRadius,
-                width: 45,
-                height: 4,
-                marginTop: -2,
-                marginLeft: -22,
-                background: 'linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.8) 50%, transparent 100%)',
+                top: -trackRadius,
+                width: 40,
+                height: 3,
+                marginTop: -1.5,
+                marginLeft: -20,
+                background: 'linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.9) 50%, transparent 100%)',
                 borderRadius: 2,
-                boxShadow: '0 0 18px rgba(212, 175, 55, 0.5)',
+                boxShadow: '0 0 15px rgba(212, 175, 55, 0.6)',
               }
             : {
-                // Desktop: indicator at right of arc
+                // DESKTOP: Indicator at RIGHT of arc
                 left: trackRadius,
                 top: '50%',
                 width: 4,
@@ -258,7 +272,7 @@ function ProductArcWheel({
                       {info.name}
                     </h2>
 
-                    {/* Scientific name (always in Latin) */}
+                    {/* Scientific name */}
                     <p
                       className="text-xs italic mb-2"
                       style={{ color: isLight ? '#64748b' : '#94a3b8' }}
@@ -276,7 +290,7 @@ function ProductArcWheel({
                       </p>
                     )}
 
-                    {/* Specs - Row 1: Sizes & Origin */}
+                    {/* Specs */}
                     <div className="flex flex-wrap justify-center gap-1.5 mb-1.5">
                       {info.sizes && (
                         <div
@@ -306,7 +320,6 @@ function ProductArcWheel({
                       )}
                     </div>
 
-                    {/* Specs - Row 2: Processing & Packaging */}
                     <div className="flex flex-wrap justify-center gap-1.5 mb-1.5">
                       {info.processing && (
                         <div
@@ -336,7 +349,6 @@ function ProductArcWheel({
                       )}
                     </div>
 
-                    {/* Specs - Row 3: Certification */}
                     {info.certification && (
                       <div className="flex justify-center mb-3">
                         <div
@@ -391,20 +403,31 @@ function ProductArcWheel({
         )}
       </div>
 
-      {/* Instructions */}
-      {!isLocked && (
+      {/* Instructions - Desktop only */}
+      {!isLocked && !isMobile && (
         <motion.div
           className="absolute pointer-events-none"
-          style={isMobile
-            ? { bottom: 8, left: '50%', transform: 'translateX(-50%)' }
-            : { bottom: 4, left: '38%', transform: 'translateX(-50%)' }
-          }
+          style={{ bottom: 4, left: '38%', transform: 'translateX(-50%)' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.5 }}
           transition={{ delay: 1.5 }}
         >
           <p className="text-xs" style={{ color: '#94a3b8' }}>
-            {isMobile ? 'Swipe to browse • Tap to select' : 'Scroll to browse • Click to select'}
+            Scroll to browse • Click to select
+          </p>
+        </motion.div>
+      )}
+
+      {/* Mobile swipe hint - subtle text at top */}
+      {!isLocked && isMobile && (
+        <motion.div
+          className="absolute top-2 left-0 right-0 text-center pointer-events-none"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.6 }}
+          transition={{ delay: 1 }}
+        >
+          <p className="text-[10px] tracking-wide" style={{ color: '#94a3b8' }}>
+            ← Swipe to browse →
           </p>
         </motion.div>
       )}
@@ -413,7 +436,7 @@ function ProductArcWheel({
 }
 
 /**
- * ProductOnArc - Product circle on the arc
+ * ProductOnArc - Product circle positioned on the arc
  */
 function ProductOnArc({
   product,
@@ -437,24 +460,17 @@ function ProductOnArc({
   const visible = useTransform(position, (p) => p.visible);
 
   const isFocused = focusedIndex === index;
-  const size = isFocused ? itemSize * 1.25 : itemSize * 0.8;
+  const size = isFocused ? itemSize * 1.3 : itemSize * 0.75;
 
-  /**
-   * Handle pointer down - stop propagation to prevent parent drag capture
-   */
   const handlePointerDown = (e) => {
     e.stopPropagation();
   };
 
-  /**
-   * Handle click - rotate wheel to this product or open flip card
-   */
   const handleClick = (e) => {
     e.stopPropagation();
     if (isFocused) {
       onProductClick?.(product);
     } else {
-      // Click rotates wheel to this product
       onSnapToIndex?.(index);
     }
   };
@@ -479,35 +495,36 @@ function ProductOnArc({
       onClick={handleClick}
       whileHover={{ scale: isFocused ? 1.08 : 1.05 }}
     >
-      {/* Glow for focused */}
+      {/* Glow effect for focused product */}
       {isFocused && (
         <motion.div
           className="absolute rounded-full"
           style={{
-            width: size + (isMobile ? 16 : 22),
-            height: size + (isMobile ? 16 : 22),
-            left: isMobile ? -8 : -11,
-            top: isMobile ? -8 : -11,
+            width: size + (isMobile ? 14 : 22),
+            height: size + (isMobile ? 14 : 22),
+            left: isMobile ? -7 : -11,
+            top: isMobile ? -7 : -11,
             background: 'radial-gradient(circle, rgba(212, 175, 55, 0.5) 0%, rgba(212, 175, 55, 0.15) 50%, transparent 70%)',
-            filter: 'blur(8px)',
+            filter: 'blur(6px)',
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         />
       )}
 
-      {/* Image */}
+      {/* Product image */}
       <div
         className="w-full h-full rounded-full overflow-hidden"
         style={{
           border: isFocused
-            ? `${isMobile ? 3 : 4}px solid #d4af37`
+            ? `${isMobile ? 2.5 : 4}px solid #d4af37`
             : '2px solid rgba(212, 175, 55, 0.2)',
           boxShadow: isFocused
-            ? '0 0 35px rgba(212, 175, 55, 0.5), inset 0 0 15px rgba(212, 175, 55, 0.1)'
+            ? '0 0 30px rgba(212, 175, 55, 0.5), inset 0 0 12px rgba(212, 175, 55, 0.1)'
             : '0 4px 12px rgba(0, 0, 0, 0.4)',
-          filter: isFocused ? 'brightness(1.1)' : 'brightness(0.5)',
-          transition: 'all 0.4s ease',
+          filter: isFocused ? 'brightness(1.1)' : 'brightness(0.55)',
+          transition: 'all 0.35s ease',
+          background: 'linear-gradient(135deg, #0a2540 0%, #1e3a5f 100%)',
         }}
       >
         <img
@@ -515,10 +532,15 @@ function ProductOnArc({
           alt={product.name}
           className="w-full h-full object-cover"
           draggable={false}
+          onError={(e) => {
+            // Fallback to placeholder on error
+            e.target.onerror = null;
+            e.target.src = 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?q=80&w=400&auto=format&fit=crop';
+          }}
         />
       </div>
 
-      {/* Name label - Desktop only for focused items */}
+      {/* Name label - Desktop only */}
       {isFocused && !isMobile && (
         <motion.div
           className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap"

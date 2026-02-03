@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Check, ArrowRight } from 'lucide-react';
+import { useTranslation } from '../../hooks/useTranslation';
 
 const NewsletterTrap = () => {
+    const { t } = useTranslation();
     const [email, setEmail] = useState('');
     const [status, setStatus] = useState('idle'); // idle, loading, success, error
 
@@ -44,7 +46,7 @@ const NewsletterTrap = () => {
                                 className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 text-xs font-bold uppercase tracking-widest"
                             >
                                 <span className="w-1.5 h-1.5 rounded-full bg-gold-500 animate-pulse"></span>
-                                Market Intelligence
+                                {t('newsletter.badge')}
                             </motion.div>
 
                             <motion.h2
@@ -54,7 +56,7 @@ const NewsletterTrap = () => {
                                 transition={{ delay: 0.1 }}
                                 className="text-3xl md:text-5xl font-serif text-white font-medium leading-tight"
                             >
-                                Unlock <span className="text-gold-500 italic">Exclusive</span> Pricing Updates
+                                {t('newsletter.title')} <span className="text-gold-500 italic">{t('newsletter.titleHighlight')}</span> {t('newsletter.titleEnd')}
                             </motion.h2>
 
                             <motion.p
@@ -64,11 +66,11 @@ const NewsletterTrap = () => {
                                 transition={{ delay: 0.2 }}
                                 className="text-lg text-ocean-100/80 max-w-md leading-relaxed"
                             >
-                                Join 5,000+ global buyers who receive our weekly "Captain's Log" — featuring real-time harvest data and spot prices for Black Tiger & Vannamei.
+                                {t('newsletter.description')}
                             </motion.p>
 
                             <ul className="space-y-3">
-                                {['Weekly Price Watch', 'Harvest Forecasts', 'Logistics Alerts'].map((item, i) => (
+                                {[t('newsletter.feature1'), t('newsletter.feature2'), t('newsletter.feature3')].map((item, i) => (
                                     <motion.li
                                         key={i}
                                         initial={{ opacity: 0, x: -20 }}
@@ -99,19 +101,19 @@ const NewsletterTrap = () => {
                                     <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
                                         <Check size={32} className="text-green-500" />
                                     </div>
-                                    <h3 className="text-2xl font-serif text-white mb-2">Welcome Aboard</h3>
-                                    <p className="text-gray-400">Check your inbox for the latest report.</p>
+                                    <h3 className="text-2xl font-serif text-white mb-2">{t('newsletter.successTitle')}</h3>
+                                    <p className="text-gray-400">{t('newsletter.successMessage')}</p>
                                     <button
                                         onClick={() => setStatus('idle')}
                                         className="mt-6 text-gold-500 hover:text-white text-sm font-medium transition-colors"
                                     >
-                                        Subscribe another email
+                                        {t('newsletter.subscribeAnother')}
                                     </button>
                                 </div>
                             ) : (
                                 <form onSubmit={handleSubmit} className="space-y-6">
                                     <div className="space-y-2">
-                                        <label htmlFor="email" className="text-sm font-medium text-gray-300 ml-1">Business Email Address</label>
+                                        <label htmlFor="email" className="text-sm font-medium text-gray-300 ml-1">{t('newsletter.emailLabel')}</label>
                                         <div className="relative group">
                                             <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-gold-500 transition-colors" size={20} />
                                             <input
@@ -119,7 +121,7 @@ const NewsletterTrap = () => {
                                                 id="email"
                                                 value={email}
                                                 onChange={(e) => setEmail(e.target.value)}
-                                                placeholder="procurement@company.com"
+                                                placeholder={t('newsletter.emailPlaceholder')}
                                                 required
                                                 className="w-full bg-midnight-900 border border-white/10 rounded-lg py-4 pl-12 pr-4 text-white placeholder-gray-600 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/50 transition-all"
                                             />
@@ -134,13 +136,13 @@ const NewsletterTrap = () => {
                                             <div className="w-5 h-5 border-2 border-midnight-900/30 border-t-midnight-900 rounded-full animate-spin"></div>
                                         ) : (
                                             <>
-                                                Get Instant Access <ArrowRight size={20} />
+                                                {t('newsletter.submitButton')} <ArrowRight size={20} />
                                             </>
                                         )}
                                     </button>
 
                                     <p className="text-xs text-center text-gray-500">
-                                        We respect your inbox. No spam, strictly market data. Unsubscribe anytime.
+                                        {t('newsletter.disclaimer')}
                                     </p>
                                 </form>
                             )}
