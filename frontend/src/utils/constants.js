@@ -1,3 +1,9 @@
+// Import local images
+import heroPoster from '../assets/images/hero-poster.png';
+import processing1 from '../assets/images/processing-1.png';
+import blackTigerImg from '../assets/products/black-tiger.png';
+import vannameiImg from '../assets/products/vannamei.png';
+
 // Import local videos for products
 import shrimpVideo1 from '../assets/images/WhatsApp Video 2026-01-27 at 7.09.57 PM.mp4';
 import shrimpVideo2 from '../assets/images/WhatsApp Video 2026-01-27 at 7.09.57 PM (1).mp4';
@@ -15,8 +21,8 @@ import facilityVideo4 from '../assets/images/WhatsApp Video 2026-01-28 at 10.04.
 const IMG_BASE = '/assets/mahadev_seafood_images/';
 
 // Raw Shrimp Varieties
-const imgBlackTiger = `${IMG_BASE}01_Black_Tiger_Shrimp_Raw_Whole_Head-On.jpg`;
-const imgVannamei = `${IMG_BASE}02_Vannamei_White_Shrimp_Raw_Whole.jpg`;
+const imgBlackTiger = blackTigerImg;
+const imgVannamei = vannameiImg;
 const imgSeaTiger = `${IMG_BASE}03_Sea_Tiger_Shrimp_Raw_Whole_Giant.jpg`;
 const imgPinkBrown = `${IMG_BASE}04_Pink_Brown_Shrimp_Raw_Whole.jpg`;
 
@@ -53,7 +59,7 @@ const imgFreshOctopus = `${IMG_BASE}27_Fresh_Octopus.jpg`;
 const imgOystersClams = `${IMG_BASE}28_Fresh_Oysters_Clams.jpg`;
 
 // Placeholder image for products without specific images
-const PLACEHOLDER_IMAGE = 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?q=80&w=800&auto=format&fit=crop';
+const PLACEHOLDER_IMAGE = heroPoster;
 
 // Helper function to safely get image with fallback
 export const getProductImage = (image) => image || PLACEHOLDER_IMAGE;
@@ -78,7 +84,7 @@ export const DIVISIONS = [
     title: 'Raw Shrimp',
     description: 'Premium sea-caught and aquaculture shrimp varieties with superior taste and texture.',
     icon: 'Shrimp',
-    image: 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?q=80&w=1000&auto=format&fit=crop',
+    image: blackTigerImg,
     color: 'border-gold-600',
     features: ['Sea-Caught', 'Aquaculture', 'Zero Preservatives']
   },
@@ -87,7 +93,7 @@ export const DIVISIONS = [
     title: 'Raw Peeled Products',
     description: 'Restaurant-ready peeled shrimp in various processing styles for professional kitchens.',
     icon: 'UtensilsCrossed',
-    image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1000&auto=format&fit=crop',
+    image: vannameiImg,
     color: 'border-ocean-400',
     features: ['PDTO', 'PD', 'Easy-Peel', 'IQF Available']
   },
@@ -96,7 +102,7 @@ export const DIVISIONS = [
     title: 'Cooked Ready-to-Eat',
     description: 'Fully cooked, flash-frozen shrimp ready for immediate use. No further cooking required.',
     icon: 'Flame',
-    image: 'https://images.unsplash.com/photo-1625943553852-781c6dd46faa?q=80&w=1000&auto=format&fit=crop',
+    image: processing1,
     color: 'border-orange-500',
     features: ['Ready-to-Eat', '18 Months Shelf Life', 'Heat & Serve']
   },
@@ -105,7 +111,7 @@ export const DIVISIONS = [
     title: 'Value-Added Premium',
     description: 'Specialty preparations including butterfly, nobashi, and breaded products for premium markets.',
     icon: 'Star',
-    image: 'https://images.unsplash.com/photo-1626804475297-411dbe631267?q=80&w=1000&auto=format&fit=crop',
+    image: blackTigerImg,
     color: 'border-yellow-500',
     features: ['Butterfly Cut', 'Sushi-Grade', 'Restaurant Quality']
   },
@@ -114,7 +120,7 @@ export const DIVISIONS = [
     title: 'Fresh Seafood',
     description: 'Premium fresh seafood delivered via air cargo within 48-72 hours globally.',
     icon: 'Plane',
-    image: 'https://images.unsplash.com/photo-1534942205242-a42d3c2a117b?q=80&w=1000&auto=format&fit=crop',
+    image: heroPoster,
     color: 'border-cyan-500',
     features: ['Air Cargo', '48-72 Hours Delivery', 'Live Available']
   },
@@ -123,7 +129,7 @@ export const DIVISIONS = [
     title: 'Bio-Products',
     description: 'Industrial marine extracts: Chitin & Chitosan for pharmaceutical and industrial applications.',
     icon: 'FlaskConical',
-    image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1000&auto=format&fit=crop',
+    image: processing1,
     color: 'border-indigo-500',
     features: ['Pharma Grade', 'High Purity', 'Sustainable']
   },

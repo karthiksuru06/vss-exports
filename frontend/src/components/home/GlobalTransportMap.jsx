@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { Ship, Plane, MapPin, Globe } from 'lucide-react';
+import { Ship, Plane, MapPin, Globe, Box, Anchor, Clock, CheckCircle } from 'lucide-react';
 import { useTranslation } from '../../hooks/useTranslation';
+import cubesTexture from '../../assets/textures/cubes.png';
 
-// Key export destinations with coordinates (simplified for SVG viewBox)
+// Key export destinations... (keep DESTINATIONS and ORIGIN consts same)
 const DESTINATIONS = [
   { id: 'usa', nameKey: 'map.dest.usa', x: 180, y: 180, transport: 'sea' },
   { id: 'eu', nameKey: 'map.dest.europe', x: 480, y: 150, transport: 'both' },
@@ -13,10 +14,8 @@ const DESTINATIONS = [
   { id: 'aus', nameKey: 'map.dest.australia', x: 820, y: 380, transport: 'sea' },
 ];
 
-// Origin point (India - Gujarat)
 const ORIGIN = { x: 620, y: 250, nameKey: 'map.origin' };
 
-// Generate curved path between two points
 const generateCurvedPath = (start, end) => {
   const midX = (start.x + end.x) / 2;
   const midY = (start.y + end.y) / 2;
@@ -34,7 +33,7 @@ const ShippingRoute = ({ destination, index, isActive }) => {
       <motion.path
         d={path}
         fill="none"
-        stroke={isActive ? 'url(#routeGradient)' : 'rgba(45, 212, 191, 0.1)'}
+        stroke={isActive ? 'url(#routeGradient)' : 'rgba(45, 212, 191, 0.05)'}
         strokeWidth={isActive ? 2 : 1}
         strokeDasharray="8 4"
         initial={{ pathLength: 0, opacity: 0 }}
@@ -43,8 +42,8 @@ const ShippingRoute = ({ destination, index, isActive }) => {
           opacity: isActive ? 1 : 0.3,
         }}
         transition={{
-          duration: 2,
-          delay: index * 0.2,
+          duration: 1.5,
+          delay: index * 0.1,
           ease: 'easeOut',
         }}
       />
@@ -125,9 +124,8 @@ const DestinationMarker = ({ destination, isActive, onClick, t }) => {
         x={destination.x}
         y={destination.y + 25}
         textAnchor="middle"
-        className={`text-xs font-medium fill-current ${
-          isActive ? 'text-white' : 'text-white/50'
-        }`}
+        className={`text-xs font-medium fill-current ${isActive ? 'text-white' : 'text-white/50'
+          }`}
       >
         {t(destination.nameKey)}
       </text>
@@ -171,6 +169,7 @@ const GlobalTransportMap = () => {
     >
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-ocean-900 via-abyss-900 to-ocean-950" />
+      <div className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay" style={{ backgroundImage: `url(${cubesTexture})` }} />
 
       {/* Content */}
       <div className="relative z-10 max-w-[1600px] mx-auto px-6">
@@ -198,7 +197,7 @@ const GlobalTransportMap = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 1, delay: 0.3 }}
-          className="relative glass-underwater rounded-3xl p-8 overflow-hidden"
+          className="relative glass-underwater rounded-3xl p-8 overflow-hidden border border-teal-500/10 shadow-2xl"
         >
           {/* World Map SVG */}
           <svg
@@ -338,7 +337,7 @@ const GlobalTransportMap = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="absolute bottom-8 left-8 right-8 md:left-auto md:right-8 md:w-80 glass-surface rounded-xl p-5"
+                className="absolute bottom-8 left-8 right-8 md:left-auto md:right-8 md:w-80 glass-surface rounded-xl p-5 border border-white/10"
               >
                 <div className="flex items-center gap-3 mb-3">
                   {activeData.transport === 'air' ? (
@@ -361,7 +360,7 @@ const GlobalTransportMap = () => {
           </AnimatePresence>
 
           {/* Transport legend */}
-          <div className="absolute top-8 right-8 glass-underwater rounded-lg p-4 hidden md:block">
+          <div className="absolute top-8 right-8 glass-underwater rounded-lg p-4 hidden md:block border border-white/5">
             <div className="space-y-2 text-xs">
               <div className="flex items-center gap-2 text-ocean-200/60">
                 <Ship size={14} className="text-teal-400" />
@@ -375,22 +374,27 @@ const GlobalTransportMap = () => {
           </div>
         </motion.div>
 
-        {/* Stats row */}
+        {/* Stats row with Icons */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
           {[
-            { labelKey: 'map.stats.countries', value: '50+' },
-            { labelKey: 'map.stats.routes', value: '12' },
-            { labelKey: 'map.stats.transit', value: '3-15 days' },
-            { labelKey: 'map.stats.coldChain', value: '100%' },
+            { labelKey: 'map.stats.countries', value: '50+', icon: Globe },
+            { labelKey: 'map.stats.routes', value: '12', icon: Box },
+            { labelKey: 'map.stats.transit', value: '3-15 days', icon: Clock },
+            { labelKey: 'map.stats.coldChain', value: '100%', icon: CheckCircle },
           ].map((stat, i) => (
             <motion.div
               key={stat.labelKey}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.5 + i * 0.1 }}
-              className="glass-underwater rounded-xl p-4 text-center"
+              className="glass-underwater rounded-xl p-6 text-center group hover:bg-white/5 transition-colors border border-white/5"
             >
-              <div className="text-2xl md:text-3xl font-bold text-teal-400 mb-1">
+              <div className="flex justify-center mb-3">
+                <div className="p-3 rounded-full bg-teal-500/10 text-teal-400 group-hover:scale-110 transition-transform">
+                  <stat.icon size={24} />
+                </div>
+              </div>
+              <div className="text-2xl md:text-3xl font-bold text-white mb-1">
                 {stat.value}
               </div>
               <div className="text-xs text-ocean-200/60 uppercase tracking-wider">

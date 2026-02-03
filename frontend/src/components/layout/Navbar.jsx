@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Anchor, Globe } from 'lucide-react';
+import { Menu, X, Anchor, Globe, User, LogOut } from 'lucide-react';
 import { useResponsive } from '../../hooks/useResponsive';
 import { useTranslation } from '../../hooks/useTranslation';
+import { useAuth } from '../../context/AuthContext';
 import { NAV_ITEMS } from '../../utils/constants';
 import logo from '../../assets/images/logo.png';
+
+import cubesTexture from '../../assets/textures/cubes.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +17,7 @@ const Navbar = () => {
 
   const { isDesktop } = useResponsive();
   const { t, lang, setLang, languages } = useTranslation();
+  const { user, logout, openLoginModal } = useAuth();
   const location = useLocation();
 
   // Determine if we are on the home page
@@ -71,9 +75,9 @@ const Navbar = () => {
               className="flex items-center space-x-3 group w-auto shrink-0 relative"
             >
               <div className="relative">
-                <img 
-                  src={logo} 
-                  alt="Mahadev Marine" 
+                <img
+                  src={logo}
+                  alt="Mahadev Marine"
                   className="relative h-14 w-auto object-contain drop-shadow-md"
                   style={{
                     animation: 'logoSpin 2s ease-in-out infinite',
@@ -118,6 +122,30 @@ const Navbar = () => {
                   </NavLink>
                 ))}
               </div>
+
+              {/* Login / User Status */}
+              {user ? (
+                <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-2 text-gold-400">
+                    <User size={16} />
+                    <span className="text-sm font-medium">{user.name.split(' ')[0]}</span>
+                  </div>
+                  <button
+                    onClick={logout}
+                    className="text-white/60 hover:text-red-400 transition-colors"
+                    title="Logout"
+                  >
+                    <LogOut size={16} />
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={openLoginModal}
+                  className="text-sm font-medium text-white/80 hover:text-gold-400 transition-colors uppercase tracking-wide"
+                >
+                  Log In
+                </button>
+              )}
 
               {/* Language Switcher */}
               <div className="relative">
@@ -188,7 +216,7 @@ const Navbar = () => {
             transition={{ type: "spring", damping: 25, stiffness: 100 }}
             className="fixed inset-0 bg-midnight-900 z-40 flex flex-col items-center justify-center overflow-hidden pointer-events-auto h-[100dvh]"
           >
-            <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 pointer-events-none"></div>
+            <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none" style={{ backgroundImage: `url(${cubesTexture})` }}></div>
 
             <div className="flex flex-col space-y-8 text-center relative z-50 w-full px-8">
               {NAV_ITEMS.map((item, idx) => (
@@ -208,6 +236,29 @@ const Navbar = () => {
                   </motion.div>
                 </NavLink>
               ))}
+
+              {user ? (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-gold-400 text-xl font-serif mt-4 flex flex-col items-center gap-2"
+                >
+                  <span>Hello, {user.name}</span>
+                  <button onClick={logout} className="text-white/60 text-sm flex items-center gap-1"><LogOut size={14} /> Logout</button>
+                </motion.div>
+              ) : (
+                <motion.button
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  onClick={() => {
+                    setIsOpen(false);
+                    openLoginModal();
+                  }}
+                  className="text-xl text-white/80 uppercase tracking-widest hover:text-gold-400"
+                >
+                  Log In
+                </motion.button>
+              )}
 
               <motion.div
                 initial={{ opacity: 0 }}

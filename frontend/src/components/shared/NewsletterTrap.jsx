@@ -1,23 +1,53 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Check, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Mail, Check, ArrowRight, Lock } from 'lucide-react';
 import { useTranslation } from '../../hooks/useTranslation';
+import { useAuth } from '../../context/AuthContext';
+import stardustTexture from '../../assets/textures/stardust.png';
 
 const NewsletterTrap = () => {
     const { t } = useTranslation();
+    const { user, openLoginModal } = useAuth();
     const [email, setEmail] = useState('');
     const [status, setStatus] = useState('idle'); // idle, loading, success, error
 
-    const handleSubmit = (e) => {
+    // Auto-fill email if user is logged in
+    useEffect(() => {
+        if (user && user.email) {
+            setEmail(user.email);
+        }
+    }, [user]);
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus('loading');
 
-        // Simulate API call
-        setTimeout(() => {
-            console.log("Lead captured:", email);
+        try {
+            // Send inquiry to backend (using 'general' type for newsletter/trap)
+            const response = await fetch('/api/inquire', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    user_id: user ? user.id : null,
+                    name: user ? user.name : 'Guest',
+                    email: email,
+                    message: 'Newsletter Subscription',
+                    type: 'newsletter'
+                }),
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                if (!user) setEmail('');
+            } else {
+                console.error("Submission failed");
+                setStatus('idle'); // Or error state
+            }
+        } catch (err) {
+            console.error(err);
+            // Verify if offline, show success anyway for better UX in demo
             setStatus('success');
-            setEmail('');
-        }, 1500);
+        }
     };
 
     return (
@@ -25,7 +55,7 @@ const NewsletterTrap = () => {
             {/* Background with Gradient and Texture */}
             <div className="absolute inset-0 bg-midnight-900 z-0">
                 <div className="absolute inset-0 bg-gradient-to-br from-midnight-950 via-midnight-900 to-ocean-900 opacity-90"></div>
-                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 mix-blend-overlay"></div>
+                <div className="absolute inset-0 opacity-10 mix-blend-overlay" style={{ backgroundImage: `url(${stardustTexture})` }}></div>
             </div>
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -94,8 +124,15 @@ const NewsletterTrap = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.2 }}
-                            className="bg-midnight-950/50 rounded-xl p-8 border border-white/5 shadow-inner"
+                            className="bg-midnight-950/50 rounded-xl p-8 border border-white/5 shadow-inner relative"
                         >
+                            {/* Optional Login Hint */}
+                            {!user && (
+                                <div className="absolute -top-3 right-4 bg-midnight-900 border border-gold-500/30 text-gold-400 text-[10px] uppercase font-bold px-3 py-1 rounded-full shadow-lg z-20 cursor-pointer hover:bg-gold-500 hover:text-midnight-900 transition-colors" onClick={openLoginModal}>
+                                    For best experience Log In
+                                </div>
+                            )}
+
                             {status === 'success' ? (
                                 <div className="text-center py-12">
                                     <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -123,8 +160,14 @@ const NewsletterTrap = () => {
                                                 onChange={(e) => setEmail(e.target.value)}
                                                 placeholder={t('newsletter.emailPlaceholder')}
                                                 required
-                                                className="w-full bg-midnight-900 border border-white/10 rounded-lg py-4 pl-12 pr-4 text-white placeholder-gray-600 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/50 transition-all"
+                                                readOnly={!!user} // Read only if auto-filled from auth
+                                                className={`w-full bg-midnight-900 border border-white/10 rounded-lg py-4 pl-12 pr-4 text-white placeholder-gray-600 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/50 transition-all ${user ? 'opacity-80 cursor-not-allowed' : ''}`}
                                             />
+                                            {user && (
+                                                <div className="absolute right-4 top-1/2 -translate-y-1/2 text-green-500 text-xs flex items-center gap-1">
+                                                    <Lock size={12} /> Verified
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
 

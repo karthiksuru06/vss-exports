@@ -1,15 +1,32 @@
-import React from 'react';
-import { Anchor, Mail, Phone, MapPin, Facebook, Linkedin, Instagram, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, Phone, MapPin, Facebook, Linkedin, Instagram, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../../hooks/useTranslation';
 import logo from '../../assets/images/logo.png';
 
 const Footer = () => {
   const { t } = useTranslation();
+  const [email, setEmail] = useState('');
 
-  const handleNewsletterSubmit = (e) => {
+  const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
-    alert(t('footer.thankYou'));
+    if (!email) return;
+
+    try {
+      await fetch('/api/inquire', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          type: 'newsletter',
+          message: 'Footer Subscription'
+        }),
+      });
+      alert(t('footer.thankYou') || 'Subscribed successfully!');
+      setEmail('');
+    } catch (error) {
+      console.error('Newsletter error', error);
+    }
   };
 
   return (
@@ -31,13 +48,15 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               {[
-                { Icon: Facebook, label: 'Facebook' },
-                { Icon: Linkedin, label: 'LinkedIn' },
-                { Icon: Instagram, label: 'Instagram' }
-              ].map(({ Icon, label }, i) => (
+                { Icon: Facebook, label: 'Facebook', href: 'https://facebook.com/mahadevmarine' },
+                { Icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/company/mahadev-marine-exports' },
+                { Icon: Instagram, label: 'Instagram', href: 'https://instagram.com/mahadevmarine' }
+              ].map(({ Icon, label, href }, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="w-10 h-10 rounded-full bg-white/5 hover:bg-gold-600 flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-500"
                 >
@@ -95,6 +114,8 @@ const Footer = () => {
               <input
                 id="newsletter-email"
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder={t('footer.emailPlaceholder')}
                 required
                 className="bg-transparent text-white w-full focus:outline-none placeholder-white/30 text-sm"
@@ -110,8 +131,8 @@ const Footer = () => {
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-white/30 uppercase tracking-widest gap-4">
           <p>© {new Date().getFullYear()} {t('footer.copyright')}</p>
           <div className="flex gap-8">
-            <a href="#" className="hover:text-white transition-colors">{t('footer.privacyPolicy')}</a>
-            <a href="#" className="hover:text-white transition-colors">{t('footer.termsOfTrade')}</a>
+            <Link to="/privacy" className="hover:text-white transition-colors">{t('footer.privacyPolicy') || 'Privacy Policy'}</Link>
+            <Link to="/terms" className="hover:text-white transition-colors">{t('footer.termsOfTrade') || 'Terms of Trade'}</Link>
           </div>
         </div>
       </div>

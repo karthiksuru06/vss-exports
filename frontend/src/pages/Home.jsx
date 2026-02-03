@@ -8,6 +8,11 @@ import NewsletterTrap from '../components/shared/NewsletterTrap';
 import { ShieldCheck, Truck, Globe, Clock, MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../hooks/useTranslation';
+import processing1 from '../assets/images/processing-1.png';
+import blackTigerImg from '../assets/products/black-tiger.png';
+import vannameiImg from '../assets/products/vannamei.png';
+
+import sustainableFishingImg from '../assets/images/sustainable-fishing.png';
 
 const Home = () => {
     const { t } = useTranslation();
@@ -55,7 +60,7 @@ const Home = () => {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 h-[60vh]">
                         <div className="col-span-2 row-span-2 rounded-xl overflow-hidden relative group">
                             <img
-                                src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1000&auto=format&fit=crop"
+                                src={processing1}
                                 alt="Shrimp processing facility"
                                 width="800"
                                 height="600"
@@ -68,7 +73,7 @@ const Home = () => {
                         </div>
                         <div className="col-span-1 row-span-1 rounded-xl overflow-hidden bg-gray-800">
                             <img
-                                src="https://images.unsplash.com/photo-1615141982880-131f4794101f?q=80&w=500&auto=format&fit=crop"
+                                src={vannameiImg}
                                 alt="Fresh catch inspection"
                                 width="400"
                                 height="300"
@@ -78,7 +83,7 @@ const Home = () => {
                         </div>
                         <div className="col-span-1 row-span-2 rounded-xl overflow-hidden bg-gray-800">
                             <img
-                                src="https://images.unsplash.com/photo-1626804475297-411dbe631267?q=80&w=500&auto=format&fit=crop"
+                                src={blackTigerImg}
                                 alt="Premium black tiger shrimp"
                                 width="400"
                                 height="600"
@@ -88,7 +93,7 @@ const Home = () => {
                         </div>
                         <div className="col-span-1 row-span-1 rounded-xl overflow-hidden bg-gray-800">
                             <img
-                                src="https://images.unsplash.com/photo-1534942205242-a42d3c2a117b?q=80&w=500&auto=format&fit=crop"
+                                src={sustainableFishingImg}
                                 alt="Sustainable fishing"
                                 width="400"
                                 height="300"

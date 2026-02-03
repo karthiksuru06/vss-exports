@@ -4,11 +4,15 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import LoadingSpinner from './components/shared/LoadingSpinner';
 import { TranslationProvider } from './hooks/useTranslation';
+import { AuthProvider } from './context/AuthContext';
+import LoginModal from './components/auth/LoginModal';
 
 // Lazy load pages for performance
 const Home = lazy(() => import('./pages/Home'));
 const ProductCatalog = lazy(() => import('./pages/ProductCatalog'));
 const Contact = lazy(() => import('./pages/Contact'));
+const Privacy = lazy(() => import('./pages/Privacy'));
+const Terms = lazy(() => import('./pages/Terms'));
 
 // Error Boundary to prevent "ghost" redirects
 class ErrorBoundary extends Component {
@@ -63,26 +67,31 @@ const ScrollToTop = () => {
 const App = () => {
   return (
     <ErrorBoundary>
-      <TranslationProvider>
-        <Router>
-          <ScrollToTop />
-          <div className="flex flex-col min-h-screen font-sans text-gray-800 antialiased selection:bg-ocean-200 selection:text-ocean-900">
-            <Navbar />
+      <AuthProvider>
+        <TranslationProvider>
+          <Router>
+            <ScrollToTop />
+            <LoginModal />
+            <div className="flex flex-col min-h-screen font-sans text-gray-800 antialiased selection:bg-ocean-200 selection:text-ocean-900">
+              <Navbar />
 
-            <main className="flex-grow">
-              <Suspense fallback={<LoadingSpinner />}>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/products" element={<ProductCatalog />} />
-                  <Route path="/contact" element={<Contact />} />
-                </Routes>
-              </Suspense>
-            </main>
+              <main className="flex-grow">
+                <Suspense fallback={<LoadingSpinner />}>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/products" element={<ProductCatalog />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/privacy" element={<Privacy />} />
+                    <Route path="/terms" element={<Terms />} />
+                  </Routes>
+                </Suspense>
+              </main>
 
-            <Footer />
-          </div>
-        </Router>
-      </TranslationProvider>
+              <Footer />
+            </div>
+          </Router>
+        </TranslationProvider>
+      </AuthProvider>
     </ErrorBoundary>
   );
 };
