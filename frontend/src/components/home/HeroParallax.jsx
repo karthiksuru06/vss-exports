@@ -10,7 +10,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { useScroll, useTransform, motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ArrowRight, Anchor, Fish, Ship } from 'lucide-react';
+import { ChevronDown, ArrowRight, Anchor, Fish, Ship, Check, MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../../hooks/useTranslation';
 import {
@@ -154,7 +154,7 @@ const HeroParallax = () => {
 
         {/* Subtitle - Typewriter effect */}
         <motion.div
-          className="text-lg sm:text-xl md:text-2xl text-ocean-100/80 max-w-2xl mx-auto mb-10 font-light leading-relaxed"
+          className="text-lg sm:text-xl md:text-2xl text-ocean-100/80 max-w-3xl mx-auto mb-4 font-light leading-relaxed"
           initial={{ opacity: 0 }}
           animate={isLoaded ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 1 }}
@@ -166,6 +166,31 @@ const HeroParallax = () => {
           </BlurReveal>
         </motion.div>
 
+        {/* Subtext */}
+        <motion.p
+          className="text-sm sm:text-base md:text-lg text-white/60 max-w-2xl mx-auto mb-8 font-medium italic"
+          initial={{ opacity: 0, y: 10 }}
+          animate={isLoaded ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 1.4 }}
+        >
+          {t('hero.subtext')}
+        </motion.p>
+
+        {/* Feature Bullets */}
+        <motion.div
+          className="flex flex-wrap justify-center gap-6 mb-12"
+          initial={{ opacity: 0 }}
+          animate={isLoaded ? { opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 1.5 }}
+        >
+          {[t('hero.feature1'), t('hero.feature2'), t('hero.feature3')].map((feature, idx) => (
+            <div key={idx} className="flex items-center gap-2 text-gold-400 text-sm font-bold uppercase tracking-widest bg-white/5 py-1 px-4 rounded-full border border-white/10">
+              <Check size={14} className="text-gold-500" />
+              {feature}
+            </div>
+          ))}
+        </motion.div>
+
         {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -173,7 +198,7 @@ const HeroParallax = () => {
           transition={{ duration: 0.8, delay: 1.6 }}
           className="flex flex-col sm:flex-row gap-4 sm:gap-6"
         >
-          <Link to="/products" className="group">
+          <Link to="/contact" className="group">
             <motion.button
               className="relative px-10 py-4 bg-gold-600 hover:bg-gold-500 text-midnight-900 font-bold text-lg tracking-wide rounded-sm overflow-hidden transition-colors duration-300"
               whileHover={{ scale: 1.02, y: -2 }}
@@ -191,29 +216,24 @@ const HeroParallax = () => {
               <div className="absolute inset-0 rounded-sm shadow-[0_0_40px_rgba(212,175,55,0.4)] group-hover:shadow-[0_0_60px_rgba(212,175,55,0.6)] transition-shadow duration-300" />
 
               <span className="relative flex items-center gap-2">
-                {t('cta.explore')}
+                {t('hero.getInTouch')}
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </span>
             </motion.button>
           </Link>
 
-          <Link to="/contact" className="group">
+          <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" className="group">
             <motion.button
-              className="px-10 py-4 bg-transparent border border-white/30 hover:border-gold-500/50 hover:bg-white/5 text-white font-medium text-lg tracking-wide rounded-sm transition-all duration-300"
+              className="px-10 py-4 bg-emerald-600 border border-emerald-500/30 hover:bg-emerald-500 text-white font-bold text-lg tracking-wide rounded-sm transition-all duration-300 shadow-lg shadow-emerald-950/20"
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
               <span className="flex items-center gap-2">
-                {t('hero.getInTouch')}
-                <motion.span
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  →
-                </motion.span>
+                {t('hero.whatsapp')}
+                <MessageSquare size={20} className="group-hover:rotate-12 transition-transform" />
               </span>
             </motion.button>
-          </Link>
+          </a>
         </motion.div>
       </motion.div>
 

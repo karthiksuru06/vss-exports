@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Facebook, Linkedin, Instagram, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../../hooks/useTranslation';
+import icon from '../../assets/images/icon.png';
 import logo from '../../assets/images/logo.png';
 
 const Footer = () => {
@@ -38,9 +39,12 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-8">
             <Link to="/" className="inline-flex flex-col group w-fit">
-              <div className="flex items-center gap-3 mb-2">
-                <img src={logo} alt={`${t('brand.mahadev')} ${t('brand.marine')}`} className="h-14 w-auto object-contain" />
-                <span className="text-3xl font-serif font-bold">{t('brand.mahadev')}<span className="text-gold-500">{t('brand.marine')}</span></span>
+              <div className="flex items-center gap-4 mb-4">
+                <img src={icon} alt="VV Icon" className="h-16 w-auto object-contain" />
+                <div className="flex flex-col">
+                  <span className="text-2xl font-serif font-bold text-white">{t('brand.vv')} <span className="text-gold-500">{t('brand.marine')}</span></span>
+                  <span className="text-[10px] tracking-[0.3em] uppercase text-ocean-300 font-bold">{t('brand.exports')}</span>
+                </div>
               </div>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed max-w-xs">
@@ -48,9 +52,9 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               {[
-                { Icon: Facebook, label: 'Facebook', href: 'https://facebook.com/mahadevmarine' },
-                { Icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/company/mahadev-marine-exports' },
-                { Icon: Instagram, label: 'Instagram', href: 'https://instagram.com/mahadevmarine' }
+                { Icon: Facebook, label: 'Facebook', href: 'https://facebook.com/vvmarine' },
+                { Icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/company/vv-marine-exports' },
+                { Icon: Instagram, label: 'Instagram', href: 'https://instagram.com/vvmarine' }
               ].map(({ Icon, label, href }, i) => (
                 <a
                   key={i}
@@ -100,7 +104,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-4">
                 <Mail className="h-5 w-5 text-gold-500 shrink-0" />
-                <span className="text-white/70 text-sm">export@mahadevmarine.com</span>
+                <span className="text-white/70 text-sm">export@vvmarine.com</span>
               </li>
             </ul>
           </div>

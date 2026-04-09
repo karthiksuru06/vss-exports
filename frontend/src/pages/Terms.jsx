@@ -22,7 +22,7 @@ const Terms = () => {
 
                 <div className="prose prose-lg prose-blue max-w-none text-gray-600 space-y-8">
                     <p className="lead">
-                        These Terms & Conditions govern the sale of products by Mahadev Marine Exports to our global partners. By placing an order, you agree to be bound by these terms.
+                        These Terms & Conditions govern the sale of products by VV Marine Exports to our global partners. By placing an order, you agree to be bound by these terms.
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-6">
@@ -51,12 +51,12 @@ const Terms = () => {
 
                     <section>
                         <h2 className="text-xl font-bold text-midnight-800">Force Majeure</h2>
-                        <p>Mahadev Marine Exports shall not be liable for delays caused by natural disasters, strikes, political unrest, or other events beyond our reasonable control.</p>
+                        <p>VV Marine Exports shall not be liable for delays caused by natural disasters, strikes, political unrest, or other events beyond our reasonable control.</p>
                     </section>
 
                     <div className="text-sm text-gray-500 mt-12 pt-8 border-t">
                         Effective Date: January 1, 2024<br />
-                        Mahadev Marine Exports, Veraval, Gujarat, India.
+                        VV Marine Exports, Veraval, Gujarat, India.
                     </div>
                 </div>
             </motion.div>

@@ -4,11 +4,11 @@ import React, { useState, useContext, createContext } from 'react';
 const DICTIONARY = {
   en: {
     // Brand
-    'brand.mahadev': 'Mahadev',
+    'brand.vv': 'VV',
     'brand.marine': 'Marine',
     'brand.exports': 'Exports',
-    'brand.tagline': 'Global Export Leader',
-    'brand.description': 'Premium seafood sourcing from the Indian Ocean. We connect artisanal fishing integrity with industrial-scale global logistics.',
+    'brand.tagline': 'Premium Global Seafood Exporter',
+    'brand.description': 'We are a trusted seafood export company based in India, supplying high-quality shrimp and fish to international markets. We focus on quality, hygiene, and timely delivery.',
 
     // Navigation
     'nav.home': 'Home',
@@ -16,14 +16,43 @@ const DICTIONARY = {
     'nav.contact': 'Contact',
 
     // Hero Section
-    'hero.title': 'Depth to Destination',
-    'hero.subtitle': 'Global Excellence in Premium Seafood Exports',
+    'hero.title': 'VV Marine Exports',
+    'hero.subtitle': 'We Export Premium Quality Seafood Worldwide',
+    'hero.subtext': 'Specializing in Vannamei Shrimp, Black Tiger Shrimp & Fresh Fish',
+    'hero.feature1': 'Competitive Pricing',
+    'hero.feature2': 'Bulk Supply Capacity',
+    'hero.feature3': 'Reliable Export Logistics',
     'hero.scroll': 'Scroll',
-    'hero.getInTouch': 'Get in Touch',
+    'hero.getInTouch': 'Get Quote Now',
+    'hero.whatsapp': 'WhatsApp Us',
 
     // Home Page Sections
     'home.intro.quote': '"Fresh vision meets <highlight>proven expertise</highlight> — together, we deliver ocean\'s finest to the world."',
-    'home.intro.description': 'Mahadev Marine Exports partners with industry veterans boasting 25+ years of seafood mastery. This powerful collaboration blends our innovative approach with deep-rooted expertise in sourcing, processing, and global logistics.',
+    'home.intro.description': 'VV Marine Exports pairs with industry veterans with over 25+ years of seafood expertise. This powerful collaboration combines our innovative approach with deep-rooted mastery in sourcing, processing, and global logistics.',
+    'home.why.title': 'Why Choose Us',
+    'home.why.feature1': 'Direct Sourcing from Farms',
+    'home.why.feature2': 'Strict Quality Control',
+    'home.why.feature3': 'Hygienic Processing',
+    'home.why.feature4': 'Bulk Supply Capacity',
+    'home.why.feature5': 'Fast & Reliable Shipping',
+    'home.why.feature6': 'Competitive Pricing',
+    'home.process.title': 'Export Process',
+    'home.process.step1': 'Sourcing from Trusted Farms',
+    'home.process.step2': 'Cleaning & Processing',
+    'home.process.step3': 'Grading & Sorting',
+    'home.process.step4': 'Packing with Ice / Frozen',
+    'home.process.step5': 'Container Loading',
+    'home.process.step6': 'Export Delivery',
+    'home.cert.title': 'Certifications',
+    'home.cert.subtitle': 'We follow international quality standards.',
+    'home.cert.item1': 'APEDA Certified',
+    'home.cert.item2': 'HACCP Certified',
+    'home.cert.item3': 'FSSAI Registered',
+    'home.strength.title': 'Company Strength',
+    'home.strength.item1': '500+ Tons Supply Capacity',
+    'home.strength.item2': 'Strong Supplier Network',
+    'home.strength.item3': 'Timely Shipment',
+    'home.strength.item4': 'Quality Assurance',
     'home.processing.title': 'Processing',
     'home.processing.excellence': 'Excellence',
     'home.processing.viewGallery': 'View Full Gallery',
@@ -48,7 +77,7 @@ const DICTIONARY = {
     'footer.marketInsights': 'Market Insights',
     'footer.newsletter': 'Receive weekly pricing updates for Black Tiger & Vannamei.',
     'footer.emailPlaceholder': 'Email address',
-    'footer.copyright': 'Mahadev Marine Exports.',
+    'footer.copyright': 'VV Marine Exports.',
     'footer.privacyPolicy': 'Privacy Policy',
     'footer.termsOfTrade': 'Terms of Trade',
     'footer.thankYou': 'Thank you for subscribing to our newsletter!',
@@ -284,7 +313,7 @@ const DICTIONARY = {
 
   hi: {
     // Brand
-    'brand.mahadev': 'महादेव',
+    'brand.vv': 'VV',
     'brand.marine': 'मरीन',
     'brand.exports': 'एक्सपोर्ट्स',
     'brand.tagline': 'वैश्विक निर्यात नेता',
@@ -303,7 +332,7 @@ const DICTIONARY = {
 
     // Home Page Sections
     'home.intro.quote': '"ताज़ा दृष्टि <highlight>सिद्ध विशेषज्ञता</highlight> से मिलती है — साथ मिलकर, हम दुनिया को समुद्र का सर्वश्रेष्ठ पहुंचाते हैं।"',
-    'home.intro.description': 'महादेव मरीन एक्सपोर्ट्स 25+ वर्षों के समुद्री भोजन विशेषज्ञता वाले उद्योग के दिग्गजों के साथ साझेदारी करता है। यह शक्तिशाली सहयोग हमारे अभिनव दृष्टिकोण को सोर्सिंग, प्रसंस्करण और वैश्विक लॉजिस्टिक्स में गहरी जड़ वाली विशेषज्ञता के साथ जोड़ता है।',
+    'home.intro.description': 'VV Marine Exports 25+ वर्षों के समुद्री भोजन विशेषज्ञता वाले उद्योग के दिग्गजों के साथ साझेदारी करता है। यह शक्तिशाली सहयोग हमारे अभिनव दृष्टिकोण को सोर्सिंग, प्रसंस्करण और वैश्विक लॉजिस्टिक्स में गहरी जड़ वाली विशेषज्ञता के साथ जोड़ता है।',
     'home.processing.title': 'प्रसंस्करण',
     'home.processing.excellence': 'उत्कृष्टता',
     'home.processing.viewGallery': 'पूर्ण गैलरी देखें',
@@ -328,7 +357,7 @@ const DICTIONARY = {
     'footer.marketInsights': 'बाजार अंतर्दृष्टि',
     'footer.newsletter': 'ब्लैक टाइगर और वन्नामेई के लिए साप्ताहिक मूल्य अपडेट प्राप्त करें।',
     'footer.emailPlaceholder': 'ईमेल पता',
-    'footer.copyright': 'महादेव मरीन एक्सपोर्ट्स।',
+    'footer.copyright': 'VV Marine Exports.',
     'footer.privacyPolicy': 'गोपनीयता नीति',
     'footer.termsOfTrade': 'व्यापार की शर्तें',
     'footer.thankYou': 'हमारे न्यूज़लेटर की सदस्यता के लिए धन्यवाद!',
@@ -564,7 +593,7 @@ const DICTIONARY = {
 
   zh: {
     // Brand
-    'brand.mahadev': '玛哈德夫',
+    'brand.vv': 'VV',
     'brand.marine': '海洋',
     'brand.exports': '出口',
     'brand.tagline': '全球出口领导者',
@@ -583,7 +612,7 @@ const DICTIONARY = {
 
     // Home Page Sections
     'home.intro.quote': '"新鲜视野与<highlight>成熟专业</highlight>相遇 — 我们携手将海洋精华送达全球。"',
-    'home.intro.description': '玛哈德夫海洋出口与拥有25年以上海鲜专业经验的行业资深人士合作。这种强大的合作将我们的创新方法与深厚的采购、加工和全球物流专业知识相结合。',
+    'home.intro.description': 'VV 海洋出口与拥有25年以上海鲜专业经验的行业资深人士合作。这种强大的合作将我们的创新方法与深厚的采购、加工和全球物流专业知识相结合。',
     'home.processing.title': '加工',
     'home.processing.excellence': '卓越',
     'home.processing.viewGallery': '查看完整画廊',
@@ -608,7 +637,7 @@ const DICTIONARY = {
     'footer.marketInsights': '市场洞察',
     'footer.newsletter': '接收黑虎虾和南美白对虾的每周价格更新。',
     'footer.emailPlaceholder': '电子邮箱',
-    'footer.copyright': '玛哈德夫海洋出口。',
+    'footer.copyright': 'VV 海洋出口。',
     'footer.privacyPolicy': '隐私政策',
     'footer.termsOfTrade': '贸易条款',
     'footer.thankYou': '感谢您订阅我们的通讯！',
@@ -844,7 +873,7 @@ const DICTIONARY = {
 
   ja: {
     // Brand
-    'brand.mahadev': 'マハデヴ',
+    'brand.vv': 'VV',
     'brand.marine': 'マリン',
     'brand.exports': 'エクスポート',
     'brand.tagline': 'グローバル輸出リーダー',
@@ -1124,7 +1153,7 @@ const DICTIONARY = {
 
   ru: {
     // Brand
-    'brand.mahadev': 'Махадев',
+    'brand.vv': 'VV',
     'brand.marine': 'Марин',
     'brand.exports': 'Экспорт',
     'brand.tagline': 'Мировой лидер экспорта',
@@ -1332,7 +1361,7 @@ const DICTIONARY = {
 
   fr: {
     // Brand
-    'brand.mahadev': 'Mahadev',
+    'brand.vv': 'VV',
     'brand.marine': 'Marine',
     'brand.exports': 'Exports',
     'brand.tagline': 'Leader mondial de l\'exportation',
@@ -1351,7 +1380,7 @@ const DICTIONARY = {
 
     // Home Page Sections
     'home.intro.quote': '«Une vision fraîche rencontre <highlight>une expertise éprouvée</highlight> — ensemble, nous livrons le meilleur de l\'océan au monde.»',
-    'home.intro.description': 'Mahadev Marine Exports s\'associe à des vétérans de l\'industrie forts de plus de 25 ans de maîtrise des fruits de mer. Cette puissante collaboration allie notre approche innovante à une expertise profonde en approvisionnement, transformation et logistique mondiale.',
+    'home.intro.description': 'VV Marine Exports s\'associe à des vétérans de l\'industrie forts de plus de 25 ans de maîtrise des fruits de mer. Cette puissante collaboration allie notre approche innovante à une expertise profonde en approvisionnement, transformation et logistique mondiale.',
     'home.processing.title': 'Transformation',
     'home.processing.excellence': 'Excellence',
     'home.processing.viewGallery': 'Voir la galerie complète',
@@ -1376,7 +1405,7 @@ const DICTIONARY = {
     'footer.marketInsights': 'Analyses du Marché',
     'footer.newsletter': 'Recevez les mises à jour hebdomadaires des prix Black Tiger et Vannamei.',
     'footer.emailPlaceholder': 'Adresse e-mail',
-    'footer.copyright': 'Mahadev Marine Exports.',
+    'footer.copyright': 'VV Marine Exports.',
     'footer.privacyPolicy': 'Politique de Confidentialité',
     'footer.termsOfTrade': 'Conditions Commerciales',
     'footer.thankYou': 'Merci de votre inscription à notre newsletter!',

@@ -7,6 +7,7 @@ import { useTranslation } from '../../hooks/useTranslation';
 import { useAuth } from '../../context/AuthContext';
 import { NAV_ITEMS } from '../../utils/constants';
 import logo from '../../assets/images/logo.png';
+import icon from '../../assets/images/icon.png';
 
 import cubesTexture from '../../assets/textures/cubes.png';
 
@@ -74,30 +75,41 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
               className="flex items-center space-x-3 group w-auto shrink-0 relative"
             >
-              <div className="relative">
-                <img
-                  src={logo}
-                  alt="Mahadev Marine"
-                  className="relative h-14 w-auto object-contain drop-shadow-md"
-                  style={{
-                    animation: 'logoSpin 2s ease-in-out infinite',
+              <div className="relative flex items-center gap-4">
+                <motion.div 
+                  className="relative pointer-events-auto"
+                  animate={{ 
+                    y: [0, -3, 0],
                   }}
-                />
-                <style>{`
-                  @keyframes logoSpin {
-                    0% { transform: rotate(0deg); }
-                    50% { transform: rotate(360deg); }
-                    100% { transform: rotate(360deg); }
-                  }
-                `}</style>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-2xl font-serif font-bold tracking-tight text-white leading-none">
-                  {t('brand.mahadev')}<span className="text-gold-500">{t('brand.marine')}</span>
-                </span>
-                <span className="text-[10px] tracking-[0.3em] uppercase text-ocean-300 font-medium opacity-80 mt-1">
-                  {t('brand.exports')}
-                </span>
+                  whileHover={{ 
+                    rotate: 360,
+                    scale: 1.1
+                  }}
+                  transition={{ 
+                    y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                    rotate: { duration: 0.8, ease: "easeOut" }
+                  }}
+                >
+                  <img
+                    src={icon}
+                    alt="VV Icon"
+                    className="relative h-14 w-auto object-contain drop-shadow-xl"
+                  />
+                  {/* Subtle glow behind icon */}
+                  <div className="absolute inset-0 bg-gold-500/20 blur-xl rounded-full scale-110 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </motion.div>
+
+                <div className="flex flex-col">
+                  <span className="text-xl md:text-2xl font-serif font-bold tracking-tight text-white leading-none">
+                    {t('brand.vv')} <span className="text-gold-500 tracking-wide">{t('brand.marine')}</span>
+                  </span>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="h-px w-4 bg-gold-600/50"></span>
+                    <span className="text-[9px] tracking-[0.4em] uppercase text-ocean-300 font-bold opacity-90">
+                      {t('brand.exports')}
+                    </span>
+                  </div>
+                </div>
               </div>
             </NavLink>
           </div>

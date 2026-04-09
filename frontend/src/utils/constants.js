@@ -15,14 +15,14 @@ import facilityVideo3 from '../assets/images/WhatsApp Video 2026-01-28 at 10.04.
 import facilityVideo4 from '../assets/images/WhatsApp Video 2026-01-28 at 10.04.06 AM (1).mp4';
 
 // ============================================================================
-// NEW PRODUCT IMAGES - Professional Mahadev Seafood Images
-// Located in: dist/assets/mahadev_seafood_images/
+// NEW PRODUCT IMAGES - Professional VV Marine Seafood Images
+// Located in: dist/assets/vv_marine_seafood_images/
 // ============================================================================
-const IMG_BASE = '/assets/mahadev_seafood_images/';
+const IMG_BASE = '/assets/vv_marine_seafood_images/';
 
 // Raw Shrimp Varieties
-const imgBlackTiger = blackTigerImg;
-const imgVannamei = vannameiImg;
+const imgBlackTiger = `${IMG_BASE}01_Black_Tiger_Shrimp_Raw_Whole_Head-On.jpg`;
+const imgVannamei = `${IMG_BASE}02_Vannamei_White_Shrimp_Raw_Whole.jpg`;
 const imgSeaTiger = `${IMG_BASE}03_Sea_Tiger_Shrimp_Raw_Whole_Giant.jpg`;
 const imgPinkBrown = `${IMG_BASE}04_Pink_Brown_Shrimp_Raw_Whole.jpg`;
 
@@ -149,7 +149,7 @@ export const GLAZE_OPTIONS = {
 
 // ============================================================================
 // COMPREHENSIVE PRODUCTS CATALOG
-// Based on Mahadev Marine Exports Product Catalog (December 2025)
+// Based on VV Marine Exports Product Catalog (December 2025)
 // With multi-language support for arc wheel display
 // ============================================================================
 
@@ -2173,88 +2173,94 @@ export const PRODUCTS = [
     }
   },
   {
-    id: 'lobster-crab',
-    name: 'Lobster & Crab',
-    nameKey: 'product.lobsterCrab',
-    scientificName: 'Premium Shellfish',
-    description: 'Premium lobster and crab varieties available fresh via air cargo. Quality guaranteed with complete traceability from harvest to delivery.',
-    descriptionKey: 'product.lobsterCrab.desc',
+    id: 'fresh-lobster',
+    name: 'Fresh Lobster',
+    nameKey: 'product.freshLobster',
+    scientificName: 'Panulirus polyphagus',
+    description: 'Premium whole lobster available fresh via air cargo. Sourced from the pristine waters of the Indian Ocean. Quality guaranteed with complete traceability from harvest to delivery.',
+    descriptionKey: 'product.lobster.desc',
     image: imgFreshLobster,
     video: facilityVideo3,
     category: 'Fresh Seafood',
     categoryKey: 'category.fresh',
     filterCategory: 'shellfish',
     division: 'fresh-seafood',
-    processingType: ['Live', 'Cooked', 'Frozen'],
+    processingType: ['Live', 'Whole Round', 'Frozen'],
     specs: {
-      sizes: ['Various Grades'],
-      packing: ['Specialized Containers'],
+      sizes: ['300/500g', '500/1000g', '1kg+'],
+      packing: ['Specialized Containers', 'Dry Ice'],
       delivery: '48-72 hours globally',
-      origin: 'India',
+      origin: 'India (Wild Catch)',
       certifications: ['HACCP', 'Export Certified']
     },
     highlights: ['Premium Quality', 'Live Available', 'Air Cargo'],
     bestFor: ['Fine Dining', 'Luxury Hotels', 'Premium Markets'],
     info: {
       en: {
-        name: 'Lobster & Crab',
+        name: 'Fresh Lobster',
         category: 'Fresh Seafood',
-        description: 'Premium shellfish via air cargo',
-        sizes: 'Various Grades',
-        origin: 'India',
-        processing: 'Live, Cooked, Frozen',
-        packaging: 'Specialized Containers',
+        description: 'Premium whole lobster via air cargo',
+        sizes: '300g to 1kg+',
+        origin: 'India (Wild Catch)',
+        processing: 'Live, Whole Round, Frozen',
+        packaging: 'Specialized containers',
         certification: 'HACCP, Export Certified'
       },
       hi: {
-        name: 'लॉबस्टर और केकड़ा',
+        name: 'ताजा लॉबस्टर',
         category: 'ताजा समुद्री भोजन',
-        description: 'एयर कार्गो द्वारा प्रीमियम शेलफिश',
-        sizes: 'विभिन्न ग्रेड',
-        origin: 'भारत',
-        processing: 'जीवित, पका हुआ, फ्रोजन',
+        description: 'एयर कार्गो द्वारा प्रीमियम लॉबस्टर',
+        sizes: '300g से 1kg+',
+        origin: 'भारत (जंगली)',
+        processing: 'जीवित, पूर्ण गोल, फ्रोजन',
         packaging: 'विशेष कंटेनर',
         certification: 'HACCP, निर्यात प्रमाणित'
+      }
+    }
+  },
+  {
+    id: 'fresh-crab',
+    name: 'Blue Swimmer Crab',
+    nameKey: 'product.freshCrab',
+    scientificName: 'Portunus pelagicus',
+    description: 'Premium fresh crab sourced from coastal Indian waters. Sweet, delicate meat highly prized in global markets. Delivered via air cargo to ensure maximum freshness.',
+    descriptionKey: 'product.crab.desc',
+    image: imgFreshCrab,
+    video: facilityVideo1,
+    category: 'Fresh Seafood',
+    categoryKey: 'category.fresh',
+    filterCategory: 'shellfish',
+    division: 'fresh-seafood',
+    processingType: ['Live', 'Whole', 'Cut-Sections'],
+    specs: {
+      sizes: ['100/200g', '200/300g', '300g+'],
+      packing: ['Specialized Containers', 'Insulated'],
+      delivery: '48-72 hours globally',
+      origin: 'India',
+      certifications: ['HACCP', 'Quality Tested']
+    },
+    highlights: ['Sweet Meat', 'Sea-Caught', 'Air-Cargo Delivery'],
+    bestFor: ['Seafood Platters', 'Asian Cuisine', 'Gourmet Dining'],
+    info: {
+      en: {
+        name: 'Blue Swimmer Crab',
+        category: 'Fresh Seafood',
+        description: 'Fresh sea-caught crab via air cargo',
+        sizes: '100g to 300g+',
+        origin: 'India',
+        processing: 'Live, Whole, Sections',
+        packaging: 'Specialized Containers',
+        certification: 'HACCP'
       },
-      zh: {
-        name: '龙虾和蟹',
-        category: '鲜活海鲜',
-        description: '空运优质甲壳类',
-        sizes: '多种规格',
-        origin: '印度',
-        processing: '活体、熟、冻',
-        packaging: '专用容器',
-        certification: 'HACCP, 出口认证'
-      },
-      ja: {
-        name: 'ロブスター＆カニ',
-        category: '新鮮シーフード',
-        description: '航空便によるプレミアム甲殻類',
-        sizes: '各種グレード',
-        origin: 'インド',
-        processing: '活、調理済み、冷凍',
-        packaging: '専用コンテナ',
-        certification: 'HACCP, 輸出認証'
-      },
-      ru: {
-        name: 'Лобстер и Краб',
-        category: 'Свежие морепродукты',
-        description: 'Премиальные ракообразные авиадоставкой',
-        sizes: 'Различные категории',
-        origin: 'Индия',
-        processing: 'Живые, вареные, замороженные',
-        packaging: 'Специализированные контейнеры',
-        certification: 'HACCP, сертификат на экспорт'
-      },
-      fr: {
-        name: 'Homard et Crabe',
-        category: 'Fruits de Mer Frais',
-        description: 'Crustacés premium par fret aérien',
-        sizes: 'Diverses catégories',
-        origin: 'Inde',
-        processing: 'Vivants, Cuits, Congelés',
-        packaging: 'Conteneurs spécialisés',
-        certification: 'HACCP, Certifié Export'
+      hi: {
+        name: 'ब्लू स्विमर केकड़ा',
+        category: 'ताजा समुद्री भोजन',
+        description: 'एयर कार्गो द्वारा ताजा समुद्री केकड़ा',
+        sizes: '100g से 300g+',
+        origin: 'भारत',
+        processing: 'जीवित, पूर्ण, अनुभाग',
+        packaging: 'विशेष कंटेनर',
+        certification: 'HACCP'
       }
     }
   },
@@ -2345,12 +2351,12 @@ export const PRODUCTS = [
     }
   },
   {
-    id: 'squid-octopus',
-    name: 'Squid & Octopus',
-    nameKey: 'product.squidOctopus',
-    scientificName: 'Cephalopods',
-    description: 'Fresh squid and octopus varieties for Mediterranean and Asian cuisines. Available whole, cleaned, or portioned as per buyer specifications.',
-    descriptionKey: 'product.squidOctopus.desc',
+    id: 'fresh-squid',
+    name: 'Fresh Squid Tubes',
+    nameKey: 'product.freshSquid',
+    scientificName: 'Loligo duvauceli',
+    description: 'Fresh squid varieties for Mediterranean and Asian cuisines. Available whole, cleaned, or portioned as tubes and tentacles per buyer specifications.',
+    descriptionKey: 'product.squid.desc',
     image: imgFreshSquid,
     video: packingVideo,
     category: 'Fresh Seafood',
@@ -2359,74 +2365,126 @@ export const PRODUCTS = [
     division: 'fresh-seafood',
     processingType: ['Whole', 'Cleaned', 'Tubes & Tentacles', 'Rings'],
     specs: {
-      sizes: ['Various'],
-      packing: ['IQF', 'Block', 'Fresh'],
+      sizes: ['U/3', '3/6', '6/10', '10/20'],
+      packing: ['1kg IQF', 'Block', 'Fresh'],
       delivery: '48-72 hours (fresh)',
-      origin: 'India',
+      origin: 'India (Wild Catch)',
       certifications: ['HACCP', 'Export Certified']
     },
-    highlights: ['Multiple Cuts', 'Fresh or Frozen', 'Versatile'],
-    bestFor: ['Mediterranean Cuisine', 'Asian Cuisine', 'Calamari'],
+    highlights: ['Pristine White', 'Tender Texture', 'Multiple Cuts'],
+    bestFor: ['Calamari', 'Mediterranean Dining', 'Asian Cuisine'],
     info: {
       en: {
-        name: 'Squid & Octopus',
+        name: 'Fresh Squid',
         category: 'Fresh Seafood',
-        description: 'Multiple cuts for Mediterranean & Asian cuisines',
-        sizes: 'Various',
-        origin: 'India',
-        processing: 'Whole, Cleaned, Tubes & Tentacles, Rings',
+        description: 'Premium squid tubes and tentacles',
+        sizes: 'U/3 to 10/20',
+        origin: 'India (Wild Catch)',
+        processing: 'Whole, Cleaned, Tubes, Rings',
         packaging: 'IQF, Block, Fresh',
-        certification: 'HACCP, Export Certified'
+        certification: 'HACCP'
       },
       hi: {
-        name: 'स्क्विड और ऑक्टोपस',
+        name: 'ताजा स्क्विड',
         category: 'ताजा समुद्री भोजन',
-        description: 'भूमध्यसागरीय और एशियाई व्यंजनों के लिए विभिन्न कट',
+        description: 'प्रीमियम स्क्विड ट्यूब और टेंटेकल्स',
+        sizes: 'U/3 से 10/20',
+        origin: 'भारत',
+        processing: 'पूर्ण, साफ, ट्यूब, रिंग्स',
+        packaging: 'IQF, ब्लॉक, ताजा',
+        certification: 'HACCP'
+      }
+    }
+  },
+  {
+    id: 'fresh-octopus',
+    name: 'Fresh Octopus',
+    nameKey: 'product.freshOctopus',
+    scientificName: 'Octopus vulgaris',
+    description: 'Premium wild-caught octopus from the Indian Ocean. Tenderized and processed to maintain optimal quality. Highly versatile for a variety of international cuisines.',
+    descriptionKey: 'product.octopus.desc',
+    image: imgFreshOctopus,
+    video: facilityVideo2,
+    category: 'Fresh Seafood',
+    categoryKey: 'category.fresh',
+    filterCategory: 'squid',
+    division: 'fresh-seafood',
+    processingType: ['Whole Cleaned', 'Blanched', 'Frozen'],
+    specs: {
+      sizes: ['500/1000g', '1kg/2kg', '2kg+'],
+      packing: ['IWP Block', 'IQF'],
+      delivery: '48-72 hours globally',
+      origin: 'India (Wild Catch)',
+      certifications: ['HACCP', 'Export Certified']
+    },
+    highlights: ['Natural Taste', 'Premium Texture', 'Wild Caught'],
+    bestFor: ['Grilling', 'Salads', 'Mediterranean Cuisine'],
+    info: {
+      en: {
+        name: 'Fresh Octopus',
+        category: 'Fresh Seafood',
+        description: 'Premium wild-caught octopus',
+        sizes: '500g to 2kg+',
+        origin: 'India',
+        processing: 'Whole Cleaned, Blanched',
+        packaging: 'IWP Block, IQF',
+        certification: 'HACCP'
+      },
+      hi: {
+        name: 'ताजा ऑक्टोपस',
+        category: 'ताजा समुद्री भोजन',
+        description: 'प्रीमियम जंगली ऑक्टोपस',
+        sizes: '500g से 2kg+',
+        origin: 'भारत',
+        processing: 'पूर्ण साफ, ब्लांच किया हुआ',
+        packaging: 'IWP ब्लॉक, IQF',
+        certification: 'HACCP'
+      }
+    }
+  },
+  {
+    id: 'frozen-shrimp-block',
+    name: 'Frozen Shrimp Block',
+    nameKey: 'product.frozenBlock',
+    scientificName: 'Bulk Export Grade',
+    description: 'Traditional block frozen shrimp for industrial use and bulk retail. Maintains maximum moisture and texture integrity through specialized freezing process. Preferred for wholesale distribution.',
+    descriptionKey: 'product.frozenBlock.desc',
+    image: imgFrozenBlock,
+    video: processingVideo,
+    category: 'Industrial Products',
+    categoryKey: 'category.industrial',
+    filterCategory: 'shrimp',
+    division: 'raw-shrimp',
+    processingType: ['Block Frozen', 'Glazed'],
+    specs: {
+      sizes: ['Multiple Grades'],
+      packing: ['1.8kg x 6 Block', '2kg x 6 Block'],
+      glaze: ['10%', '20%', 'Custom'],
+      origin: 'India',
+      certifications: ['HACCP', 'BRC', 'BAP']
+    },
+    highlights: ['Bulk Value', 'Maximum Texture', 'Industrial Standard'],
+    bestFor: ['Wholesale', 'Industrial Food Prep', 'Bulk Retail'],
+    info: {
+      en: {
+        name: 'Frozen Shrimp Block',
+        category: 'Industrial Products',
+        description: 'Bulk export grade block frozen shrimp',
+        sizes: 'Various',
+        origin: 'India',
+        processing: 'Block Frozen',
+        packaging: '1.8kg/2kg x 6 Blocks',
+        certification: 'HACCP, BRC, BAP'
+      },
+      hi: {
+        name: 'फ्रोजन झींगा ब्लॉक',
+        category: 'औद्योगिक उत्पाद',
+        description: 'बल्क निर्यात स्तर का फ्रोजन झींगा ब्लॉक',
         sizes: 'विभिन्न',
         origin: 'भारत',
-        processing: 'पूर्ण, साफ किया हुआ, ट्यूब और टेंटेकल्स, रिंग्स',
-        packaging: 'IQF, ब्लॉक, ताजा',
-        certification: 'HACCP, निर्यात प्रमाणित'
-      },
-      zh: {
-        name: '鱿鱼和章鱼',
-        category: '鲜活海鲜',
-        description: '多种切法，适合地中海和亚洲料理',
-        sizes: '多种规格',
-        origin: '印度',
-        processing: '整只、清洗、管和触须、圈',
-        packaging: 'IQF、块冻、鲜品',
-        certification: 'HACCP, 出口认证'
-      },
-      ja: {
-        name: 'イカとタコ',
-        category: '新鮮シーフード',
-        description: '地中海・アジア料理向け各種カット',
-        sizes: '各種',
-        origin: 'インド',
-        processing: '丸ごと、洗浄済み、胴と足、リング',
-        packaging: 'IQF、ブロック、生',
-        certification: 'HACCP, 輸出認証'
-      },
-      ru: {
-        name: 'Кальмар и Осьминог',
-        category: 'Свежие морепродукты',
-        description: 'Различные нарезки для средиземноморской и азиатской кухни',
-        sizes: 'Различные',
-        origin: 'Индия',
-        processing: 'Целые, очищенные, тубусы и щупальца, кольца',
-        packaging: 'IQF, блок, свежие',
-        certification: 'HACCP, сертификат на экспорт'
-      },
-      fr: {
-        name: 'Calamars et Poulpes',
-        category: 'Fruits de Mer Frais',
-        description: 'Multiples découpes pour cuisine méditerranéenne et asiatique',
-        sizes: 'Divers',
-        origin: 'Inde',
-        processing: 'Entiers, Nettoyés, Tubes et Tentacules, Anneaux',
-        packaging: 'IQF, Bloc, Frais',
-        certification: 'HACCP, Certifié Export'
+        processing: 'ब्लॉक फ्रोजन',
+        packaging: '1.8kg/2kg x 6 ब्लॉक',
+        certification: 'HACCP, BRC, BAP'
       }
     }
   },
@@ -2770,7 +2828,7 @@ export const BUSINESS_MODEL = {
 
 // Contact information
 export const CONTACT_INFO = {
-  company: 'Mahadev Marine Exports Pvt. Ltd.',
+  company: 'VV Marine Exports Pvt. Ltd.',
   address: 'Tuni, Andhra Pradesh, India',
   processingLocations: 'Visakhapatnam & Kakinada',
   contacts: [
@@ -2778,13 +2836,13 @@ export const CONTACT_INFO = {
       name: 'Harsha Arigela',
       title: 'Chairman & Executive Director',
       phone: '+91 9059861256',
-      email: 'mahadevmarineexports@gmail.com'
+      email: 'vvmarineexports@gmail.com'
     },
     {
       name: 'Mahesh Revu',
       title: 'Operational Director',
       phone: '+91 7989591952',
-      email: 'mahadevmarineinternational@gmail.com'
+      email: 'vvmarineinternational@gmail.com'
     }
   ],
   responseTime: 'Email inquiry: Response within 2 hours',

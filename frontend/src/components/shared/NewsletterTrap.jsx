@@ -54,7 +54,7 @@ const NewsletterTrap = () => {
         <section className="relative py-24 overflow-hidden">
             {/* Background with Gradient and Texture */}
             <div className="absolute inset-0 bg-midnight-900 z-0">
-                <div className="absolute inset-0 bg-gradient-to-br from-midnight-950 via-midnight-900 to-ocean-900 opacity-90"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-midnight-950 via-midnight-900 to-black opacity-90"></div>
                 <div className="absolute inset-0 opacity-10 mix-blend-overlay" style={{ backgroundImage: `url(${stardustTexture})` }}></div>
             </div>
 

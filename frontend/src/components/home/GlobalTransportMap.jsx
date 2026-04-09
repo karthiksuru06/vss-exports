@@ -168,7 +168,7 @@ const GlobalTransportMap = () => {
       className="relative py-24 overflow-hidden"
     >
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-ocean-900 via-abyss-900 to-ocean-950" />
+      <div className="absolute inset-0 bg-gradient-to-b from-midnight-900 via-midnight-950 to-black" />
       <div className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay" style={{ backgroundImage: `url(${cubesTexture})` }} />
 
       {/* Content */}

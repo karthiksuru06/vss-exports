@@ -8,15 +8,15 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         // Check local storage for persistent login
-        const storedUser = localStorage.getItem('mahadev_user');
+        const storedUser = localStorage.getItem('vv_user');
         if (storedUser) {
             setUser(JSON.parse(storedUser));
         } else {
             // Show login prompt immediately for new sessions (User request: "login comes first")
-            const hasSeenPrompt = sessionStorage.getItem('mahadev_login_prompt_seen');
+            const hasSeenPrompt = sessionStorage.getItem('vv_login_prompt_seen');
             if (!hasSeenPrompt) {
                 setIsLoginModalOpen(true);
-                sessionStorage.setItem('mahadev_login_prompt_seen', 'true');
+                sessionStorage.setItem('vv_login_prompt_seen', 'true');
             }
         }
     }, []);
@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
             const data = await response.json();
             if (response.ok) {
                 setUser(data.user);
-                localStorage.setItem('mahadev_user', JSON.stringify(data.user));
+                localStorage.setItem('vv_user', JSON.stringify(data.user));
                 setIsLoginModalOpen(false);
                 return true;
             } else {
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = () => {
         setUser(null);
-        localStorage.removeItem('mahadev_user');
+        localStorage.removeItem('vv_user');
     };
 
     const openLoginModal = () => setIsLoginModalOpen(true);

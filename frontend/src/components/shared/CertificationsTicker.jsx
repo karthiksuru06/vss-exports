@@ -2,7 +2,7 @@ import React from 'react';
 
 const CertificationsTicker = () => {
   // Mock certification logos - using text placeholders with premium styling for now
-  const certs = ["HACCP Certified", "US FDA Approved", "EU Approved", "BAP 4-Star", "BRC Food", "ISO 22000", "Halal Certified"];
+  const certs = ["APEDA Certified", "HACCP Certified", "FSSAI Registered"];
 
   return (
     <div className="bg-white py-12 border-y border-gray-100 overflow-hidden">

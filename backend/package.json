@@ -1,7 +1,7 @@
 {
-    "name": "mahadev-backend",
+    "name": "vss-backend",
     "version": "1.0.0",
-    "description": "Simple backend for Mahadev Marine",
+    "description": "Simple backend for VV Marine",
     "main": "server.js",
     "scripts": {
         "start": "node server.js"

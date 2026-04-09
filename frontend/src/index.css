@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ocean-50: #f0f9ff;
+  --color-ocean-100: #e0f2fe;
+  --color-ocean-200: #bae6fd;
+  --color-ocean-300: #7dd3fc;
+  --color-ocean-400: #38bdf8;
+  --color-ocean-500: #0ea5e9;
+  --color-ocean-600: #0284c7;
+  --color-ocean-700: #0369a1;
+  --color-ocean-800: #075985;
+  --color-ocean-900: #0c4a6e;
+  --color-ocean-950: #082f49;
+
+  --color-midnight-800: #0a2540;
+  --color-midnight-900: #051b30;
+  --color-midnight-950: #020617;
+
+  --color-gold-300: #fde047;
+  --color-gold-400: #facc15;
+  --color-gold-500: #eab308;
+  --color-gold-600: #d4af37;
+  --color-gold-700: #a16207;
+
+  --font-sans: 'Outfit', 'Inter', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+
+  --animate-spin-slow: spin 12s linear infinite;
+  --animate-shimmer: shimmer 2.5s infinite linear;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+:root {
+  --accent: #d4af37;
+  --ocean-dark: #051b30;
+  --ocean-deep: #020617;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@layer base {
+  body {
+    @apply bg-midnight-950 text-slate-100 antialiased overflow-x-hidden selection:bg-gold-500 selection:text-midnight-950;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-bold tracking-tight;
+  }
+}
+
+
+@layer components {
+  /* Extreme Abyssal UI Components */
+  
+  .abyssal-card {
+    @apply relative overflow-hidden rounded-[2.5rem] bg-white/[0.02] border border-white/10 backdrop-blur-3xl transition-all duration-700;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  .abyssal-card:hover {
+    @apply bg-white/[0.05] border-gold-500/30;
+    box-shadow: 0 0 80px rgba(212, 175, 55, 0.1);
+  }
+
+  /* Kinetic Typography */
+  .kinetic-text {
+    @apply inline-block transition-transform duration-1000 ease-out;
+  }
+
+  /* Liquid Effect Mask */
+  .liquid-reveal {
+    mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+    mask-size: 100% 200%;
+    mask-position: 0% 100%;
+    transition: mask-position 1s ease-out;
+  }
+
+  .liquid-reveal:hover {
+    mask-position: 0% 0%;
+  }
+
+  /* Glitch Text */
+  .glitch-text {
+    @apply relative inline-block;
+  }
+
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    @apply absolute top-0 left-0 w-full h-full opacity-0 pointer-events-none;
+  }
+
+  .glitch-text:hover::before {
+    @apply opacity-70 text-cyan-400 translate-x-[-2px] animate-pulse;
+  }
+
+  .glitch-text:hover::after {
+    @apply opacity-70 text-rose-400 translate-x-[2px] animate-pulse;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-midnight-950;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-b from-gold-600 to-transparent rounded-full;
+}
+
+/* Underwater Filter Container */
+.underwater-container {
+  filter: url(#underwater-distortion);
+}
+
+/* Custom Magnetic Cursor */
+.abyssal-cursor {
+  @apply fixed top-0 left-0 w-8 h-8 rounded-full border border-gold-500/50 pointer-events-none z-[9999] transition-transform duration-150 ease-out flex items-center justify-center;
+}
+
+.abyssal-cursor::after {
+  content: '';
+  @apply w-1 h-1 bg-gold-400 rounded-full;
+}
+
+.abyssal-cursor-dot {
+  @apply fixed top-0 left-0 w-1 h-1 bg-gold-500 rounded-full pointer-events-none z-[10000];
+}
+
+/* Perspective Utilities */
+.perspective-2000 {
+  perspective: 2000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+/* Animations */
+@keyframes underwater-ripple {
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.05) translate(-2%, 2%); }
+  100% { transform: scale(1) translate(0, 0); }
+}
+
+.animate-underwater {
+  animation: underwater-ripple 15s infinite ease-in-out;
+}

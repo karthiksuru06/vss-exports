@@ -1,5 +1,5 @@
 {
-  "name": "mahadev-marine-exports",
+  "name": "vss-marine-exports",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,14 +10,23 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "@splinetool/react-spline": "^4.1.0",
+    "@tailwindcss/postcss": "^4.2.2",
+    "@tailwindcss/vite": "^4.2.2",
+    "autoprefixer": "^10.4.27",
     "clsx": "2.1.0",
     "framer-motion": "10.18.0",
+    "gsap": "^3.14.2",
     "lucide-react": "0.344.0",
+    "postcss": "^8.5.8",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-intersection-observer": "9.8.1",
+    "react-lazy-load-image-component": "^1.6.3",
     "react-router-dom": "6.22.3",
-    "tailwind-merge": "2.2.1"
+    "tailwind-merge": "2.2.1",
+    "tailwindcss": "^4.2.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",

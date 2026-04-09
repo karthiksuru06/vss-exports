@@ -22,7 +22,7 @@ const Privacy = () => {
 
                 <div className="prose prose-lg prose-blue max-w-none text-gray-600 space-y-8">
                     <p className="lead">
-                        At Mahadev Marine Exports, we take your privacy seriously. This policy outlines how we collect, use, and protect your personal information in our global operations.
+                        At VV Marine Exports, we take your privacy seriously. This policy outlines how we collect, use, and protect your personal information in our global operations.
                     </p>
 
                     <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
@@ -54,7 +54,7 @@ const Privacy = () => {
 
                     <div className="text-sm text-gray-500 mt-12 pt-8 border-t">
                         Last Updated: January 2026<br />
-                        For questions, contact: <a href="mailto:privacy@mahadevmarine.com" className="text-ocean-600 hover:underline">privacy@mahadevmarine.com</a>
+                        For questions, contact: <a href="mailto:privacy@vvmarine.com" className="text-ocean-600 hover:underline">privacy@vvmarine.com</a>
                     </div>
                 </div>
             </motion.div>

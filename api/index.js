@@ -59,7 +59,7 @@ app.post('/api/inquire', (req, res) => {
 
 // Default route
 app.get('/api', (req, res) => {
-    res.send("Mahadev Marine API is running");
+    res.send("VV Marine API is running");
 });
 
 // Export for Vercel

@@ -4,6 +4,7 @@ import HeroParallax from '../components/home/HeroParallax';
 import DivisionShowcase from '../components/home/DivisionShowcase';
 import GlobalTransportMap from '../components/home/GlobalTransportMap';
 import CertificationsTicker from '../components/shared/CertificationsTicker';
+import BenefitSections from '../components/home/BenefitSections';
 import NewsletterTrap from '../components/shared/NewsletterTrap';
 import { ShieldCheck, Truck, Globe, Clock, MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -47,6 +48,8 @@ const Home = () => {
             </section>
 
             <DivisionShowcase />
+
+            <BenefitSections />
 
             <CertificationsTicker />
 
@@ -110,23 +113,47 @@ const Home = () => {
             {/* Lead Capture Section */}
             <NewsletterTrap />
 
-            {/* Sticky Quick Enquiry Bubble */}
+            {/* Sticky WhatsApp Enquiry Bubble */}
             <motion.div
-                className="fixed bottom-8 right-8 z-40 hidden md:block"
+                className="fixed bottom-8 right-8 z-40"
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 2 }}
             >
-                <div className="relative group">
-                    <div className="absolute inset-0 bg-gold-500 rounded-full blur animate-pulse"></div>
-                    {/* FIXED: Changed from <a> to <Link> to prevent page reload/redirect errors */}
-                    <Link to="/contact" className="relative w-16 h-16 bg-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform cursor-pointer border-2 border-gold-500">
-                        <MessageSquare className="text-midnight-900 w-8 h-8" />
+                <div className="flex flex-col gap-4">
+                    {/* WhatsApp Button */}
+                    <a 
+                        href="https://wa.me/919876543210" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="relative group"
+                    >
+                        <div className="absolute inset-0 bg-emerald-500 rounded-full blur animate-pulse"></div>
+                        <div className="relative w-16 h-16 bg-emerald-600 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform cursor-pointer border-2 border-emerald-400">
+                            <motion.div
+                                animate={{ rotate: [0, 10, -10, 0] }}
+                                transition={{ duration: 2, repeat: Infinity }}
+                            >
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" className="w-8 h-8 brightness-0 invert" />
+                            </motion.div>
+                        </div>
+                        <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-midnight-900 text-white text-xs py-2 px-4 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                            {t('hero.whatsapp')}
+                            <div className="absolute top-1/2 -right-1 -translate-y-1/2 border-4 border-transparent border-l-midnight-900"></div>
+                        </div>
+                    </a>
+
+                    {/* Email/Quote Button */}
+                    <Link to="/contact" className="relative group">
+                        <div className="absolute inset-0 bg-gold-500 rounded-full blur-sm opacity-50"></div>
+                        <div className="relative w-16 h-16 bg-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform cursor-pointer border-2 border-gold-500">
+                            <MessageSquare className="text-midnight-900 w-8 h-8" />
+                        </div>
+                        <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-midnight-900 text-white text-xs py-2 px-4 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                            {t('home.quote.tooltip')}
+                            <div className="absolute top-1/2 -right-1 -translate-y-1/2 border-4 border-transparent border-l-midnight-900"></div>
+                        </div>
                     </Link>
-                    <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-midnight-900 text-white text-xs py-2 px-4 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                        {t('home.quote.tooltip')}
-                        <div className="absolute top-1/2 -right-1 -translate-y-1/2 border-4 border-transparent border-l-midnight-900"></div>
-                    </div>
                 </div>
             </motion.div>
         </div>
