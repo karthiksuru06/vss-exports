@@ -61,7 +61,7 @@ const BenefitSections = () => {
             <section className="bg-midnight-950 py-24">
                 <div className="max-w-7xl mx-auto px-6 text-center">
                     <h2 className="text-4xl md:text-5xl font-serif text-white mb-16">{t('home.process.title')}</h2>
-                    <div className="grid grid-cols-2 lg:grid-cols-6 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8">
                         {processSteps.map((step, i) => (
                             <motion.div 
                                 key={i}

@@ -39,11 +39,11 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-8">
             <Link to="/" className="inline-flex flex-col group w-fit">
-              <div className="flex items-center gap-4 mb-4">
-                <img src={icon} alt="VV Icon" className="h-16 w-auto object-contain" />
+              <div className="flex items-center gap-4 mb-4 transition-transform duration-500 hover:scale-105">
+                <img src={icon} alt="VV Icon" className="h-[5.5rem] w-auto object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.05)] group-hover:drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all duration-500" />
                 <div className="flex flex-col">
-                  <span className="text-2xl font-serif font-bold text-white">{t('brand.vv')} <span className="text-gold-500">{t('brand.marine')}</span></span>
-                  <span className="text-[10px] tracking-[0.3em] uppercase text-ocean-300 font-bold">{t('brand.exports')}</span>
+                  <span className="text-3xl font-serif font-bold text-white">{t('brand.vv')} <span className="text-gold-500">{t('brand.marine')}</span></span>
+                  <span className="text-[11px] tracking-[0.4em] uppercase text-ocean-300 font-bold mt-1">{t('brand.exports')}</span>
                 </div>
               </div>
             </Link>
@@ -54,7 +54,7 @@ const Footer = () => {
               {[
                 { Icon: Facebook, label: 'Facebook', href: 'https://facebook.com/vvmarine' },
                 { Icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/company/vv-marine-exports' },
-                { Icon: Instagram, label: 'Instagram', href: 'https://instagram.com/vvmarine' }
+                { Icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/vv_marine_exports?utm_source=qr&igsh=bTd6NTJwbG5nYTdz' }
               ].map(({ Icon, label, href }, i) => (
                 <a
                   key={i}

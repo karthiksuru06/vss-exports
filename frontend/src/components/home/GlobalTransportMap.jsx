@@ -51,8 +51,8 @@ const ShippingRoute = ({ destination, index, isActive }) => {
       {/* Animated travel indicator */}
       {isActive && (
         <motion.g
-          initial={{ offsetDistance: '0%' }}
-          animate={{ offsetDistance: '100%' }}
+          initial={{ "--offset-distance": "0%" }}
+          animate={{ "--offset-distance": "100%" }}
           transition={{
             duration: 3,
             repeat: Infinity,
@@ -60,6 +60,7 @@ const ShippingRoute = ({ destination, index, isActive }) => {
           }}
           style={{
             offsetPath: `path("${path}")`,
+            offsetDistance: "var(--offset-distance)",
           }}
         >
           <circle r="4" fill="#2dd4bf" />
@@ -124,8 +125,8 @@ const DestinationMarker = ({ destination, isActive, onClick, t }) => {
         x={destination.x}
         y={destination.y + 25}
         textAnchor="middle"
-        className={`text-xs font-medium fill-current ${isActive ? 'text-white' : 'text-white/50'
-          }`}
+        className={`text-[14px] md:text-xs font-bold fill-current ${isActive ? 'text-white' : 'text-white/60'
+          } drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]`}
       >
         {t(destination.nameKey)}
       </text>

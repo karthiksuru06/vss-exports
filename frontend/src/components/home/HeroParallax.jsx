@@ -21,6 +21,7 @@ import {
   TextRevealByWord,
   ShinyText,
 } from '../ui/AnimatedText';
+import { CONTACT_INFO } from '../../utils/constants';
 
 const HeroParallax = () => {
   const containerRef = useRef(null);
@@ -104,7 +105,7 @@ const HeroParallax = () => {
 
         {/* Main Title - Split animation with gradient highlight */}
         <motion.h1
-          className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-serif font-bold text-white mb-6 leading-[0.9] tracking-tight"
+          className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-serif font-bold text-white mb-6 leading-[0.9] tracking-tight"
           initial={{ opacity: 0 }}
           animate={isLoaded ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.4 }}
@@ -222,7 +223,7 @@ const HeroParallax = () => {
             </motion.button>
           </Link>
 
-          <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" className="group">
+          <a href={`https://wa.me/${CONTACT_INFO.whatsapp.replace(/\+/g, '').replace(/\s/g, '')}`} target="_blank" rel="noopener noreferrer" className="group">
             <motion.button
               className="px-10 py-4 bg-emerald-600 border border-emerald-500/30 hover:bg-emerald-500 text-white font-bold text-lg tracking-wide rounded-sm transition-all duration-300 shadow-lg shadow-emerald-950/20"
               whileHover={{ scale: 1.02, y: -2 }}

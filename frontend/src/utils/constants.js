@@ -2833,19 +2833,22 @@ export const CONTACT_INFO = {
   processingLocations: 'Visakhapatnam & Kakinada',
   contacts: [
     {
-      name: 'Harsha Arigela',
-      title: 'Chairman & Executive Director',
-      phone: '+91 9059861256',
-      email: 'vvmarineexports@gmail.com'
+      name: 'Mr. Vudi Vivek',
+      title: 'Co-Founder & Director',
+      phone: '+91 9392505751',
+      email: 'vvmarineexports@gmail.com',
+      responsibility: 'Handles clients and export logistics'
     },
     {
-      name: 'Mahesh Revu',
-      title: 'Operational Director',
-      phone: '+91 7989591952',
-      email: 'vvmarineinternational@gmail.com'
+      name: 'Mr. M. Yuva Vishnu',
+      title: 'Co-Founder & Director',
+      phone: '+91 7032367611',
+      email: 'vvmarineinternational@gmail.com',
+      responsibility: 'Handles sourcing and operations'
     }
   ],
   responseTime: 'Email inquiry: Response within 2 hours',
   availability: 'Phone: 8 AM - 8 PM IST',
-  whatsapp: 'Real-time updates & photos'
+  whatsapp: '+91 9392505751'
 };
+

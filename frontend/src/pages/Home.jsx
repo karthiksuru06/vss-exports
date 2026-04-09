@@ -5,10 +5,12 @@ import DivisionShowcase from '../components/home/DivisionShowcase';
 import GlobalTransportMap from '../components/home/GlobalTransportMap';
 import CertificationsTicker from '../components/shared/CertificationsTicker';
 import BenefitSections from '../components/home/BenefitSections';
+import OurLeadership from '../components/home/OurLeadership';
 import NewsletterTrap from '../components/shared/NewsletterTrap';
 import { ShieldCheck, Truck, Globe, Clock, MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../hooks/useTranslation';
+import { CONTACT_INFO } from '../utils/constants';
 import processing1 from '../assets/images/processing-1.png';
 import blackTigerImg from '../assets/products/black-tiger.png';
 import vannameiImg from '../assets/products/vannamei.png';
@@ -50,6 +52,8 @@ const Home = () => {
             <DivisionShowcase />
 
             <BenefitSections />
+
+            <OurLeadership />
 
             <CertificationsTicker />
 
@@ -123,7 +127,7 @@ const Home = () => {
                 <div className="flex flex-col gap-4">
                     {/* WhatsApp Button */}
                     <a 
-                        href="https://wa.me/919876543210" 
+                        href={`https://wa.me/${CONTACT_INFO.whatsapp.replace(/\+/g, '').replace(/\s/g, '')}`} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="relative group"

@@ -85,13 +85,13 @@ const DivisionShowcase = () => {
 
                   <div className="w-full h-px bg-white/30 mb-6 origin-left transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
 
-                  <p className="text-ocean-100/80 text-lg mb-8 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100 line-clamp-3">
+                  <p className="text-ocean-100/80 text-base md:text-lg mb-6 md:mb-8 md:opacity-0 group-hover:opacity-100 transform md:translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100 line-clamp-4 md:line-clamp-3">
                     {t(division.descKey)}
                   </p>
 
-                  <ul className="space-y-2 mb-8 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200">
+                  <ul className="space-y-2 mb-8 md:opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200">
                     {division.featureKeys.map((featKey, i) => (
-                      <li key={i} className="flex items-center text-sm text-gold-400 font-medium uppercase tracking-wide">
+                      <li key={i} className="flex items-center text-[10px] md:text-sm text-gold-400 font-medium uppercase tracking-wide">
                         <span className="w-1.5 h-1.5 rounded-full bg-gold-500 mr-2"></span>
                         {t(featKey)}
                       </li>

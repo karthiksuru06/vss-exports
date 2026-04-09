@@ -6,8 +6,8 @@ import { useResponsive } from '../../hooks/useResponsive';
 import { useTranslation } from '../../hooks/useTranslation';
 import { useAuth } from '../../context/AuthContext';
 import { NAV_ITEMS } from '../../utils/constants';
-import logo from '../../assets/images/logo.png';
-import icon from '../../assets/images/icon.png';
+import logo from '../../assets/images/logo_premium.png';
+import icon from '../../assets/images/icon_premium.png';
 
 import cubesTexture from '../../assets/textures/cubes.png';
 
@@ -75,37 +75,35 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
               className="flex items-center space-x-3 group w-auto shrink-0 relative"
             >
-              <div className="relative flex items-center gap-4">
+              <div className="relative flex items-center gap-2 sm:gap-4">
                 <motion.div 
-                  className="relative pointer-events-auto"
+                  className="relative pointer-events-auto shrink-0"
                   animate={{ 
-                    y: [0, -3, 0],
+                    y: [0, -4, 0],
                   }}
                   whileHover={{ 
-                    rotate: 360,
-                    scale: 1.1
+                    scale: 1.05,
+                    filter: "drop-shadow(0 0 20px rgba(212,175,55,0.3))"
                   }}
                   transition={{ 
-                    y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-                    rotate: { duration: 0.8, ease: "easeOut" }
+                    y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+                    scale: { type: "spring", stiffness: 400, damping: 15 }
                   }}
                 >
                   <img
                     src={icon}
                     alt="VV Icon"
-                    className="relative h-14 w-auto object-contain drop-shadow-xl"
+                    className="relative h-12 sm:h-[4.5rem] md:h-[5rem] w-auto object-contain transition-all duration-300"
                   />
-                  {/* Subtle glow behind icon */}
-                  <div className="absolute inset-0 bg-gold-500/20 blur-xl rounded-full scale-110 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </motion.div>
 
-                <div className="flex flex-col">
-                  <span className="text-xl md:text-2xl font-serif font-bold tracking-tight text-white leading-none">
+                <div className="flex flex-col ml-0.5 sm:ml-1 shrink-0">
+                  <span className="text-lg sm:text-xl md:text-3xl font-serif font-bold tracking-tight text-white leading-none whitespace-nowrap">
                     {t('brand.vv')} <span className="text-gold-500 tracking-wide">{t('brand.marine')}</span>
                   </span>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="h-px w-4 bg-gold-600/50"></span>
-                    <span className="text-[9px] tracking-[0.4em] uppercase text-ocean-300 font-bold opacity-90">
+                  <div className="flex items-center gap-1 sm:gap-2 mt-0.5 sm:mt-1 whitespace-nowrap">
+                    <span className="h-px w-3 sm:w-6 bg-gold-500/80"></span>
+                    <span className="text-[8px] sm:text-[10px] md:text-xs tracking-[0.2em] sm:tracking-[0.4em] uppercase text-ocean-300 font-bold opacity-100">
                       {t('brand.exports')}
                     </span>
                   </div>
