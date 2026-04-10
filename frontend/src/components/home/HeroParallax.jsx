@@ -22,6 +22,7 @@ import {
   ShinyText,
 } from '../ui/AnimatedText';
 import { CONTACT_INFO } from '../../utils/constants';
+import icon from '../../assets/images/icon_premium.png';
 
 const HeroParallax = () => {
   const containerRef = useRef(null);
@@ -78,28 +79,28 @@ const HeroParallax = () => {
         style={{ y: textY, opacity, scale }}
         className="relative z-30 flex flex-col items-center justify-center h-full px-6 text-center max-w-6xl mx-auto"
       >
-        {/* Top Badge - Animated entry */}
+        {/* Premium Global Seafood Exporter text replaced by Logo */}
         <div className="overflow-hidden mb-8">
           <motion.div
             initial={{ y: 100, opacity: 0 }}
             animate={isLoaded ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-            className="flex items-center gap-3 px-5 py-2 rounded-full border border-gold-500/30 bg-midnight-900/60 backdrop-blur-md"
+            className="flex justify-center items-center"
           >
-            <motion.span
-              className="w-2 h-2 rounded-full bg-gold-500"
-              animate={{ scale: [1, 1.3, 1], opacity: [1, 0.7, 1] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            <motion.img
+              src={icon}
+              alt="VV Marine Icon"
+              className="h-28 sm:h-36 md:h-40 w-auto object-contain filter drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]"
+              animate={{ y: [0, -6, 0] }}
+              whileHover={{ 
+                scale: 1.05,
+                filter: "drop-shadow(0 0 30px rgba(212,175,55,0.5))"
+              }}
+              transition={{ 
+                y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                scale: { type: "spring", stiffness: 300, damping: 15 }
+              }}
             />
-            <span className="text-white/90 text-xs font-semibold tracking-[0.2em] uppercase">
-              {t('brand.tagline')}
-            </span>
-            <motion.div
-              animate={{ rotate: [0, 10, -10, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <Anchor className="w-4 h-4 text-gold-500" />
-            </motion.div>
           </motion.div>
         </div>
 

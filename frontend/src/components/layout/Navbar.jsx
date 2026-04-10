@@ -93,7 +93,7 @@ const Navbar = () => {
                   <img
                     src={icon}
                     alt="VV Icon"
-                    className="relative h-12 sm:h-[4.5rem] md:h-[5rem] w-auto object-contain transition-all duration-300"
+                    className="relative h-14 sm:h-[5.5rem] md:h-[6.5rem] w-auto object-contain transition-all duration-300"
                   />
                 </motion.div>
 
