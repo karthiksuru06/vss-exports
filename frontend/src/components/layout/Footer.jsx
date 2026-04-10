@@ -38,9 +38,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           {/* Brand */}
           <div className="space-y-8">
-            <Link to="/" className="inline-flex flex-col group w-fit">
-              <div className="flex items-center gap-4 mb-4 transition-transform duration-500 hover:scale-105">
-                <img src={icon} alt="VV Icon" className="h-[5.5rem] w-auto object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.05)] group-hover:drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all duration-500" />
+            <Link to="/" className="inline-flex flex-col group w-fit pr-4">
+              <div className="flex items-center gap-6 sm:gap-8 mb-4 transition-transform duration-500 hover:scale-105">
+                <img src={icon} alt="VV Icon" className="h-[5.5rem] w-auto object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.05)] group-hover:drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all duration-500 mr-2" />
                 <div className="flex flex-col">
                   <span className="text-3xl font-serif font-bold text-white">{t('brand.vv')} <span className="text-gold-500">{t('brand.marine')}</span></span>
                   <span className="text-[11px] tracking-[0.4em] uppercase text-ocean-300 font-bold mt-1">{t('brand.exports')}</span>

@@ -75,9 +75,9 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
               className="flex items-center space-x-3 group w-auto shrink-0 relative"
             >
-              <div className="relative flex items-center gap-2 sm:gap-4">
+              <div className="relative flex items-center gap-4 sm:gap-6 pr-2">
                 <motion.div 
-                  className="relative pointer-events-auto shrink-0"
+                  className="relative pointer-events-auto shrink-0 mr-2 sm:mr-4"
                   animate={{ 
                     y: [0, -4, 0],
                   }}
@@ -97,7 +97,7 @@ const Navbar = () => {
                   />
                 </motion.div>
 
-                <div className="flex flex-col ml-0.5 sm:ml-1 shrink-0">
+                <div className="flex flex-col shrink-0">
                   <span className="text-lg sm:text-xl md:text-3xl font-serif font-bold tracking-tight text-white leading-none whitespace-nowrap">
                     {t('brand.vv')} <span className="text-gold-500 tracking-wide">{t('brand.marine')}</span>
                   </span>
