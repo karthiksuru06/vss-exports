@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Facebook, Linkedin, Instagram, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../../hooks/useTranslation';
-import icon from '../../assets/images/icon.png';
-import logo from '../../assets/images/logo.png';
+import icon from '../../assets/images/icon_premium.png';
+import logo from '../../assets/images/logo_premium.png';
 
 const Footer = () => {
   const { t } = useTranslation();
