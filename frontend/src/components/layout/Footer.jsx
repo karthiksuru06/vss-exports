@@ -98,9 +98,12 @@ const Footer = () => {
                 <MapPin className="h-5 w-5 text-gold-500 shrink-0 mt-1" />
                 <span className="text-white/70 text-sm leading-relaxed">{t('footer.address')}<br />{t('footer.city')}</span>
               </li>
-              <li className="flex items-center gap-4">
-                <Phone className="h-5 w-5 text-gold-500 shrink-0" />
-                <span className="text-white/70 text-sm">+91 98765 43210</span>
+              <li className="flex items-start gap-4">
+                <Phone className="h-5 w-5 text-gold-500 shrink-0 mt-1" />
+                <span className="text-white/70 text-sm">
+                  +91 9392505751<br />
+                  +91 7032367611
+                </span>
               </li>
               <li className="flex items-center gap-4">
                 <Mail className="h-5 w-5 text-gold-500 shrink-0" />
