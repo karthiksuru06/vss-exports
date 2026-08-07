@@ -125,7 +125,7 @@ const Contact = () => {
                                     </div>
                                     <div>
                                         <p className="font-bold text-lg">{t('contact.exportDesk')}</p>
-                                        <p className="text-white/60 font-mono">+91 98765 43210</p>
+                                        <p className="text-white/60 font-mono">+91 93925 05751</p>
                                     </div>
                                 </div>
 
@@ -135,7 +135,7 @@ const Contact = () => {
                                     </div>
                                     <div>
                                         <p className="font-bold text-lg">{t('contact.email')}</p>
-                                        <p className="text-white/60">export@vvmarine.com</p>
+                                        <p className="text-white/60">vvmarineexports@gmail.com</p>
                                     </div>
                                 </div>
                             </div>

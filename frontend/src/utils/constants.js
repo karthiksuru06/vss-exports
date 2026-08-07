@@ -2843,8 +2843,22 @@ export const CONTACT_INFO = {
       name: 'Mr. M. Yuva Vishnu',
       title: 'Co-Founder & Director',
       phone: '+91 7032367611',
-      email: 'vvmarineinternational@gmail.com',
+      email: 'vvmarineexports@gmail.com',
       responsibility: 'Handles sourcing and operations'
+    },
+    {
+      name: 'Mr. Syed Basha',
+      title: 'Marketing Director',
+      phone: '+91 9392505751',
+      email: 'vvmarineexports@gmail.com',
+      responsibility: 'Leads global marketing strategy and brand growth'
+    },
+    {
+      name: 'Mr. Patan Sameer Khan',
+      title: 'Marketing Manager',
+      phone: '+91 9392505751',
+      email: 'vvmarineexports@gmail.com',
+      responsibility: 'Manages marketing campaigns and partner engagement'
     }
   ],
   responseTime: 'Email inquiry: Response within 2 hours',

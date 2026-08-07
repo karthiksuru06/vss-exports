@@ -54,7 +54,7 @@ const Privacy = () => {
 
                     <div className="text-sm text-gray-500 mt-12 pt-8 border-t">
                         Last Updated: January 2026<br />
-                        For questions, contact: <a href="mailto:privacy@vvmarine.com" className="text-ocean-600 hover:underline">privacy@vvmarine.com</a>
+                        For questions, contact: <a href="mailto:vvmarineexports@gmail.com" className="text-ocean-600 hover:underline">vvmarineexports@gmail.com</a>
                     </div>
                 </div>
             </motion.div>

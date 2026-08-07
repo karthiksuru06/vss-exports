@@ -107,7 +107,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-4">
                 <Mail className="h-5 w-5 text-gold-500 shrink-0" />
-                <span className="text-white/70 text-sm">export@vvmarine.com</span>
+                <span className="text-white/70 text-sm">vvmarineexports@gmail.com</span>
               </li>
             </ul>
           </div>

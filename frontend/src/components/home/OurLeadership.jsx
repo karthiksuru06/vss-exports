@@ -55,14 +55,23 @@ const OurLeadership = () => {
                         >
                             {/* Decorative Corner */}
                             <div className="absolute top-0 right-0 w-24 h-24 bg-gold-500/5 rounded-bl-full group-hover:bg-gold-500/10 transition-colors"></div>
-                            
+
                             <div className="flex flex-col h-full">
                                 <div className="flex items-start justify-between mb-8">
-                                    <div className="w-20 h-20 rounded-2xl bg-midnight-900 flex items-center justify-center text-gold-500 shadow-xl group-hover:scale-110 transition-transform duration-500">
-                                        <User size={40} strokeWidth={1.5} />
+                                    <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-2xl bg-gradient-to-br from-midnight-900 via-midnight-800 to-ocean-800 flex items-center justify-center text-gold-500 shadow-xl overflow-hidden group-hover:scale-105 transition-transform duration-500 ring-1 ring-gold-500/20">
+                                        {leader.photo ? (
+                                            <img
+                                                src={leader.photo}
+                                                alt={leader.name}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        ) : (
+                                            <User size={56} strokeWidth={1.5} />
+                                        )}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-midnight-900/30 to-transparent pointer-events-none"></div>
                                     </div>
                                     <div className="text-right">
-                                        <span className="block text-xs font-bold text-gold-600 uppercase tracking-widest mb-1">Director</span>
+                                        <span className="block text-xs font-bold text-gold-600 uppercase tracking-widest mb-1">{leader.title}</span>
                                         <span className="block text-slate-400 text-sm font-medium italic">VV Marine Exports</span>
                                     </div>
                                 </div>
