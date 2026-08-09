@@ -2,5 +2,5 @@
   "name": "vss-marine-api",
   "version": "1.0.0",
   "private": true,
-  "description": "Vercel serverless API routes (no runtime dependencies — logic lives in /shared/api)"
+  "description": "Vercel serverless routes — logic in api/lib (no npm dependencies)",
 }

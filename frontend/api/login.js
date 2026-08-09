@@ -1,5 +1,3 @@
-const memoryStore = require('./lib/memoryStore');
-const { loginUser } = require('./lib/handlers');
-const { createPostHandler } = require('./lib/vercel');
+const { createPostHandler, loginUser } = require('./vv-handlers');
 
-module.exports = createPostHandler((body) => loginUser(memoryStore, body));
+module.exports = createPostHandler(loginUser);

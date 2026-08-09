@@ -1,5 +1,3 @@
-const memoryStore = require('./lib/memoryStore');
-const { submitInquiry } = require('./lib/handlers');
-const { createPostHandler } = require('./lib/vercel');
+const { createPostHandler, submitInquiry } = require('./vv-handlers');
 
-module.exports = createPostHandler((body) => submitInquiry(memoryStore, body));
+module.exports = createPostHandler(submitInquiry);
