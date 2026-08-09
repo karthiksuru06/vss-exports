@@ -10,6 +10,7 @@
  */
 
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, ShoppingCart, FileText, Ruler, MapPin, Package, Award, Settings, Grid3X3, Fish, Shell, CircleDot } from 'lucide-react';
 import ProductArcWheel from './ProductArcWheel';
@@ -42,6 +43,7 @@ const getLocalizedInfo = (product, lang = 'en') => {
 
 function ProductsPageLayout() {
   const { t, lang } = useTranslation();
+  const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState('all');
   
   // Filter products based on selected category
@@ -91,6 +93,25 @@ function ProductsPageLayout() {
     setActiveProduct(null);
     setIsArcLocked(false);
   }, []);
+
+  const handleOrderClick = useCallback((product) => {
+    navigate('/contact', {
+      state: {
+        orderProduct: product?.name,
+        productInterest: product?.filterCategory || 'shrimp',
+      },
+    });
+  }, [navigate]);
+
+  const handleQuoteClick = useCallback((product) => {
+    navigate('/contact', {
+      state: {
+        orderProduct: product?.name,
+        productInterest: product?.filterCategory || 'shrimp',
+        quote: true,
+      },
+    });
+  }, [navigate]);
 
   const toggleTheme = () => {
     setTheme(t => t === 'deep-ocean' ? 'surface-light' : 'deep-ocean');
@@ -268,8 +289,8 @@ function ProductsPageLayout() {
                   product={focusedProduct}
                   isLight={isLight}
                   currentLanguage={currentLanguage}
-                  onOrderClick={(p) => console.log('Order:', p.name)}
-                  onQuoteClick={(p) => console.log('Quote:', p.name)}
+                  onOrderClick={handleOrderClick}
+                  onQuoteClick={handleQuoteClick}
                   t={t}
                 />
               )}
@@ -304,8 +325,8 @@ function ProductsPageLayout() {
                 isLocked={isArcLocked}
                 onFocusChange={handleFocusChange}
                 onProductClick={handleProductClick}
-                onOrderClick={(p) => console.log('Order:', p.name)}
-                onQuoteClick={(p) => console.log('Quote:', p.name)}
+                onOrderClick={handleOrderClick}
+                onQuoteClick={handleQuoteClick}
                 outerRadius={outerRadius}
                 innerRadius={innerRadius}
                 itemSize={itemSize}
@@ -354,8 +375,8 @@ function ProductsPageLayout() {
                 isLocked={isArcLocked}
                 onFocusChange={handleFocusChange}
                 onProductClick={handleProductClick}
-                onOrderClick={(p) => console.log('Order:', p.name)}
-                onQuoteClick={(p) => console.log('Quote:', p.name)}
+                onOrderClick={handleOrderClick}
+                onQuoteClick={handleQuoteClick}
                 outerRadius={outerRadius}
                 innerRadius={innerRadius}
                 itemSize={itemSize}

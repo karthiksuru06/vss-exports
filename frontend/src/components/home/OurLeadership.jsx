@@ -106,18 +106,22 @@ const OurLeadership = () => {
                                 </div>
 
                                 <div className="flex flex-wrap gap-4 pt-6 border-t border-slate-100">
-                                    <a 
-                                        href={`tel:${leader.phone}`}
-                                        className="inline-flex items-center gap-2 px-6 py-3 bg-midnight-900 text-white rounded-full text-sm font-bold hover:bg-gold-600 transition-colors duration-300"
-                                    >
-                                        {leader.phone}
-                                    </a>
-                                    <a 
-                                        href={`mailto:${leader.email}`}
-                                        className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 text-midnight-900 rounded-full text-sm font-bold hover:border-gold-500 transition-colors duration-300"
-                                    >
-                                        Contact Email
-                                    </a>
+                                    {leader.phone && (
+                                        <a 
+                                            href={`tel:${leader.phone.replace(/\s/g, '')}`}
+                                            className="inline-flex items-center gap-2 px-6 py-3 bg-midnight-900 text-white rounded-full text-sm font-bold hover:bg-gold-600 transition-colors duration-300"
+                                        >
+                                            {leader.phone}
+                                        </a>
+                                    )}
+                                    {leader.email && (
+                                        <a 
+                                            href={`mailto:${leader.email}`}
+                                            className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 text-midnight-900 rounded-full text-sm font-bold hover:border-gold-500 transition-colors duration-300"
+                                        >
+                                            Contact Email
+                                        </a>
+                                    )}
                                 </div>
                             </div>
                         </motion.div>

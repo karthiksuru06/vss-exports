@@ -28,19 +28,34 @@ export const AuthProvider = ({ children }) => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(userData),
             });
-            const data = await response.json();
-            if (response.ok) {
+
+            const raw = await response.text();
+            let data = {};
+            try {
+                data = raw ? JSON.parse(raw) : {};
+            } catch {
+                const snippet = raw.trim().slice(0, 80);
+                const isHtml = raw.trim().startsWith('<') || snippet.toLowerCase().includes('the page');
+                const error = isHtml
+                    ? 'Login service is unavailable. Please try again in a moment or contact us on WhatsApp.'
+                    : `Invalid server response: ${snippet}`;
+                console.error('Login failed: non-JSON response', snippet);
+                return { ok: false, error };
+            }
+
+            if (response.ok && data.user) {
                 setUser(data.user);
                 localStorage.setItem('vv_user', JSON.stringify(data.user));
                 setIsLoginModalOpen(false);
-                return true;
-            } else {
-                console.error('Login failed:', data.error);
-                return false;
+                return { ok: true };
             }
+
+            const error = data.error || `Unable to sign in (${response.status})`;
+            console.error('Login failed:', error);
+            return { ok: false, error };
         } catch (error) {
             console.error('Login error:', error);
-            return false;
+            return { ok: false, error: 'Network error. Check your connection and try again.' };
         }
     };
 

@@ -1,8 +1,10 @@
 import React from 'react';
 import { MessageCircle } from 'lucide-react';
 
-const WhatsAppButton = ({ phoneNumber = '+919876543210' }) => {
-  const whatsappUrl = `https://wa.me/${phoneNumber.replace(/[^0-9]/g, '')}`;
+import { CONTACT_INFO, getWhatsAppUrl } from '../../utils/constants';
+
+const WhatsAppButton = ({ phoneNumber = CONTACT_INFO.whatsapp }) => {
+  const whatsappUrl = getWhatsAppUrl(phoneNumber);
 
   return (
     <a

@@ -10,7 +10,7 @@ import NewsletterTrap from '../components/shared/NewsletterTrap';
 import { ShieldCheck, Truck, Globe, Clock, MessageSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../hooks/useTranslation';
-import { CONTACT_INFO } from '../utils/constants';
+import { CONTACT_INFO, getWhatsAppUrl } from '../utils/constants';
 import processing1 from '../assets/images/processing-1.png';
 import blackTigerImg from '../assets/products/black-tiger.png';
 import vannameiImg from '../assets/products/vannamei.png';
@@ -127,7 +127,7 @@ const Home = () => {
                 <div className="flex flex-col gap-4">
                     {/* WhatsApp Button */}
                     <a 
-                        href={`https://wa.me/${CONTACT_INFO.whatsapp.replace(/\+/g, '').replace(/\s/g, '')}`} 
+                        href={getWhatsAppUrl()} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="relative group"

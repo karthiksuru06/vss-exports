@@ -2833,36 +2833,38 @@ export const CONTACT_INFO = {
   processingLocations: 'Visakhapatnam & Kakinada',
   contacts: [
     {
-      name: 'Mr. Vudi Vivek',
-      title: 'Co-Founder & Director',
-      phone: '+91 9392505751',
+      name: 'VUDI VIVEK',
+      title: 'Founder & CEO',
+      phone: '+91 7674999037',
       email: 'vvmarineexports@gmail.com',
-      responsibility: 'Handles clients and export logistics'
+      responsibility: 'Vision, Strategy & Business Leadership'
     },
     {
-      name: 'Mr. M. Yuva Vishnu',
-      title: 'Co-Founder & Director',
+      name: 'M. YUVA VISHNU',
+      title: 'Co-Founder & Director – Operations',
       phone: '+91 7032367611',
       email: 'vvmarineexports@gmail.com',
-      responsibility: 'Handles sourcing and operations'
+      responsibility: 'Operations, Supply Chain & Execution'
     },
     {
-      name: 'Mr. Syed Basha',
+      name: 'SYED BASHA',
       title: 'Marketing Director',
-      phone: '+91 9392505751',
-      email: 'vvmarineexports@gmail.com',
-      responsibility: 'Leads global marketing strategy and brand growth'
+      responsibility: 'Marketing, Branding & Business Development'
     },
     {
-      name: 'Mr. Patan Sameer Khan',
+      name: 'PATAN SAMEER KHAN',
       title: 'Marketing Manager',
-      phone: '+91 9392505751',
-      email: 'vvmarineexports@gmail.com',
-      responsibility: 'Manages marketing campaigns and partner engagement'
+      responsibility: 'Marketing Coordination & Client Relations'
     }
   ],
   responseTime: 'Email inquiry: Response within 2 hours',
   availability: 'Phone: 8 AM - 8 PM IST',
-  whatsapp: '+91 9392505751'
+  whatsapp: '+91 7674999037',
+  primaryPhone: '+91 7674999037',
+  operationsPhone: '+91 7032367611'
 };
+
+/** WhatsApp deep link for wa.me (digits only, India country code). */
+export const getWhatsAppUrl = (phone = CONTACT_INFO.whatsapp) =>
+  `https://wa.me/${phone.replace(/\D/g, '')}`;
 

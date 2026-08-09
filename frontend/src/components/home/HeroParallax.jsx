@@ -21,7 +21,7 @@ import {
   TextRevealByWord,
   ShinyText,
 } from '../ui/AnimatedText';
-import { CONTACT_INFO } from '../../utils/constants';
+import { CONTACT_INFO, getWhatsAppUrl } from '../../utils/constants';
 import icon from '../../assets/images/icon_premium.png';
 
 const HeroParallax = () => {
@@ -224,7 +224,7 @@ const HeroParallax = () => {
             </motion.button>
           </Link>
 
-          <a href={`https://wa.me/${CONTACT_INFO.whatsapp.replace(/\+/g, '').replace(/\s/g, '')}`} target="_blank" rel="noopener noreferrer" className="group">
+          <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" className="group">
             <motion.button
               className="px-10 py-4 bg-emerald-600 border border-emerald-500/30 hover:bg-emerald-500 text-white font-bold text-lg tracking-wide rounded-sm transition-all duration-300 shadow-lg shadow-emerald-950/20"
               whileHover={{ scale: 1.02, y: -2 }}

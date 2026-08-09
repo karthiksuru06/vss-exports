@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Facebook, Linkedin, Instagram, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../../hooks/useTranslation';
+import { CONTACT_INFO } from '../../utils/constants';
 import icon from '../../assets/images/icon_premium.png';
 import logo from '../../assets/images/logo_premium.png';
 
@@ -101,8 +102,8 @@ const Footer = () => {
               <li className="flex items-start gap-4">
                 <Phone className="h-5 w-5 text-gold-500 shrink-0 mt-1" />
                 <span className="text-white/70 text-sm">
-                  +91 9392505751<br />
-                  +91 7032367611
+                  {CONTACT_INFO.primaryPhone}<br />
+                  {CONTACT_INFO.operationsPhone}
                 </span>
               </li>
               <li className="flex items-center gap-4">

@@ -19,6 +19,7 @@
  */
 
 import React, { useRef, useState, useLayoutEffect, useMemo, Suspense } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -192,7 +193,19 @@ const ProductCard = ({ product, onClick, t }) => {
 // PRODUCT MODAL (FULLSCREEN)
 // --------------------------------------------------------------------------
 const ProductModal = ({ product, onClose, t }) => {
+  const navigate = useNavigate();
   if (!product) return null;
+
+  const goToContact = (quote = false) => {
+    onClose();
+    navigate('/contact', {
+      state: {
+        orderProduct: product.name,
+        productInterest: product.filterCategory || 'shrimp',
+        quote,
+      },
+    });
+  };
 
   return (
     <motion.div 
@@ -267,11 +280,19 @@ const ProductModal = ({ product, onClose, t }) => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-               <button className="flex-1 bg-gold-600 hover:bg-gold-500 text-midnight-950 font-bold py-4 px-8 rounded-2xl flex items-center justify-center gap-3 transition-all transform active:scale-95 shadow-lg shadow-gold-500/20">
+               <button
+                 type="button"
+                 onClick={() => goToContact(false)}
+                 className="flex-1 bg-gold-600 hover:bg-gold-500 text-midnight-950 font-bold py-4 px-8 rounded-2xl flex items-center justify-center gap-3 transition-all transform active:scale-95 shadow-lg shadow-gold-500/20"
+               >
                  <ShoppingCart className="w-5 h-5" />
                  {t('products.orderNow') || 'Inquire Now'}
                </button>
-               <button className="flex-1 bg-white/5 hover:bg-white/10 text-white font-bold py-4 px-8 rounded-2xl flex items-center justify-center gap-3 transition-all border border-white/10">
+               <button
+                 type="button"
+                 onClick={() => goToContact(true)}
+                 className="flex-1 bg-white/5 hover:bg-white/10 text-white font-bold py-4 px-8 rounded-2xl flex items-center justify-center gap-3 transition-all border border-white/10"
+               >
                  <FileText className="w-5 h-5" />
                  {t('products.requestQuote') || 'Tech Specs'}
                </button>

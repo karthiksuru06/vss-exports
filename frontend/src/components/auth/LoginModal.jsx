@@ -7,13 +7,18 @@ const LoginModal = () => {
     const { isLoginModalOpen, closeLoginModal, login } = useAuth();
     const [formData, setFormData] = useState({ name: '', email: '', phone: '', company: '' });
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
 
     if (!isLoginModalOpen) return null;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-        await login(formData);
+        setError('');
+        const result = await login(formData);
+        if (!result?.ok) {
+            setError(result?.error || 'Could not complete sign in. Please try again.');
+        }
         setIsLoading(false);
     };
 
@@ -51,6 +56,11 @@ const LoginModal = () => {
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-4 relative z-10">
+                        {error && (
+                            <p className="text-sm text-red-300 bg-red-500/10 border border-red-400/30 rounded-lg px-3 py-2">
+                                {error}
+                            </p>
+                        )}
                         <div className="relative group">
                             <User className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-gold-400 transition-colors" size={18} />
                             <input

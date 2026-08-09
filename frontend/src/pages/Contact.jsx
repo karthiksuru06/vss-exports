@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Phone, Mail, Send, Anchor, Fish, FlaskConical, CheckCircle, Lock } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslation';
+import { CONTACT_INFO } from '../utils/constants';
 import { useAuth } from '../context/AuthContext';
 
 const Contact = () => {
     const { t } = useTranslation();
     const { user, openLoginModal } = useAuth();
+    const location = useLocation();
     const [activeTab, setActiveTab] = useState('shrimp');
     const [submitted, setSubmitted] = useState(false);
     const [formData, setFormData] = useState({
@@ -29,6 +32,24 @@ const Contact = () => {
             }));
         }
     }, [user]);
+
+    useEffect(() => {
+        const state = location.state;
+        if (!state) return;
+
+        if (state.productInterest === 'seafood') setActiveTab('seafood');
+        else if (state.productInterest === 'bio') setActiveTab('bio');
+        else setActiveTab('shrimp');
+
+        if (state.orderProduct) {
+            setFormData(prev => ({
+                ...prev,
+                message: prev.message
+                    ? prev.message
+                    : `Order inquiry: ${state.orderProduct}`,
+            }));
+        }
+    }, [location.state]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -65,11 +86,13 @@ const Contact = () => {
                     else setFormData(prev => ({ ...prev, port: '', message: '' }));
                 }, 5000);
             } else {
-                console.error('Submission failed');
+                const data = await response.json().catch(() => ({}));
+                console.error('Submission failed', data.error || response.status);
+                alert('Could not send your inquiry. Please try again or WhatsApp us directly.');
             }
         } catch (error) {
             console.error('Network error', error);
-            setSubmitted(true); // Fallback for demo
+            alert('Network error. Please check your connection or contact us on WhatsApp.');
         }
     };
 
@@ -125,7 +148,7 @@ const Contact = () => {
                                     </div>
                                     <div>
                                         <p className="font-bold text-lg">{t('contact.exportDesk')}</p>
-                                        <p className="text-white/60 font-mono">+91 93925 05751</p>
+                                        <p className="text-white/60 font-mono">{CONTACT_INFO.primaryPhone}</p>
                                     </div>
                                 </div>
 
