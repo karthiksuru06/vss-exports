@@ -9,7 +9,7 @@ Marketing site and product catalog for **VV Marine Exports** — premium seafood
 | `frontend/` | React + Vite SPA (HashRouter), Tailwind, product explorer |
 | `api/` | Vercel serverless routes: `/api/login`, `/api/inquire`, `/api` health |
 | `frontend/api/` | Re-exports root `api/` when Vercel **Root Directory** is `frontend` |
-| `shared/api/` | **Single source of truth** for login/inquire business logic |
+| `api/lib/` | Shared login/inquire logic (bundled inside Vercel `/api` functions) |
 | `backend/` | Local dev API with **SQLite** (`vss.db`) — same routes as production |
 | `vercel.json` | Build `frontend/dist` + deploy root `api/` functions |
 

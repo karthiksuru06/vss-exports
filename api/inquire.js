@@ -1,5 +1,5 @@
-const memoryStore = require('../shared/api/memoryStore');
-const { submitInquiry } = require('../shared/api/handlers');
-const { createPostHandler } = require('../shared/api/vercel');
+const memoryStore = require('./lib/memoryStore');
+const { submitInquiry } = require('./lib/handlers');
+const { createPostHandler } = require('./lib/vercel');
 
 module.exports = createPostHandler((body) => submitInquiry(memoryStore, body));

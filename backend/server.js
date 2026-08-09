@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const { loginUser, submitInquiry } = require('../shared/api/handlers');
+const { loginUser, submitInquiry } = require('../api/lib/handlers');
 const { createSqliteStore, openDatabase, initializeDb } = require('./sqliteStore');
 
 const PORT = process.env.PORT || 5000;

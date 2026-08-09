@@ -1,3 +1,3 @@
-const { createGetHandler } = require('../shared/api/vercel');
+const { createGetHandler } = require('./lib/vercel');
 
 module.exports = createGetHandler('VV Marine API is running');
