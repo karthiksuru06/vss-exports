@@ -1,10 +1,3 @@
-const { sendJson, applyCors } = require('./_http');
+const { createGetHandler } = require('../shared/api/vercel');
 
-module.exports = (req, res) => {
-  applyCors(req, res);
-  if (req.method === 'OPTIONS') {
-    res.statusCode = 200;
-    return res.end();
-  }
-  return sendJson(res, 200, { message: 'VV Marine API is running' });
-};
+module.exports = createGetHandler('VV Marine API is running');
