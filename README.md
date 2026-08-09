@@ -1,6 +1,6 @@
 # VV Marine Exports (`vss-exports`)
 
-Marketing site and product catalog for **VV Marine Exports** — premium seafood exports (Vannamei, Black Tiger shrimp, fresh fish). Production: [vmarineexport.com](https://vmarineexport.com).
+Marketing site and product catalog for **VV Marine Exports** — premium seafood exports (Vannamei, Black Tiger shrimp, fresh fish). Production: [www.vvmarineexport.com](https://www.vvmarineexport.com) (note: `vmarineexport.com` without the second “V” is **not** registered in DNS).
 
 ## Repository layout
 
