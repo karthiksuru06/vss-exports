@@ -2833,14 +2833,14 @@ export const CONTACT_INFO = {
   processingLocations: 'Visakhapatnam & Kakinada',
   contacts: [
     {
-      name: 'VUDI VIVEK',
+      name: 'Mr. VUDI VIVEK',
       title: 'Founder & CEO',
       phone: '+91 7674999037',
       email: 'vvmarineexports@gmail.com',
       responsibility: 'Vision, Strategy & Business Leadership'
     },
     {
-      name: 'M. YUVA VISHNU',
+      name: 'Mr. M. YUVA VISHNU',
       title: 'Co-Founder & Director – Operations',
       phone: '+91 7032367611',
       email: 'vvmarineexports@gmail.com',
